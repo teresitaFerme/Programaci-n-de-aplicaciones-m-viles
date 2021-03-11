@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="sumar">Sumar</string>
+    <string name="introduzca_y">Introduzca Y</string>
+    <string name="introduzca_x">Introduzca X</string>
+</resources>
