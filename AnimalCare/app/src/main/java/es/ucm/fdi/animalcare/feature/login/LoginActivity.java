@@ -1,5 +1,6 @@
 package es.ucm.fdi.animalcare.feature.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 
 public class LoginActivity extends BaseActivity implements LoginView{
     private LoginPresenter mLoginPresenter;
@@ -35,12 +37,12 @@ public class LoginActivity extends BaseActivity implements LoginView{
 
     @Override
     public void loginSuccessfull() {
-        //launch pantalla inicio
+        Intent intent = new Intent(this, PetsActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void loginFailure() {
-        //display toast or something
         Toast toast = Toast.makeText(this, "Invalid username or password", Toast.LENGTH_LONG);
         toast.show();
         mPassword.setText("");
