@@ -10,4 +10,5 @@
 
     <color name="mainColor">#2A4E42</color>
     <color name="iconColor">#71E4BE</color>
+    <color name="mainColorVariant">#3E7160</color>
 </resources>
