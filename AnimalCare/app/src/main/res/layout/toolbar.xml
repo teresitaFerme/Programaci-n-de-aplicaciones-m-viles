@@ -1,54 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/mainColor">
+    android:background="@color/mainColor"
+    android:padding="16dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
 
-    <Button
+
+    <ImageButton
         android:id="@+id/button_toolbar_pets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icon="@drawable/ic_pets"
+        android:background="@drawable/ic_pets"
+        android:padding="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="@color/mainColor"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button_toolbar_upcoming"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/mainColor"
-        app:icon="@drawable/ic_upcoming"
+        android:layout_marginStart="54dp"
+        android:background="@drawable/ic_upcoming"
+        android:padding="16dp"
         app:layout_constraintStart_toEndOf="@id/button_toolbar_pets"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+
+    <ImageButton
         android:id="@+id/button_toolbar_calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/mainColor"
-        app:icon="@drawable/ic_calendar"
+        android:layout_marginStart="54dp"
+        android:background="@drawable/ic_calendar"
+        android:padding="16dp"
         app:layout_constraintStart_toEndOf="@id/button_toolbar_upcoming"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+
+    <ImageButton
         android:id="@+id/button_toolbar_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/mainColor"
-        app:icon="@drawable/ic_settings"
+        android:layout_marginStart="54dp"
+        android:background="@drawable/ic_settings"
+        android:padding="16dp"
         app:layout_constraintStart_toEndOf="@id/button_toolbar_calendar"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button_toolbar_user"
-        android:layout_width="71dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/mainColor"
-        app:icon="@drawable/ic_user"
+        android:layout_marginStart="54dp"
+        android:background="@drawable/ic_user"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/button_toolbar_settings"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
