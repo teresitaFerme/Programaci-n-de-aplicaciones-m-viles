@@ -6,4 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".feature.upcoming.UpcomingActivity">
 
+    <include layout="@layout/toolbar"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

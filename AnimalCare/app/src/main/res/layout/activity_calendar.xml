@@ -6,4 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".feature.calendar.CalendarActivity">
 
+    <include layout="@layout/toolbar"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
