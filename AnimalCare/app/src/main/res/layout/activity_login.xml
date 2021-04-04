@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.MainActivity"
-    android:background="@drawable/gradient_background">
+    android:background="@drawable/gradient_background"
+    android:paddingHorizontal="30dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +30,7 @@
 
             <EditText
                 android:id="@+id/editText_username"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:drawableLeft="@drawable/ic_username"
@@ -40,7 +41,7 @@
 
             <EditText
                 android:id="@+id/editText_password"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:drawableLeft="@drawable/ic_password"
@@ -55,6 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_gravity="center"
+                android:backgroundTint="@color/iconColor"
+                android:textColor="@color/black"
                 android:text="Iniciar Sesión" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
