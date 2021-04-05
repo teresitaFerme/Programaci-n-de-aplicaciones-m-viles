@@ -1,13 +1,64 @@
 package es.ucm.fdi.animalcare.feature.register;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.provider.BaseColumns;
+
 import es.ucm.fdi.animalcare.base.BaseModel;
+import es.ucm.fdi.animalcare.database.UserDatabase.User;
+import es.ucm.fdi.animalcare.database.UserDbHelper;
 
 public class RegisterModel extends BaseModel {
 
+    UserDbHelper dbHelper;
+
+    RegisterModel(Context ctx) {
+        dbHelper = new UserDbHelper(ctx);
+    }
+
     public boolean getUsername(String username) {
-        //aqui hacemos consulta a bbdd para ver si ese username ya está registrado
-        //si ya está registrado devolvemos true
-        if(username.equals("username")) return true;
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query.
+        String[] projection = {
+                BaseColumns._ID,
+                User.COLUMN_NAME_USERNAME
+        };
+
+        // Filter results WHERE "title" = 'My Title'
+        String selection = User.COLUMN_NAME_USERNAME + " = ?";
+        String[] selectionArgs = {username};
+
+        Cursor cursor = db.query(
+                User.TABLE_NAME,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                selectionArgs,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                null               // The sort order
+        );
+
+        if(cursor.moveToFirst()) return true;
         else return false;
+    }
+
+    public boolean registerUser(String username, String password) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        // Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(User.COLUMN_NAME_USERNAME, username);
+        values.put(User.COLUMN_NAME_PASSWORD, password);
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(User.TABLE_NAME, null, values);
+
+        if (newRowId == -1) return false;
+        else return true;
     }
 }
