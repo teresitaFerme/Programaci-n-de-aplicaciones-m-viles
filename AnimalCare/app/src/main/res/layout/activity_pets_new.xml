@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editText_newpet_name"
         android:layout_width="209dp"
         android:layout_height="50dp"
         android:ems="10"
@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.152" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_newpet_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Añadir"

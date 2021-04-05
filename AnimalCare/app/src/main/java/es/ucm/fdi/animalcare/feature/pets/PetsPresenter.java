@@ -11,4 +11,11 @@ public class PetsPresenter extends BasePresenter {
         mPetsView = petsView;
     }
 
+    public void validateNewPet(String name, String type){
+        if(name.length() == 0 && type.length() == 0) mPetsView.fillField();
+        else{
+            mPetsModel.saveNewPet();
+            mPetsView.NewPetSuccessful();
+        }
+    }
 }
