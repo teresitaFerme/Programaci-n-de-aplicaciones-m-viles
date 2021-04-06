@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity implements MainView{
                 mMainPresenter.registrarse();
             }
         });
-        this.deleteDatabase("User.db");
+        //this.deleteDatabase("AnimalCare.db");
     }
 
 

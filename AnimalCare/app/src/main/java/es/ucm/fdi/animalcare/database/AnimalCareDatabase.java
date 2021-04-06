@@ -20,4 +20,14 @@ public final class AnimalCareDatabase {
         public static final String COLUMN_NAME_TYPE = "type";
         public static final String COLUMN_NAME_ID_OWNER = "id_owner";
     }
+
+    public static class Task implements BaseColumns {
+        public static final String TABLE_NAME = "task";
+        public static final String COLUMN_NAME_NAME = "name";
+        public static final String COLUMN_NAME_SCHEDULE_DATETIME = "schedule_datetime";
+        public static final String COLUMN_NAME_TASKDONE_DATETIME = "taskdone_datetime";
+        public static final String COLUMN_NAME_DESCRIPTION = "description";
+        public static final String COLUMN_NAME_FREQUENCY = "frequency";
+        public static final String COLUMN_NAME_ID_PET = "id_pet";
+    }
 }
