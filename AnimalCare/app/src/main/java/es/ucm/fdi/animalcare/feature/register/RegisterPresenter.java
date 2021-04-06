@@ -12,10 +12,13 @@ public class RegisterPresenter extends BasePresenter {
     }
 
     public void validateRegister(String username, String password, String passwordRepeat){
-        if(mRegisterModel.getUsername(username)) mRegisterView.registerFailureUsername();
+        if(username.length() == 0 || password.length() == 0 || passwordRepeat.length() == 0){
+            mRegisterView.fillFields();
+        }else if(mRegisterModel.getUsername(username)) mRegisterView.registerFailureUsername();
         else if(!password.equals(passwordRepeat)) mRegisterView.registerFailurePasswords();
-        else mRegisterView.registerSuccessful();
-        //AQUI HABRIA QUE COMPROBAR QUE TODOS LOS CAMPOS TIENEN ALGO, añadir ese metodo en el registerView
-
+        else{
+            mRegisterView.registerSuccessful();
+            mRegisterModel.registerUser();
+        }
     }
 }

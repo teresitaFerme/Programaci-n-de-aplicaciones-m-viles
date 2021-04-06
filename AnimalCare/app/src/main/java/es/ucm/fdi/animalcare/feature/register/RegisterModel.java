@@ -10,4 +10,10 @@ public class RegisterModel extends BaseModel {
         if(username.equals("username")) return true;
         else return false;
     }
+
+    public void registerUser() {
+        //registrar en la bbdd el usuario
+
+        //guargar en cache usuario
+    }
 }
