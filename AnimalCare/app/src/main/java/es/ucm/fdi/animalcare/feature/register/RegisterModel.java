@@ -7,15 +7,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
 import es.ucm.fdi.animalcare.base.BaseModel;
-import es.ucm.fdi.animalcare.database.UserDatabase.User;
-import es.ucm.fdi.animalcare.database.UserDbHelper;
+import es.ucm.fdi.animalcare.database.AnimalCareDatabase.User;
+import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
 
 public class RegisterModel extends BaseModel {
 
-    UserDbHelper dbHelper;
+    AnimalCareDbHelper dbHelper;
 
     RegisterModel(Context ctx) {
-        dbHelper = new UserDbHelper(ctx);
+        dbHelper = new AnimalCareDbHelper(ctx);
     }
 
     public boolean getUsername(String username) {
@@ -48,10 +48,12 @@ public class RegisterModel extends BaseModel {
         else return false;
     }
 
-    public boolean registerUser(String username, String password) {
+    public boolean registerUser(String name, String username, String password) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
+        values.put(User.COLUMN_NAME_NAME, name);
         values.put(User.COLUMN_NAME_USERNAME, username);
         values.put(User.COLUMN_NAME_PASSWORD, password);
 

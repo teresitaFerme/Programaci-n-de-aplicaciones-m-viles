@@ -5,14 +5,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import es.ucm.fdi.animalcare.base.BaseModel;
-import es.ucm.fdi.animalcare.database.UserDatabase.User;
-import es.ucm.fdi.animalcare.database.UserDbHelper;
+import es.ucm.fdi.animalcare.database.AnimalCareDatabase.User;
+import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
 
 public class LoginModel extends BaseModel {
     private String mUsername;
     private String mPassword;
 
-    UserDbHelper dbHelper;
+    AnimalCareDbHelper dbHelper;
 
     // Define a projection that specifies which columns from the database
     // you will actually use after this query.
@@ -25,7 +25,7 @@ public class LoginModel extends BaseModel {
     LoginModel(Context ctx){
         mUsername = "username";
         mPassword = "password";
-        dbHelper = new UserDbHelper(ctx);
+        dbHelper = new AnimalCareDbHelper(ctx);
     }
 
     public boolean validateLogin(String username, String password) {
