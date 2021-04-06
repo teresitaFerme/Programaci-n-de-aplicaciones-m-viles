@@ -1,5 +1,6 @@
 package es.ucm.fdi.animalcare.feature.pets;
 
+import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BasePresenter;
 
 public class PetsPresenter extends BasePresenter {
@@ -14,8 +15,12 @@ public class PetsPresenter extends BasePresenter {
     public void validateNewPet(String name, String type){
         if(name.length() == 0 && type.length() == 0) mPetsView.fillField();
         else{
-            mPetsModel.saveNewPet();
+            mPetsModel.saveNewPet(name,type);
             mPetsView.NewPetSuccessful();
         }
+    }
+
+    public void addNewPet() {
+            mPetsView.addNewPet();
     }
 }
