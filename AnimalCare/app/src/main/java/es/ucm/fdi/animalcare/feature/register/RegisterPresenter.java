@@ -13,7 +13,7 @@ public class RegisterPresenter extends BasePresenter {
         mRegisterView = registerView;
     }
 
-    public void validateRegister(String username, String password, String passwordRepeat){
+    public void validateRegister(String name, String username, String password, String passwordRepeat){
         if(username.length() == 0 || password.length() == 0 || passwordRepeat.length() == 0){
             mRegisterView.fillFields();
         }else if(mRegisterModel.getUsername(username)) mRegisterView.registerFailureUsername();
