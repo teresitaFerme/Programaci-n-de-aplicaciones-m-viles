@@ -32,7 +32,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
         mRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 mRegisterPresenter.validateRegister(String.valueOf(mName.getText()), String.valueOf(mUsername.getText()), String.valueOf(mPassword.getText()), String.valueOf(mPasswordRepeat.getText())) ;
             }
         });
@@ -40,7 +39,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 
     @Override
     public void registerSuccessful() {
-        //launch pantalla principal
         Intent intent = new Intent(this, PetsActivity.class);
         startActivity(intent);
     }
@@ -60,5 +58,10 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
         mPasswordRepeat.setText("");
     }
 
+    @Override
+    public void fillFields() {
+        Toast toast = Toast.makeText(this, "Por favor, rellene todos los campos.", Toast.LENGTH_LONG);
+        toast.show();
+    }
 
 }
