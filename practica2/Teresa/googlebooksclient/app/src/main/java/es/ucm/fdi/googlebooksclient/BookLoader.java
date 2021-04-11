@@ -3,7 +3,6 @@ package es.ucm.fdi.googlebooksclient;
 import android.content.Context;
 import android.net.Uri;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.content.AsyncTaskLoader;
 
@@ -13,8 +12,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
-public class BookLoader extends AsyncTaskLoader<String> {
+public class BookLoader extends AsyncTaskLoader<List<BookInfo>> {
     private String mQueryString;
     private String mPrintType;
 
@@ -27,7 +27,7 @@ public class BookLoader extends AsyncTaskLoader<String> {
 
     private static final String PRINT_TYPE = "printType";
 
-    public BookLoader(@NonNull Context context, String queryString, String printType) {
+    public BookLoader(Context context, String queryString, String printType) {
         super(context);
         mQueryString = queryString;
         mPrintType = printType;
@@ -107,12 +107,15 @@ public class BookLoader extends AsyncTaskLoader<String> {
             }
         }
 
+        //s llama al método updateBooksResultList con la lista que se ha
+        //pasado cargada.
+
         return bookJSONString;
     }
 
     @Nullable
     @Override
-    public String loadInBackground() {
-        return getBookInfoJson(mQueryString, null);
+    public List<BookInfo> loadInBackground() {
+        return getBookInfoJson(mQueryString, mPrintType);
     }
 }

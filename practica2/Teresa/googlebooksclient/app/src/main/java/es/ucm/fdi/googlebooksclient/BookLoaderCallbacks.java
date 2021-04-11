@@ -1,7 +1,7 @@
 package es.ucm.fdi.googlebooksclient;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +25,7 @@ public class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<String
             printType = args.getString("printType");
         }
 
-        return new BookLoader(null, queryString, printType);
+        return new BookLoader(null, queryString, printType);//TODO: AQUI NO SÉ COMO PASARLE EL CONTEXTO
     }
 
     @Override
@@ -58,7 +58,7 @@ public class BookLoaderCallbacks implements LoaderManager.LoaderCallbacks<String
                     e.printStackTrace();
                 }
 
-                // Move to the next item.
+                Log.d("resultados", book.toString());
                 i++;
             }
 
