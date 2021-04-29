@@ -6,4 +6,5 @@ public interface PetsView extends BaseView {
     boolean fillField();
     void NewPetSuccessful();
     void addNewPet();
+    void noRegister();
 }

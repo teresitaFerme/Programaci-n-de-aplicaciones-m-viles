@@ -6,9 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".feature.calendar.CalendarActivity">
 
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:headerColor="@color/mainColor"
+        app:layout_constraintBottom_toTopOf="@id/tareas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginBottom="10dp"/>
+
     <include
-        android:id="@+id/include3"
+        android:id="@+id/include"
         layout="@layout/toolbar"
         tools:layout_editor_absoluteY="667dp" />
+
+    <TextView
+        android:id="@+id/tareas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Tareas"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

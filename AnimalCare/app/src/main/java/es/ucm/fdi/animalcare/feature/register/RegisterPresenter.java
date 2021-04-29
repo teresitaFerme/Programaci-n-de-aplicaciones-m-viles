@@ -1,5 +1,7 @@
 package es.ucm.fdi.animalcare.feature.register;
 
+import android.content.Context;
+
 import es.ucm.fdi.animalcare.base.BasePresenter;
 
 public class RegisterPresenter extends BasePresenter {
@@ -7,15 +9,15 @@ public class RegisterPresenter extends BasePresenter {
     private RegisterModel mRegisterModel;
 
     RegisterPresenter(RegisterView registerView){
-        mRegisterModel = new RegisterModel();
+        mRegisterModel = new RegisterModel((Context) registerView);
         mRegisterView = registerView;
     }
 
-    public void validateRegister(String username, String password, String passwordRepeat){
-        if(mRegisterModel.getUsername(username)) mRegisterView.registerFailureUsername();
+    public void validateRegister(String name, String username, String password, String passwordRepeat){
+        if(username.length() == 0 || password.length() == 0 || passwordRepeat.length() == 0){
+            mRegisterView.fillFields();
+        }else if(mRegisterModel.getUsername(username)) mRegisterView.registerFailureUsername();
         else if(!password.equals(passwordRepeat)) mRegisterView.registerFailurePasswords();
-        else mRegisterView.registerSuccessful();
-        //AQUI HABRIA QUE COMPROBAR QUE TODOS LOS CAMPOS TIENEN ALGO, añadir ese metodo en el registerView
-
+        else if(mRegisterModel.registerUser(name, username, password)) mRegisterView.registerSuccessful();
     }
 }
