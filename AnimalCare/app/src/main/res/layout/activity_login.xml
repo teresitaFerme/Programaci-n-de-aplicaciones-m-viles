@@ -59,6 +59,28 @@
                 android:backgroundTint="@color/iconColor"
                 android:textColor="@color/black"
                 android:text="Iniciar Sesión" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿Aún no tienes cuenta?"/>
+
+                <TextView
+                    android:id="@+id/login_register_option"
+                    android:layout_marginStart="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/iconColor"
+                    android:text="@string/reg_strate"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

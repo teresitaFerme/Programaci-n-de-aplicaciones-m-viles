@@ -12,6 +12,7 @@ public class SettingsPresenter extends BasePresenter {
     }
 
     public void screenModeChanged() {
+        
     }
 
     public void notificationsEnabled() {

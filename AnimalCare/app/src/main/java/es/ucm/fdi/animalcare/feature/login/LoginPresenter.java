@@ -17,4 +17,8 @@ public class LoginPresenter extends BasePresenter {
         if(mLoginModel.validateLogin(username, password)) mLoginView.loginSuccessfull();
         else mLoginView.loginFailure();
     }
+
+    public void launchRegister() {
+        mLoginView.launchRegister();
+    }
 }

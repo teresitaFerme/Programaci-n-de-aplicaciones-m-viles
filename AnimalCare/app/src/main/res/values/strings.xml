@@ -27,4 +27,5 @@
     <string name="material_calendar_today_button">Hoy</string>
     <string name="material_calendar_positive_button">OK</string>
     <string name="material_calendar_negative_button">Cancelar</string>
+    <string name="reg_strate"><u>Regístrate</u></string>
 </resources>
