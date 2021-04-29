@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".feature.pets.PetsActivity">
 
-    <include layout="@layout/toolbar"/>
-
     <include
         android:id="@+id/include2"
         layout="@layout/toolbar"
@@ -24,15 +22,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.954" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/PetsList"
-        android:layout_width="376dp"
-        android:layout_height="526dp"
+        android:layout_width="374dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/AddPet"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355" />
+        app:layout_constraintVertical_bias="0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
