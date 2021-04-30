@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimalCare">
-        <activity android:name=".feature.user.UserActivity"></activity>
+        <activity android:name=".feature.user.UserActivity" />
         <activity android:name=".feature.settings.SettingsActivity" />
         <activity android:name=".feature.calendar.CalendarActivity" />
         <activity android:name=".feature.upcoming.UpcomingActivity" />
