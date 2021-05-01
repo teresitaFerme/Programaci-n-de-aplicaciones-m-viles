@@ -15,15 +15,14 @@
         <activity android:name=".feature.upcoming.UpcomingActivity" />
         <activity android:name=".feature.pets.PetsActivity" />
         <activity android:name=".feature.register.RegisterActivity" />
-        <activity android:name=".feature.login.LoginActivity" />
-        <activity android:name=".base.BaseActivity" />
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".feature.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".base.BaseActivity" />
     </application>
 
 </manifest>

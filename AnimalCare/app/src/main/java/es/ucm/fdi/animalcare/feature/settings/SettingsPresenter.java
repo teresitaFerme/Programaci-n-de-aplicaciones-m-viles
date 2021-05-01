@@ -10,4 +10,11 @@ public class SettingsPresenter extends BasePresenter {
         mSettingsView = view;
         mSettingsModel = new SettingsModel();
     }
+
+    public void screenModeChanged() {
+        
+    }
+
+    public void notificationsEnabled() {
+    }
 }
