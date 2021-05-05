@@ -2,19 +2,24 @@ package es.ucm.fdi.animalcare.feature.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
+import es.ucm.fdi.animalcare.feature.register.RegisterActivity;
 
 public class LoginActivity extends BaseActivity implements LoginView{
     private LoginPresenter mLoginPresenter;
     private EditText mUsername, mPassword;
     private Button mIniciasesion;
+    private TextView mRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
 
         mUsername = findViewById(R.id.editText_username);
         mPassword = findViewById(R.id.editText_password);
+        mRegister = findViewById(R.id.login_register_option);
 
         mIniciasesion = findViewById(R.id.button_inicia_sesion);
         mIniciasesion.setOnClickListener(new View.OnClickListener() {
@@ -33,11 +39,19 @@ public class LoginActivity extends BaseActivity implements LoginView{
                 mLoginPresenter.validateLogin(String.valueOf(mUsername.getText()), String.valueOf(mPassword.getText()));
             }
         });
+
+        mRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mLoginPresenter.launchRegister();
+            }
+        });
     }
 
     @Override
-    public void loginSuccessfull() {
+    public void loginSuccessfull(User u) {
         Intent intent = new Intent(this, PetsActivity.class);
+        intent.putExtra("user", u);
         startActivity(intent);
     }
 
@@ -46,5 +60,11 @@ public class LoginActivity extends BaseActivity implements LoginView{
         Toast toast = Toast.makeText(this, "Invalid username or password", Toast.LENGTH_LONG);
         toast.show();
         mPassword.setText("");
+    }
+
+    @Override
+    public void launchRegister() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 }
