@@ -1,11 +1,39 @@
 package es.ucm.fdi.animalcare.data;
 
-public class User {
+import java.io.Serializable;
+import java.util.List;
+
+public class User implements Serializable {
     private String mUsername;
     private int mId;
+    private List<Pets> mPetList;
 
-    User(String username, int id){
+    public User(String username, int id){
         mUsername = username;
         mId = id;
+    }
+
+    public String getmUsername() {
+        return mUsername;
+    }
+
+    public void setmUsername(String mUsername) {
+        this.mUsername = mUsername;
+    }
+
+    public int getmId() {
+        return mId;
+    }
+
+    public void setmId(int mId) {
+        this.mId = mId;
+    }
+
+    public List<Pets> getmPetList() {
+        return mPetList;
+    }
+
+    public void setmPetList(List<Pets> mPetList) {
+        this.mPetList = mPetList;
     }
 }

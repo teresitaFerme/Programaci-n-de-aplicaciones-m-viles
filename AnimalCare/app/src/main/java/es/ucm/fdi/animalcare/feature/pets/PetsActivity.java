@@ -23,6 +23,7 @@ import java.util.List;
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.Pets;
+import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
@@ -30,6 +31,7 @@ import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 import es.ucm.fdi.animalcare.feature.user.UserActivity;
 
 public class PetsActivity extends BaseActivity implements PetsView, ToolBarManagement {
+    private User user;
     private PetsPresenter mPetsPresenter;
     private ImageView mButton;
     private RecyclerView mPetList;
@@ -53,12 +55,14 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
         findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
         findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.iconColor));
 
+        user = (User) getIntent().getSerializableExtra("user");
+
         mPetsPresenter = new PetsPresenter(this);
 
         mPetList = findViewById(R.id.PetsList);
         mAddPet = findViewById(R.id.AddPet);
 
-        updateList();
+        updateList(user.getmId());
 
         mAddPet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,14 +113,14 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
         mNewPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPetsPresenter.validateNewPet(String.valueOf(mNamePet.getText()), mTypePet.getSelectedItem().toString()) ;
+                mPetsPresenter.validateNewPet(String.valueOf(mNamePet.getText()), mTypePet.getSelectedItem().toString(), user.getmId()) ;
             }
         });
     }
 
-    public void  updateList(){
+    public void  updateList(Integer userId){
         listPets = new ArrayList<>();
-        listPets = mPetsPresenter.validateUserPets("1");
+        listPets = mPetsPresenter.validateUserPets(userId);
 
         recyclerView = findViewById(R.id.PetsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -143,7 +147,7 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
         setContentView(R.layout.activity_pets);
         Toast toast = Toast.makeText(this, "Animal Guardado", Toast.LENGTH_LONG);
         toast.show();
-        updateList();
+        updateList(user.getmId());
 
     }
 }

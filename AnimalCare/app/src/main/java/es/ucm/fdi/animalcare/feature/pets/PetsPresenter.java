@@ -17,10 +17,10 @@ public class PetsPresenter extends BasePresenter {
         mPetsModel = new PetsModel((Context) petsView);
     }
 
-    public void validateNewPet(String name, String type){
+    public void validateNewPet(String name, String type, Integer userId){
         if(name.length() == 0 && type.length() == 0) mPetsView.fillField();
-        else{
-            mPetsModel.saveNewPet(name,type);
+        else {
+            mPetsModel.saveNewPet(name, type, userId);
             mPetsView.NewPetSuccessful();
 
         }
@@ -30,10 +30,10 @@ public class PetsPresenter extends BasePresenter {
         mPetsView.addNewPet();
     }
 
-    public List<Pets> validateUserPets(String s) {
-        if(s == null){
+    public List<Pets> validateUserPets(Integer userId) {
+        if(userId == null){
             mPetsView.noRegister();
         }
-        return mPetsModel.getPets(Integer.parseInt(s));
+        return mPetsModel.getPets(userId);
     }
 }

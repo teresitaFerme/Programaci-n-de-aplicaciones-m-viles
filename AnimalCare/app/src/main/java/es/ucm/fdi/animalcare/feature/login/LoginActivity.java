@@ -2,6 +2,7 @@ package es.ucm.fdi.animalcare.feature.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.register.RegisterActivity;
 
@@ -47,8 +49,9 @@ public class LoginActivity extends BaseActivity implements LoginView{
     }
 
     @Override
-    public void loginSuccessfull() {
+    public void loginSuccessfull(User u) {
         Intent intent = new Intent(this, PetsActivity.class);
+        intent.putExtra("user", u);
         startActivity(intent);
     }
 

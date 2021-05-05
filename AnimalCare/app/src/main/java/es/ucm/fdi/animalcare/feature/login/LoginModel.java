@@ -5,12 +5,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import es.ucm.fdi.animalcare.base.BaseModel;
-import es.ucm.fdi.animalcare.database.AnimalCareDatabase.User;
+import es.ucm.fdi.animalcare.data.User;
+import es.ucm.fdi.animalcare.database.AnimalCareDatabase;
 import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
 
 public class LoginModel extends BaseModel {
     private String mUsername;
     private String mPassword;
+    private Integer mId;
 
     AnimalCareDbHelper dbHelper;
 
@@ -18,8 +20,8 @@ public class LoginModel extends BaseModel {
     // you will actually use after this query.
     String[] projection = {
             BaseColumns._ID,
-            User.COLUMN_NAME_USERNAME,
-            User.COLUMN_NAME_PASSWORD
+            AnimalCareDatabase.User.COLUMN_NAME_USERNAME,
+            AnimalCareDatabase.User.COLUMN_NAME_PASSWORD
     };
 
     LoginModel(Context ctx){
@@ -28,18 +30,18 @@ public class LoginModel extends BaseModel {
         dbHelper = new AnimalCareDbHelper(ctx);
     }
 
-    public boolean validateLogin(String username, String password) {
+    public es.ucm.fdi.animalcare.data.User validateLogin(String username, String password) {
         //esto realmente es comprobar que existe ese user en la bbdd
 
         // Gets the data repository in read mode
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         // Filter results WHERE "title" = 'My Title'
-        String selection = User.COLUMN_NAME_USERNAME + " = ?";
+        String selection = AnimalCareDatabase.User.COLUMN_NAME_USERNAME + " = ?";
         String[] selectionArgs = {username};
 
         Cursor cursor = db.query(
-                User.TABLE_NAME,   // The table to query
+                AnimalCareDatabase.User.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)
                 selection,              // The columns for the WHERE clause
                 selectionArgs,          // The values for the WHERE clause
@@ -49,12 +51,13 @@ public class LoginModel extends BaseModel {
         );
 
         if(cursor.moveToFirst()) {
-            mUsername = cursor.getString(cursor.getColumnIndex(User.COLUMN_NAME_USERNAME));
-            mPassword = cursor.getString(cursor.getColumnIndex(User.COLUMN_NAME_PASSWORD));
+            mUsername = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.User.COLUMN_NAME_USERNAME));
+            mPassword = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.User.COLUMN_NAME_PASSWORD));
+            mId = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID));
             cursor.close();
-        } else return false;
+        } else return null;
 
-        if(mUsername.equals(username) && mPassword.equals(password)) return true;
-        else return false;
+        if(mUsername.equals(username) && mPassword.equals(password)) return new User(mUsername, mId);
+        else return null;
     }
 }

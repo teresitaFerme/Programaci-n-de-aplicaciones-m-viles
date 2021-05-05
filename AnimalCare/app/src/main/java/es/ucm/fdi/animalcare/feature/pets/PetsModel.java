@@ -32,7 +32,7 @@ public class PetsModel extends BaseModel {
         dbHelper = new AnimalCareDbHelper(ctx);
     }
 
-    public boolean saveNewPet(String name, String type) { //Guarda animal en la base de datos
+    public boolean saveNewPet(String name, String type, Integer userId) { //Guarda animal en la base de datos
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -40,7 +40,7 @@ public class PetsModel extends BaseModel {
         values.put(Pet.COLUMN_NAME_NAME, name);
         values.put(Pet.COLUMN_NAME_TYPE, type);
         //Guardar tambien el id del usuario
-        values.put(Pet.COLUMN_NAME_ID_OWNER, 1);
+        values.put(Pet.COLUMN_NAME_ID_OWNER, userId);
 
         long newRowId = db.insert(Pet.TABLE_NAME, null, values);
 
