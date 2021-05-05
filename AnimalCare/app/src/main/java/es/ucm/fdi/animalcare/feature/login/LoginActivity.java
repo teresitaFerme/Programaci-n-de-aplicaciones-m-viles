@@ -1,6 +1,7 @@
 package es.ucm.fdi.animalcare.feature.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -20,6 +21,9 @@ public class LoginActivity extends BaseActivity implements LoginView{
     private EditText mUsername, mPassword;
     private Button mIniciasesion;
     private TextView mRegister;
+
+    private final String sharedPrefName = "preferences";
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,16 @@ public class LoginActivity extends BaseActivity implements LoginView{
                 mLoginPresenter.launchRegister();
             }
         });
+
+        sp = getSharedPreferences(sharedPrefName, MODE_PRIVATE);
     }
 
     @Override
     public void loginSuccessfull(User u) {
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("name", u.getmName());
+        editor.apply();
+
         Intent intent = new Intent(this, PetsActivity.class);
         intent.putExtra("user", u);
         startActivity(intent);

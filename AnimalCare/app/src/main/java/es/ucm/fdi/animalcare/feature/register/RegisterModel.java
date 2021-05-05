@@ -62,6 +62,6 @@ public class RegisterModel extends BaseModel {
         long newRowId = db.insert(AnimalCareDatabase.User.TABLE_NAME, null, values);
 
         if (newRowId == -1) return null;
-        else return new User(name, (int) newRowId);
+        else return new User(name, username, (int) newRowId);
     }
 }

@@ -10,6 +10,7 @@ import es.ucm.fdi.animalcare.database.AnimalCareDatabase;
 import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
 
 public class LoginModel extends BaseModel {
+    private String mName;
     private String mUsername;
     private String mPassword;
     private Integer mId;
@@ -20,11 +21,13 @@ public class LoginModel extends BaseModel {
     // you will actually use after this query.
     String[] projection = {
             BaseColumns._ID,
+            AnimalCareDatabase.User.COLUMN_NAME_NAME,
             AnimalCareDatabase.User.COLUMN_NAME_USERNAME,
             AnimalCareDatabase.User.COLUMN_NAME_PASSWORD
     };
 
     LoginModel(Context ctx){
+        mName = "name";
         mUsername = "username";
         mPassword = "password";
         dbHelper = new AnimalCareDbHelper(ctx);
@@ -51,13 +54,14 @@ public class LoginModel extends BaseModel {
         );
 
         if(cursor.moveToFirst()) {
+            mName = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.User.COLUMN_NAME_NAME));
             mUsername = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.User.COLUMN_NAME_USERNAME));
             mPassword = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.User.COLUMN_NAME_PASSWORD));
             mId = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID));
             cursor.close();
         } else return null;
 
-        if(mUsername.equals(username) && mPassword.equals(password)) return new User(mUsername, mId);
+        if(mUsername.equals(username) && mPassword.equals(password)) return new User(mName, mUsername, mId);
         else return null;
     }
 }

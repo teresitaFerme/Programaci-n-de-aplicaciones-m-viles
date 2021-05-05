@@ -1,5 +1,7 @@
 package es.ucm.fdi.animalcare.feature.user;
 
+import android.content.SharedPreferences;
+
 import es.ucm.fdi.animalcare.base.BasePresenter;
 
 public class UserPresenter extends BasePresenter {

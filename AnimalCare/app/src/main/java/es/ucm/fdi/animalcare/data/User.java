@@ -4,13 +4,23 @@ import java.io.Serializable;
 import java.util.List;
 
 public class User implements Serializable {
+    private String mName;
     private String mUsername;
     private int mId;
     private List<Pets> mPetList;
 
-    public User(String username, int id){
+    public User(String name, String username, int id){
+        mName = name;
         mUsername = username;
         mId = id;
+    }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
     }
 
     public String getmUsername() {
