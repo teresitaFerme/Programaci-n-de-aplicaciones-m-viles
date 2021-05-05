@@ -4,7 +4,7 @@ public class Pets {
     private String mName;
     private String mId;
     private String mType;
-    private String mIdOwner;
+    private Integer mIdOwner;
 /*
     Pets(String name, int id, String type, Integer idOwner){
         /*
@@ -18,11 +18,11 @@ public class Pets {
     public String getId() {return mId;}
     public String getName() {return mName;}
     public String getType() {return mType;}
-    public String getIdOwner() {return mIdOwner;}
+    public Integer getIdOwner() {return mIdOwner;}
 
     public void setId(String id) {mId = id;}
     public void setName(String name) {mName = name;}
     public void setType(String type) {mType = type;}
-    public void setIdOwner(String idOwner) { mIdOwner = idOwner;}
+    public void setIdOwner(int idOwner) { mIdOwner = idOwner;}
 }
 

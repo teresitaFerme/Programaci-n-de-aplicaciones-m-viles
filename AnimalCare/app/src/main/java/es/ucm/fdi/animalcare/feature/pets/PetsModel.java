@@ -72,7 +72,7 @@ public class PetsModel extends BaseModel {
             pet.setId(cursor.getString(cursor.getColumnIndex(Pet._ID)));
             pet.setName(cursor.getString(cursor.getColumnIndex(Pet.COLUMN_NAME_NAME)));
             pet.setType(cursor.getString(cursor.getColumnIndex(Pet.COLUMN_NAME_TYPE)));
-            pet.setIdOwner(cursor.getString(cursor.getColumnIndex(Pet.COLUMN_NAME_ID_OWNER)));
+            pet.setIdOwner(cursor.getInt(cursor.getColumnIndex(Pet.COLUMN_NAME_ID_OWNER)));
             values.add(pet);
         }
         cursor.close();

@@ -27,7 +27,7 @@ public final class AnimalCareDatabase {
         public static final String COLUMN_NAME_SCHEDULE_DATETIME = "schedule_datetime";
         public static final String COLUMN_NAME_TASKDONE_DATETIME = "taskdone_datetime";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
-        public static final String COLUMN_NAME_FREQUENCY = "frequency";
+        public static final Integer COLUMN_NAME_FREQUENCY = "frequency";
         public static final String COLUMN_NAME_ID_PET = "id_pet";
     }
 }

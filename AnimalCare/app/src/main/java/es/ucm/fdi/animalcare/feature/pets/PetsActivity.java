@@ -121,6 +121,7 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
     public void  updateList(Integer userId){
         listPets = new ArrayList<>();
         listPets = mPetsPresenter.validateUserPets(userId);
+        user.setmPetList(listPets);
 
         recyclerView = findViewById(R.id.PetsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
