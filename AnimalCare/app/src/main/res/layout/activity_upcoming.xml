@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".feature.upcoming.UpcomingActivity">
 
-    <include layout="@layout/toolbar"/>
+    <!-- <include layout="@layout/toolbar"/>
+    -->
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        tools:layout_editor_absoluteY="667dp" />
 
+    <Button
+        android:id="@+id/addTaskButton"
+        android:layout_width="259dp"
+        android:layout_height="69dp"
+        android:text="Añadir Tarea"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.954" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskListView"
+        android:layout_width="376dp"
+        android:layout_height="526dp"
+        app:layout_constraintBottom_toTopOf="@+id/addTaskButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.355" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,10 @@
 package es.ucm.fdi.animalcare.data;
 
-public class Pets {
+import java.io.Serializable;
+
+public class Pets implements Serializable {
     private String mName;
-    private String mId;
+    private Integer mId;
     private String mType;
     private Integer mIdOwner;
 /*
@@ -12,15 +14,14 @@ public class Pets {
         mId = id;
         mType = type;
         mIdOwner = idOwner;
-
     }
 */
-    public String getId() {return mId;}
+    public Integer getId() {return mId;}
     public String getName() {return mName;}
     public String getType() {return mType;}
     public Integer getIdOwner() {return mIdOwner;}
 
-    public void setId(String id) {mId = id;}
+    public void setId(Integer id) {mId = id;}
     public void setName(String name) {mName = name;}
     public void setType(String type) {mType = type;}
     public void setIdOwner(int idOwner) { mIdOwner = idOwner;}

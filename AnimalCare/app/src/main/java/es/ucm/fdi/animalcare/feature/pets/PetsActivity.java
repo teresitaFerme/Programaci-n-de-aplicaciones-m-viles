@@ -12,8 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -62,7 +60,7 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
         mPetList = findViewById(R.id.PetsList);
         mAddPet = findViewById(R.id.AddPet);
 
-        updateList(user.getmId());
+        updateList();
 
         mAddPet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +90,7 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
                     break;
 
             }
+            intent.putExtra("user", user);
             startActivity(intent);
         }
     }
@@ -118,9 +117,9 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
         });
     }
 
-    public void  updateList(Integer userId){
+    public void  updateList(){
         listPets = new ArrayList<>();
-        listPets = mPetsPresenter.validateUserPets(userId);
+        listPets = mPetsPresenter.validateUserPets(user.getmId());
         user.setmPetList(listPets);
 
         recyclerView = findViewById(R.id.PetsList);
@@ -148,7 +147,6 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
         setContentView(R.layout.activity_pets);
         Toast toast = Toast.makeText(this, "Animal Guardado", Toast.LENGTH_LONG);
         toast.show();
-        updateList(user.getmId());
-
+        updateList();
     }
 }

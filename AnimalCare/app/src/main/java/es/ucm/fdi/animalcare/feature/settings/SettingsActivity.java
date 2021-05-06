@@ -1,6 +1,5 @@
 package es.ucm.fdi.animalcare.feature.settings;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Intent;
