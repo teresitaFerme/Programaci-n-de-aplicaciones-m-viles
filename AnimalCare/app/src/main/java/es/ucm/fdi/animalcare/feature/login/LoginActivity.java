@@ -15,6 +15,7 @@ import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.register.RegisterActivity;
+import es.ucm.fdi.animalcare.session.SessionHandler;
 
 public class LoginActivity extends BaseActivity implements LoginView{
     private LoginPresenter mLoginPresenter;
@@ -22,7 +23,6 @@ public class LoginActivity extends BaseActivity implements LoginView{
     private Button mIniciasesion;
     private TextView mRegister;
 
-    private final String sharedPrefName = "preferences";
     private SharedPreferences sp;
 
     @Override
@@ -51,7 +51,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
             }
         });
 
-        sp = getSharedPreferences(sharedPrefName, MODE_PRIVATE);
+        sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
     }
 
     @Override

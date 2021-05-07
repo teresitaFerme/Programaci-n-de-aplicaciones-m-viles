@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.se.omapi.Session;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,13 +19,13 @@ import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
+import es.ucm.fdi.animalcare.session.SessionHandler;
 
 public class UserActivity extends BaseActivity implements UserView, ToolBarManagement {
     private UserPresenter mUserPresenter;
     private TextView mNameView;
     private Button mLogoutButton;
 
-    private final String sharedPrefName = "preferences";
     private SharedPreferences sp;
 
     @Override
@@ -43,7 +44,7 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         mNameView = findViewById(R.id.name);
         mLogoutButton = findViewById(R.id.button_logout);
 
-        sp = getSharedPreferences(sharedPrefName, MODE_PRIVATE);
+        sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
         String mName = sp.getString("name", "User");
         mNameView.setText(mName);
     }

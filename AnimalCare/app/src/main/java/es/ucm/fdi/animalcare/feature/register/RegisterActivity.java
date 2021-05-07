@@ -12,13 +12,13 @@ import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
+import es.ucm.fdi.animalcare.session.SessionHandler;
 
 public class RegisterActivity extends BaseActivity implements RegisterView{
     private RegisterPresenter mRegisterPresenter;
     private Button mRegistrarUsuario;
     private EditText mName, mUsername, mPassword, mPasswordRepeat;
 
-    private final String sharedPrefName = "preferences";
     private SharedPreferences sp;
 
     @Override
@@ -41,7 +41,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
             }
         });
 
-        sp = getSharedPreferences(sharedPrefName, MODE_PRIVATE);
+        sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
     }
 
     @Override
