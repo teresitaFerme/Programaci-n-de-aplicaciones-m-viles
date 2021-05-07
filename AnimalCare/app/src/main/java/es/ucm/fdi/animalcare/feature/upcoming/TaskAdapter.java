@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import es.ucm.fdi.animalcare.R;
@@ -46,15 +47,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView desc;
+        TextView name;
+        TextView time;
 
         ViewHolder(View itemView){
             super(itemView);
-            desc = itemView.findViewById(R.id.taskName);
+            name = itemView.findViewById(R.id.taskName);
+            time = itemView.findViewById(R.id.taskScheduleTime);
         }
 
         void bindData(final Task task){
-            desc.setText(task.getmTaskName());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+            String timeStr = dateFormat.format(task.getmScheduleDatetime());
+            time.setText(timeStr);
+            name.setText(task.getmTaskName());
         }
     }
 }

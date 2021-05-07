@@ -20,7 +20,7 @@ public class Task {
 
     public Task(Integer mPetId, String mTaskName, String mScheduleDatetime, /*Date mTaskDoneDatetime, */String mDescription) {
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy HH:mm");
         Date date = null;
 
         try {
