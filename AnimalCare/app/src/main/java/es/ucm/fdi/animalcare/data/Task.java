@@ -18,9 +18,9 @@ public class Task {
     private String mDescription;
     private Frequency mFreq;
 
-    public Task(Integer mPetId, String mTaskName, String mScheduleDatetime, /*Date mTaskDoneDatetime, */String mDescription) {
+    public Task(Integer mId, Integer mPetId, String mTaskName, String mScheduleDatetime, /*Date mTaskDoneDatetime, */String mDescription) {
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date date = null;
 
         try {
@@ -29,6 +29,7 @@ public class Task {
             e.printStackTrace();
         }
 
+        this.mId = mId;
         this.mPetId = mPetId;
         this.mTaskName = mTaskName;
         this.mScheduleDatetime = date;

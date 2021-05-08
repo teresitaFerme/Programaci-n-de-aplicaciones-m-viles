@@ -9,7 +9,7 @@ import es.ucm.fdi.animalcare.database.AnimalCareDatabase.TaskTable;
 
 public class AnimalCareDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "AnimalCare.db";
     private static final String SQL_CREATE_USER_TABLE =
             "CREATE TABLE " + UserTable.TABLE_NAME + " (" +

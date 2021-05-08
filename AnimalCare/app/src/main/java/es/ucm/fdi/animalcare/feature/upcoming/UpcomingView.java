@@ -6,4 +6,5 @@ public interface UpcomingView extends BaseView {
     void addNewTask();
     void fillFields();
     void newTaskSuccessful();
+    void cancelNewTask();
 }

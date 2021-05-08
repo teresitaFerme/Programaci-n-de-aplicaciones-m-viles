@@ -3,6 +3,7 @@ package es.ucm.fdi.animalcare.feature.register;
 import android.content.Context;
 
 import es.ucm.fdi.animalcare.base.BasePresenter;
+import es.ucm.fdi.animalcare.data.User;
 
 public class RegisterPresenter extends BasePresenter {
     private RegisterView mRegisterView;
@@ -18,6 +19,9 @@ public class RegisterPresenter extends BasePresenter {
             mRegisterView.fillFields();
         }else if(mRegisterModel.getUsername(username)) mRegisterView.registerFailureUsername();
         else if(!password.equals(passwordRepeat)) mRegisterView.registerFailurePasswords();
-        else if(mRegisterModel.registerUser(name, username, password) != null) mRegisterView.registerSuccessful();
+        else {
+            User u = mRegisterModel.registerUser(name, username, password);
+            if(u != null) mRegisterView.registerSuccessful(u);
+        }
     }
 }

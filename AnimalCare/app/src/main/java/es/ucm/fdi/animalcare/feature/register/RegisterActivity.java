@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 
 public class RegisterActivity extends BaseActivity implements RegisterView{
@@ -38,8 +39,9 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
     }
 
     @Override
-    public void registerSuccessful() {
+    public void registerSuccessful(User u) {
         Intent intent = new Intent(this, PetsActivity.class);
+        intent.putExtra("user", u);
         startActivity(intent);
     }
 

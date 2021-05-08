@@ -4,6 +4,8 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,15 +37,15 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
     private User user;
     private RecyclerView mTaskListView;
     private Button mAddTaskButton;
+    private TaskAdapter taskAdapter;
+    private List<Task> taskList;
     private Button mAddTaskConfirm;
+    private Button mAddTaskCancel;
     private EditText mTaskName;
     private Spinner mPetSpinner;
     private EditText mScheduleDate;
     private TimePicker mScheduleTime;
     private EditText mTaskDesc;
-    private TaskAdapter taskAdapter;
-    private List<Task> taskList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +58,8 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
         findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.iconColor));
 
-        mTaskListView = findViewById(R.id.taskListView);
         mAddTaskButton = findViewById(R.id.addTaskButton);
-        mAddTaskButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { mUpcomingPresenter.addNewTask(); }
-        });
+        mAddTaskButton.setOnClickListener(v -> mUpcomingPresenter.addNewTask());
 
         mUpcomingPresenter = new UpcomingPresenter(this);
         user = (User) getIntent().getSerializableExtra("user");
@@ -104,10 +102,18 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         updateList();
     }
 
+    @Override
+    public void cancelNewTask() {
+        setContentView(R.layout.activity_upcoming);
+
+        updateList();
+    }
+
     public void  updateList(){
         taskList = new ArrayList<>();
         taskList = mUpcomingPresenter.getAllTasks(user.getmId());
 
+        mTaskListView = findViewById(R.id.taskListView);
         mTaskListView.setLayoutManager(new LinearLayoutManager(this));
         mTaskListView.setHasFixedSize(true);
         taskAdapter = new TaskAdapter( taskList, this);
@@ -116,10 +122,11 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void addNewTask(){
+
         setContentView(R.layout.activity_new_task);
 
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String date = dateFormat.format(calendar.getTime());
 
         mUpcomingPresenter = new UpcomingPresenter(this);
@@ -127,6 +134,7 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         mTaskName = findViewById(R.id.editTextTaskName);
         mTaskDesc = findViewById(R.id.editTextTaskDesc);
         mAddTaskConfirm = findViewById(R.id.buttonConfirmNewTask);
+        mAddTaskCancel = findViewById(R.id.buttonCancelNewTask);
         mPetSpinner = findViewById(R.id.petSpinner);
         mScheduleDate = findViewById(R.id.scheduleDate);
         mScheduleDate.setText(date);
@@ -139,6 +147,8 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
         mPetSpinner.setAdapter(adapter);
 
+        mAddTaskCancel.setOnClickListener(v -> mUpcomingPresenter.cancelNewTask());
+
         mScheduleDate.setOnClickListener(view -> {
             switch (view.getId()) {
                 case R.id.scheduleDate:
@@ -148,15 +158,12 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         });
 
         mAddTaskConfirm.setOnClickListener(v -> {
-            String datetime = mScheduleDate.getText().toString()
-                    .concat(" " + String.valueOf(mScheduleTime.getHour()) + ":" + String.valueOf(mScheduleTime.getMinute()));
-
-            mUpcomingPresenter.validateNewTask(
+            if(mUpcomingPresenter.validateNewTask(
                     mTaskName.getText().toString(), mTaskDesc.getText().toString(),
-                    mPetSpinner.getSelectedItem().toString(), datetime, user);
-
-            finish();
-            startActivity(getIntent());
+                    mPetSpinner.getSelectedItem().toString(), mScheduleDate.getText().toString(),
+                    mScheduleTime.getHour(), mScheduleTime.getMinute(), user) != -1){
+                newTaskSuccessful();
+            }
         }
         );
     }
@@ -169,5 +176,81 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
             });
 
             newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void editTask(Task task) {
+        setContentView(R.layout.activity_new_task);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String date = dateFormat.format(task.getmScheduleDatetime());
+
+        mUpcomingPresenter = new UpcomingPresenter(this);
+
+        mTaskName = findViewById(R.id.editTextTaskName);
+        mTaskName.setText(task.getmTaskName());
+
+        mTaskDesc = findViewById(R.id.editTextTaskDesc);
+        mTaskDesc.setText(task.getmDescription());
+
+        mScheduleTime = findViewById(R.id.scheduleTime);
+        mScheduleTime.setIs24HourView(true);
+        mScheduleTime.setHour(task.getmScheduleDatetime().getHours());
+        mScheduleTime.setMinute(task.getmScheduleDatetime().getMinutes());
+
+        mAddTaskCancel = findViewById(R.id.buttonCancelNewTask);
+        mAddTaskCancel.setOnClickListener(v -> mUpcomingPresenter.cancelNewTask());
+
+        mAddTaskConfirm = findViewById(R.id.buttonConfirmNewTask);
+        mAddTaskConfirm.setText("Modificar");
+        mAddTaskConfirm.setOnClickListener(v -> {
+                    if(mUpcomingPresenter.validateUpdateTask(task.getmId(),
+                            mTaskName.getText().toString(), mTaskDesc.getText().toString(),
+                            mPetSpinner.getSelectedItem().toString(), mScheduleDate.getText().toString(),
+                            mScheduleTime.getHour(), mScheduleTime.getMinute(), user) > 0){
+                        newTaskSuccessful();
+                        } else {
+                        Toast toast = Toast.makeText(UpcomingActivity.this, "Ha habido un error.", Toast.LENGTH_LONG);
+                        toast.show();
+                        }
+        });
+
+        mScheduleDate = findViewById(R.id.scheduleDate);
+        mScheduleDate.setText(date);
+        mScheduleDate.setOnClickListener(view -> {
+            switch (view.getId()) {
+                case R.id.scheduleDate:
+                    showDatePickerDialog();
+                    break;
+            }
+        });
+
+        mPetSpinner = findViewById(R.id.petSpinner);
+        String[] options = mUpcomingPresenter.getPetNames(user);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
+        mPetSpinner.setAdapter(adapter);
+        mPetSpinner.setSelection(mUpcomingPresenter.getPetPosition(user, task.getmPetId()));
+        mPetSpinner.setEnabled(false);
+    }
+
+    public void removeTask(Integer taskId) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage("Are you sure you want to delete this task?");
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int which) {
+                if(mUpcomingPresenter.removeTask(taskId) > 0){
+                    updateList();
+                } else {
+                    Toast toast = Toast.makeText(UpcomingActivity.this, "Ha habido un error.", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            }
+        });
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int which) {
+                //Do nothing
+            }
+        });
+        alertDialog.show();
     }
 }

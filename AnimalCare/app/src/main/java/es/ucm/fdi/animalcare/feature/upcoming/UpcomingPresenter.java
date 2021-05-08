@@ -2,6 +2,9 @@ package es.ucm.fdi.animalcare.feature.upcoming;
 
 import android.content.Context;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import es.ucm.fdi.animalcare.base.BasePresenter;
@@ -20,21 +23,32 @@ public class UpcomingPresenter extends BasePresenter {
 
     public List<Task> getAllTasks(Integer userId) {
         List<Task> taskList;
-        /*List<Pets> petsList;
 
-        petsList = mTasksModel.getPets(userId);
-        Integer[] petIds = new Integer[petsList.size()];
-
-        for(int i = 0; i < petsList.size(); i++){ petIds[i] = petsList.get(i).getId() ;}
-        taskList = mTasksModel.getAllTasks(petIds);
-        */
         taskList = mUpcomingModel.getAllTasks(userId);
         return taskList;
     }
 
     public void addNewTask() { mUpcomingView.addNewTask(); }
 
-    public void validateNewTask(String name, String desc, String petName, String date, User user) {
+    public Integer validateNewTask(String name, String desc, String petName, String date, int hour, int minute, User user) {
+
+        Integer taskId = null;
+        Date dateAux = null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String datetime;
+
+        try {
+            dateAux = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        dateAux.parse(date);
+        dateAux.setHours(hour);
+        dateAux.setMinutes(minute);
+
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        datetime = dateFormat.format(dateAux);
+
         if(name.length() == 0 && desc.length() == 0) mUpcomingView.fillFields();
         else {
             Integer petId = null;
@@ -44,9 +58,10 @@ public class UpcomingPresenter extends BasePresenter {
                     break;
                 }
             }
-            mUpcomingModel.saveNewTask(name, desc, date, petId);
-            mUpcomingView.newTaskSuccessful();
+            taskId = mUpcomingModel.saveNewTask(name, desc, datetime, petId);
         }
+
+        return taskId;
     }
 
     public String[] getPetNames(User user) {
@@ -62,5 +77,64 @@ public class UpcomingPresenter extends BasePresenter {
         return petNames;
     }
 
+    public Integer getPetPosition(User user, Integer petId){
+        int petPosition = 0;
 
+        List<Pets> petsList = user.getmPetList();
+        int i = 0;
+        for(Pets p : petsList) {
+            if (p.getId() == petId){
+                petPosition = i;
+                break;
+            }
+            i++;
+        }
+
+        return petPosition;
+    }
+
+    public void cancelNewTask() { mUpcomingView.cancelNewTask();
+    }
+
+    public Integer removeTask(Integer taskId) {
+        Integer taskReturn;
+
+        taskReturn = mUpcomingModel.removeTask(taskId);
+
+        return taskReturn;
+    }
+
+    public Integer validateUpdateTask(Integer taskId, String name, String desc, String petName, String date, int hour, int minute, User user) {
+
+        Integer taskReturn = 0;
+        Date dateAux = null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String datetime;
+
+        try {
+            dateAux = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        dateAux.parse(date);
+        dateAux.setHours(hour);
+        dateAux.setMinutes(minute);
+
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        datetime = dateFormat.format(dateAux);
+
+        if(name.length() == 0 && desc.length() == 0) mUpcomingView.fillFields();
+        else {
+            Integer petId = null;
+            for(Pets p: user.getmPetList()){
+                if (p.getName().equals(petName)){
+                    petId = p.getId();
+                    break;
+                }
+            }
+            taskReturn = mUpcomingModel.updateTask(taskId, name, desc, datetime, petId);
+        }
+
+        return taskReturn;
+    }
 }
