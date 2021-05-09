@@ -20,10 +20,10 @@ public class UserModel extends BaseModel {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        String whereClause = AnimalCareDatabase.User.COLUMN_NAME_USERNAME + " = ?";
+        String whereClause = AnimalCareDatabase.UserTable.COLUMN_NAME_USERNAME + " = ?";
 
-        contentValues.put(AnimalCareDatabase.User.COLUMN_NAME_NAME, name);
+        contentValues.put(AnimalCareDatabase.UserTable.COLUMN_NAME_NAME, name);
 
-        db.update(AnimalCareDatabase.User.TABLE_NAME, contentValues, whereClause, new String[]{username});
+        db.update(AnimalCareDatabase.UserTable.TABLE_NAME, contentValues, whereClause, new String[]{username});
     }
 }

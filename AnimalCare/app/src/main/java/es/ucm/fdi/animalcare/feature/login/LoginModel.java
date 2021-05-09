@@ -21,6 +21,7 @@ public class LoginModel extends BaseModel {
     // you will actually use after this query.
     String[] projection = {
             BaseColumns._ID,
+            UserTable.COLUMN_NAME_NAME,
             UserTable.COLUMN_NAME_USERNAME,
             UserTable.COLUMN_NAME_PASSWORD
     };
@@ -53,6 +54,7 @@ public class LoginModel extends BaseModel {
         );
 
         if(cursor.moveToFirst()) {
+            mName = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_NAME_NAME));
             mUsername = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_NAME_USERNAME));
             mPassword = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_NAME_PASSWORD));
             mId = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID));

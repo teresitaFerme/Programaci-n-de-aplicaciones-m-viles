@@ -23,13 +23,13 @@ public class PasswordModel extends BaseModel {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         // Filter results
-        String selection = AnimalCareDatabase.User.COLUMN_NAME_USERNAME + " = ?";
+        String selection = AnimalCareDatabase.UserTable.COLUMN_NAME_USERNAME + " = ?";
         String[] selectionArgs = {username};
 
-        String[] projection = {AnimalCareDatabase.User.COLUMN_NAME_PASSWORD};
+        String[] projection = {AnimalCareDatabase.UserTable.COLUMN_NAME_PASSWORD};
 
         Cursor cursor = db.query(
-                AnimalCareDatabase.User.TABLE_NAME,   // The table to query
+                AnimalCareDatabase.UserTable.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)
                 selection,              // The columns for the WHERE clause
                 selectionArgs,          // The values for the WHERE clause
@@ -39,7 +39,7 @@ public class PasswordModel extends BaseModel {
         );
 
         if(cursor.moveToFirst()) {
-            mPassword = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.User.COLUMN_NAME_PASSWORD));
+            mPassword = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.UserTable.COLUMN_NAME_PASSWORD));
             cursor.close();
         } else return false;
 
@@ -51,10 +51,10 @@ public class PasswordModel extends BaseModel {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        String whereClause = AnimalCareDatabase.User.COLUMN_NAME_USERNAME + " = ?";
+        String whereClause = AnimalCareDatabase.UserTable.COLUMN_NAME_USERNAME + " = ?";
 
-        contentValues.put(AnimalCareDatabase.User.COLUMN_NAME_PASSWORD, password);
+        contentValues.put(AnimalCareDatabase.UserTable.COLUMN_NAME_PASSWORD, password);
 
-        db.update(AnimalCareDatabase.User.TABLE_NAME, contentValues, whereClause, new String[]{username});
+        db.update(AnimalCareDatabase.UserTable.TABLE_NAME, contentValues, whereClause, new String[]{username});
     }
 }

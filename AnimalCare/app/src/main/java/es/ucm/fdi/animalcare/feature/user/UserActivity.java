@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.login.LoginActivity;
 import es.ucm.fdi.animalcare.feature.password.PasswordActivity;
@@ -21,6 +22,7 @@ import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 import es.ucm.fdi.animalcare.session.SessionHandler;
 
 public class UserActivity extends BaseActivity implements UserView, ToolBarManagement {
+    private User user;
     private UserPresenter mUserPresenter;
     private EditText mNameView;
     private Button mLogoutButton;
@@ -49,6 +51,7 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         mIconEdit = findViewById(R.id.icon_edit);
 
         mUserPresenter = new UserPresenter(this);
+        user = (User) getIntent().getSerializableExtra("user");
     }
 
     @Override
@@ -144,7 +147,9 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
                     break;
 
             }
-        startActivity(intent);
+            intent.putExtra("user", user);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         }
 
     }

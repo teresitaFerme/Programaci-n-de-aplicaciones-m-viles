@@ -88,6 +88,7 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
                     break;
             }
             intent.putExtra("user", user);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
     }

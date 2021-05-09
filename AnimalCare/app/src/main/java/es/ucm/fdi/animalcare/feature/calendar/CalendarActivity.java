@@ -49,6 +49,7 @@ public class CalendarActivity extends BaseActivity implements CalendarView, Tool
                     break;
 
             }
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
     }
