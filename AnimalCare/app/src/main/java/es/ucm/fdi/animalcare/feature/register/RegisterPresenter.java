@@ -21,6 +21,9 @@ public class RegisterPresenter extends BasePresenter {
             mRegisterView.fillFields();
         }else if(mRegisterModel.getUsername(username)) mRegisterView.registerFailureUsername();
         else if(!password.equals(passwordRepeat)) mRegisterView.registerFailurePasswords();
-        else if((u = mRegisterModel.registerUser(name, username, password)) != null) mRegisterView.registerSuccessful(u);
+        else {
+            User u = mRegisterModel.registerUser(name, username, password);
+            if(u != null) mRegisterView.registerSuccessful(u);
+        }
     }
 }

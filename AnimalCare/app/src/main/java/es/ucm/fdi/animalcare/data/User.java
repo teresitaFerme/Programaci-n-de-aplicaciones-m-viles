@@ -6,7 +6,7 @@ import java.util.List;
 public class User implements Serializable {
     private String mName;
     private String mUsername;
-    private int mId;
+    private Integer mId;
     private List<Pets> mPetList;
 
     public User(String name, String username, int id){
@@ -31,7 +31,7 @@ public class User implements Serializable {
         this.mUsername = mUsername;
     }
 
-    public int getmId() {
+    public Integer getmId() {
         return mId;
     }
 
