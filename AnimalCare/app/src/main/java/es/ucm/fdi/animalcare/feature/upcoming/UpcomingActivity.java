@@ -85,6 +85,7 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
                     break;
             }
             intent.putExtra("user", user);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
     }

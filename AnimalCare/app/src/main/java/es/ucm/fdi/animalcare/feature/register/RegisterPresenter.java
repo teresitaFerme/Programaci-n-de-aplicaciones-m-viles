@@ -15,12 +15,14 @@ public class RegisterPresenter extends BasePresenter {
     }
 
     public void validateRegister(String name, String username, String password, String passwordRepeat){
+        User u;
+
         if(username.length() == 0 || password.length() == 0 || passwordRepeat.length() == 0){
             mRegisterView.fillFields();
         }else if(mRegisterModel.getUsername(username)) mRegisterView.registerFailureUsername();
         else if(!password.equals(passwordRepeat)) mRegisterView.registerFailurePasswords();
         else {
-            User u = mRegisterModel.registerUser(name, username, password);
+            u = mRegisterModel.registerUser(name, username, password);
             if(u != null) mRegisterView.registerSuccessful(u);
         }
     }
