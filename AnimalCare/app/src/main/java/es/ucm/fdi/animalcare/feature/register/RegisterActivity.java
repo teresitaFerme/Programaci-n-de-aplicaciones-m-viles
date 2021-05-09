@@ -47,6 +47,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
     @Override
     public void registerSuccessful(User u) {
         SharedPreferences.Editor editor = sp.edit();
+        editor.putString("username", u.getmUsername());
         editor.putString("name", u.getmName());
         editor.apply();
 

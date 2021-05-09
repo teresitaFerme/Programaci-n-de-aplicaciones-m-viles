@@ -57,6 +57,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
     @Override
     public void loginSuccessfull(User u) {
         SharedPreferences.Editor editor = sp.edit();
+        editor.putString("username", u.getmUsername());
         editor.putString("name", u.getmName());
         editor.apply();
 
