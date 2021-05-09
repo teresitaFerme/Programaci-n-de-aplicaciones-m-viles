@@ -10,6 +10,7 @@ import es.ucm.fdi.animalcare.database.AnimalCareDatabase.UserTable;
 import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
 
 public class LoginModel extends BaseModel {
+    private String mName;
     private String mUsername;
     private String mPassword;
     private Integer mId;
@@ -25,6 +26,7 @@ public class LoginModel extends BaseModel {
     };
 
     LoginModel(Context ctx){
+        mName = "name";
         mUsername = "username";
         mPassword = "password";
         dbHelper = new AnimalCareDbHelper(ctx);
@@ -57,7 +59,7 @@ public class LoginModel extends BaseModel {
             cursor.close();
         } else return null;
 
-        if(mUsername.equals(username) && mPassword.equals(password)) return new User(mUsername, mId);
+        if(mUsername.equals(username) && mPassword.equals(password)) return new User(mName, mUsername, mId);
         else return null;
     }
 }
