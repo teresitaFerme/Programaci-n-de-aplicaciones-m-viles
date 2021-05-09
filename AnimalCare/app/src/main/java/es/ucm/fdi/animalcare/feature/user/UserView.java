@@ -9,4 +9,5 @@ public interface UserView extends BaseView {
     void changeName(View view);
     void confirmName(View view);
     void fillField();
+    void changeSuccessful();
 }

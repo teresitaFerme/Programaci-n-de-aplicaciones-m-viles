@@ -16,6 +16,7 @@ import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.login.LoginActivity;
+import es.ucm.fdi.animalcare.feature.password.PasswordActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
@@ -87,17 +88,13 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         String mUsername = sp.getString("username", null);
         String mName = mNameView.getText().toString();
 
-        // Validar las variables
-        if (mUsername != null && !mName.isEmpty()){
-            // Subir el cambio a la BBDD
-            mUserPresenter.setName(mUsername, mName);
-
+        // Validar las variables y subirlo a la BBDD
+        if(mUserPresenter.validateName(mUsername, mName)) {
             // Cambiar el nombre del usuario en la sesión
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("name", mName);
             editor.apply();
         }
-        else {fillField();}
 
         // Deshabilitar el EditText del nombre de usuario
         mNameView.setEnabled(false);
@@ -114,9 +111,20 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         });
     }
 
+    public void changePassword(View view){
+        Intent intent = new Intent(this, PasswordActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void fillField() {
         Toast toast = Toast.makeText(this, "Por favor, rellene el campo.", Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+    @Override
+    public void changeSuccessful(){
+        Toast toast = Toast.makeText(this, "Su nombre se ha cambiado con éxito.", Toast.LENGTH_LONG);
         toast.show();
     }
 

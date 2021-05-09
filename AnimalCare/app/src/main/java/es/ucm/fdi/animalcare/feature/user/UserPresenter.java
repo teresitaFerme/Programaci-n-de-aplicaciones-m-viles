@@ -14,7 +14,14 @@ public class UserPresenter extends BasePresenter {
         mUserModel = new UserModel((Context) mUserView);
     }
 
-    public void setName(String username, String name){
-        mUserModel.setName(username, name);
+    public boolean validateName(String username, String name){
+        if (username != null && !name.isEmpty()){
+            // Subir el cambio a la BBDD
+            mUserModel.setName(username, name);
+            mUserView.changeSuccessful();
+            return true;
+        }
+        mUserView.fillField();
+        return false;
     }
 }
