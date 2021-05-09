@@ -48,6 +48,24 @@ public class PetsModel extends BaseModel {
         else return true;
     }
 
+    public void deletePet(Integer petId) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(AnimalCareDatabase.PetTable.TABLE_NAME, BaseColumns._ID + "=?", new String[]{String.valueOf(petId)});
+    }
+
+    public void editPet(Integer petId, String name, String type, Integer userId) {
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(PetTable.COLUMN_NAME_PETNAME, name);
+        values.put(PetTable.COLUMN_NAME_TYPE, type);
+        values.put(PetTable.COLUMN_NAME_ID_OWNER, userId);
+
+        db.update(AnimalCareDatabase.PetTable.TABLE_NAME, values, BaseColumns._ID + "=?", new String[]{String.valueOf(petId)});
+    }
+
+
     public List<Pets> getPets (Integer userId) {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
