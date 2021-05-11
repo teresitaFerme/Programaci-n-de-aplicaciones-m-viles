@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".feature.upcoming.UpcomingActivity">
 
-    <!-- <include layout="@layout/toolbar"/>
-    -->
+    <include layout="@layout/top_bar" android:id="@+id/layout_top_bar"/>
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"
@@ -26,12 +26,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskListView"
-        android:layout_width="376dp"
-        android:layout_height="526dp"
+        android:layout_width="388dp"
+        android:layout_height="483dp"
         app:layout_constraintBottom_toTopOf="@+id/addTaskButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.355" />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

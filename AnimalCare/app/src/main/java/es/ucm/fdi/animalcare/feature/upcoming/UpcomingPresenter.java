@@ -93,9 +93,6 @@ public class UpcomingPresenter extends BasePresenter {
         return petPosition;
     }
 
-    public void cancelNewTask() { mUpcomingView.cancelNewTask();
-    }
-
     public Integer removeTask(Integer taskId) {
         Integer taskReturn;
 

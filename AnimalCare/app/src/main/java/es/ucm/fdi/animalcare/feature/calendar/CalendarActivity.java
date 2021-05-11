@@ -6,6 +6,7 @@ import android.view.View;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
@@ -13,6 +14,7 @@ import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 import es.ucm.fdi.animalcare.feature.user.UserActivity;
 
 public class CalendarActivity extends BaseActivity implements CalendarView, ToolBarManagement {
+    private User user;
     private CalendarPresenter mCalendarPresenter;
 
     @Override
@@ -26,6 +28,7 @@ public class CalendarActivity extends BaseActivity implements CalendarView, Tool
         findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.white));
         findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.iconColor));
 
+        user = (User) getIntent().getSerializableExtra("user");
 
         mCalendarPresenter = new CalendarPresenter(this);
     }
@@ -49,6 +52,7 @@ public class CalendarActivity extends BaseActivity implements CalendarView, Tool
                     break;
 
             }
+            intent.putExtra("user", user);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }

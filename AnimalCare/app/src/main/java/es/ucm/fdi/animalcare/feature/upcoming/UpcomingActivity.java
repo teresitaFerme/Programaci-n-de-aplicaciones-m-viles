@@ -40,7 +40,6 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
     private TaskAdapter taskAdapter;
     private List<Task> taskList;
     private Button mAddTaskConfirm;
-    private Button mAddTaskCancel;
     private EditText mTaskName;
     private Spinner mPetSpinner;
     private EditText mScheduleDate;
@@ -135,7 +134,6 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         mTaskName = findViewById(R.id.editTextTaskName);
         mTaskDesc = findViewById(R.id.editTextTaskDesc);
         mAddTaskConfirm = findViewById(R.id.buttonConfirmNewTask);
-        mAddTaskCancel = findViewById(R.id.buttonCancelNewTask);
         mPetSpinner = findViewById(R.id.petSpinner);
         mScheduleDate = findViewById(R.id.scheduleDate);
         mScheduleDate.setText(date);
@@ -147,8 +145,6 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         String[] options = mUpcomingPresenter.getPetNames(user);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
         mPetSpinner.setAdapter(adapter);
-
-        mAddTaskCancel.setOnClickListener(v -> mUpcomingPresenter.cancelNewTask());
 
         mScheduleDate.setOnClickListener(view -> {
             switch (view.getId()) {
@@ -198,9 +194,6 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         mScheduleTime.setIs24HourView(true);
         mScheduleTime.setHour(task.getmScheduleDatetime().getHours());
         mScheduleTime.setMinute(task.getmScheduleDatetime().getMinutes());
-
-        mAddTaskCancel = findViewById(R.id.buttonCancelNewTask);
-        mAddTaskCancel.setOnClickListener(v -> mUpcomingPresenter.cancelNewTask());
 
         mAddTaskConfirm = findViewById(R.id.buttonConfirmNewTask);
         mAddTaskConfirm.setText("Modificar");
