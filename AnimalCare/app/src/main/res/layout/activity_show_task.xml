@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="confirmNewTask">
+    tools:context=".feature.password.PasswordActivity">
 
     <!-- Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
-
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,103 +25,95 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back"
                     android:layout_gravity="center_vertical"
                     android:onClick="goBack"
-                    android:src="@drawable/ic_back"
-                    app:tint="@color/white" />
+                    app:tint="@color/white"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Nueva Tarea"
+                    android:text="Tarea"
                     android:textColor="@color/white"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <TimePicker
-        android:id="@+id/scheduleTime"
+
+    <TextView
+        android:id="@+id/taskLabel"
         android:layout_width="350dp"
-        android:layout_height="146dp"
-        android:layout_centerHorizontal="true"
-        android:timePickerMode="spinner"
+        android:layout_height="50dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.117" />
+
+    <TextView
+        android:id="@+id/taskDesc"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.357" />
+        app:layout_constraintVertical_bias="0.313" />
 
-    <EditText
-        android:id="@+id/scheduleDate"
-        android:layout_width="170dp"
+    <TextView
+        android:id="@+id/taskTime"
+        android:layout_width="120dp"
         android:layout_height="50dp"
-        android:clickable="true"
-        android:focusable="false"
-        android:hint="Fecha"
-        android:inputType="date"
-        android:maxLines="1"
-        android:onClick="showDatePickerDialog"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22" />
+        app:layout_constraintVertical_bias="0.193" />
 
-    <Spinner
-        android:id="@+id/petSpinner"
-        android:layout_width="170dp"
+    <TextView
+        android:id="@+id/taskDate"
+        android:layout_width="200dp"
         android:layout_height="50dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.22" />
-
-    <EditText
-        android:id="@+id/editTextTaskDesc"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:ems="10"
-        android:hint="Descripción"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scheduleDate"
-        app:layout_constraintVertical_bias="0.373" />
-
-    <EditText
-        android:id="@+id/editTextTaskName"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:hint="Nombre Tarea"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
+        app:layout_constraintVertical_bias="0.193" />
 
     <Button
-        android:id="@+id/buttonConfirmTask"
+        android:id="@+id/removeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="confirmNewTask"
-        android:text="Añadir"
+        android:onClick="removeTask"
+        android:text="Eliminar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.774"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTaskDesc"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="editTask"
+        android:text="Modificar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.247"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

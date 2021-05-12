@@ -146,19 +146,19 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, time, desc;
-        Button editButton, removeButton;
-        ConstraintLayout cLayout;
+        TextView name, time;
+        //Button editButton, removeButton;
+        //ConstraintLayout cLayout;
 
         ItemViewHolder(View itemView){
             super(itemView);
             name = itemView.findViewById(R.id.taskName);
             time = itemView.findViewById(R.id.taskScheduleTime);
-            desc = itemView.findViewById(R.id.taskDesc);
+            /*desc = itemView.findViewById(R.id.taskDesc);
             editButton = itemView.findViewById(R.id.editTaskButton);
             removeButton = itemView.findViewById(R.id.removeTaskButton);
             cLayout = itemView.findViewById(R.id.taskView);
-            int h = cLayout.getHeight();
+            */
         }
 
         @RequiresApi(api = Build.VERSION_CODES.M)
@@ -167,9 +167,10 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             String timeStr = dateFormat.format(task.getmScheduleDatetime());
             time.setText(timeStr);
             name.setText(task.getmTaskName());
-            desc.setText(task.getmDescription());
-            editButton.setOnClickListener(v -> {
-                ((UpcomingActivity)ctext).editTask(task); });
+            name.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
+            /*desc.setText(task.getmDescription());
+            .setOnClickListener(v -> {
+                ((UpcomingActivity)ctext).showTask(task); });
             removeButton.setOnClickListener(v -> { ((UpcomingActivity)ctext).removeTask(task.getmId()); });
 
             desc.setVisibility(View.INVISIBLE);
@@ -189,7 +190,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     removeButton.setVisibility(View.INVISIBLE);
                     cLayout.setMaxHeight(150);
                 }
-            });
+            });*/
         }
     }
 }

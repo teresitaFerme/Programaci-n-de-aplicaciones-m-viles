@@ -17,31 +17,7 @@ import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
 public class UpcomingModel {
     AnimalCareDbHelper dbHelper;
 
-    String[] projection = {
-            BaseColumns._ID,
-            TaskTable.COLUMN_NAME_ID_PET,
-            TaskTable.COLUMN_NAME_TASKNAME,
-            TaskTable.COLUMN_NAME_SCHEDULE_DATETIME,
-            TaskTable.COLUMN_NAME_TASKDONE_DATETIME,
-            TaskTable.COLUMN_NAME_DESCRIPTION,
-            TaskTable.COLUMN_NAME_FREQUENCY
-    };
-
     UpcomingModel(Context ctx) { dbHelper = new AnimalCareDbHelper(ctx); }
-
-    public Integer saveNewTask(String name, String desc, String datetime, Integer petId) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(TaskTable.COLUMN_NAME_TASKNAME, name);
-        values.put(TaskTable.COLUMN_NAME_DESCRIPTION, desc);
-        values.put(TaskTable.COLUMN_NAME_SCHEDULE_DATETIME, datetime);
-        values.put(TaskTable.COLUMN_NAME_ID_PET, petId);
-
-        long newRowId = db.insert(TaskTable.TABLE_NAME, null, values);
-
-        return (int) newRowId;
-    }
 
     public List<Task> getAllTasks (Integer userId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -72,23 +48,5 @@ public class UpcomingModel {
         cursor.close();
 
         return values;
-    }
-
-    public Integer removeTask(Integer taskId) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        return db.delete(TaskTable.TABLE_NAME, BaseColumns._ID + "=?", new String[]{String.valueOf(taskId)});
-    }
-
-    public Integer updateTask(Integer taskId, String name, String desc, String datetime, Integer petId) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(TaskTable.COLUMN_NAME_TASKNAME, name);
-        values.put(TaskTable.COLUMN_NAME_DESCRIPTION, desc);
-        values.put(TaskTable.COLUMN_NAME_SCHEDULE_DATETIME, datetime);
-        values.put(TaskTable.COLUMN_NAME_ID_PET, petId);
-
-        return db.update(TaskTable.TABLE_NAME, values, BaseColumns._ID + "=?", new String[]{String.valueOf(taskId)});
     }
 }

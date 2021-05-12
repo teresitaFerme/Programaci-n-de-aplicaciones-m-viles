@@ -65,6 +65,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         Intent intent = new Intent(this, PetsActivity.class);
         intent.putExtra("user", u);
         startActivity(intent);
+        finish();
     }
 
     @Override

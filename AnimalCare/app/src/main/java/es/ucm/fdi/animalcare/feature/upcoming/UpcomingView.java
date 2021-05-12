@@ -4,7 +4,6 @@ import es.ucm.fdi.animalcare.base.BaseView;
 
 public interface UpcomingView extends BaseView {
     void addNewTask();
-    void fillFields();
-    void newTaskSuccessful();
-    void cancelNewTask();
+    void showTask(Integer taskId);
+    void updateList();
 }

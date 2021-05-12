@@ -54,6 +54,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
         Intent intent = new Intent(this, PetsActivity.class);
         intent.putExtra("user", u);
         startActivity(intent);
+        finish();
     }
 
     @Override
