@@ -146,19 +146,13 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, time;
-        //Button editButton, removeButton;
-        //ConstraintLayout cLayout;
+        TextView name, time, petName;
 
         ItemViewHolder(View itemView){
             super(itemView);
+            petName = itemView.findViewById(R.id.taskListPetName);
             name = itemView.findViewById(R.id.taskName);
             time = itemView.findViewById(R.id.taskScheduleTime);
-            /*desc = itemView.findViewById(R.id.taskDesc);
-            editButton = itemView.findViewById(R.id.editTaskButton);
-            removeButton = itemView.findViewById(R.id.removeTaskButton);
-            cLayout = itemView.findViewById(R.id.taskView);
-            */
         }
 
         @RequiresApi(api = Build.VERSION_CODES.M)
@@ -167,30 +161,11 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             String timeStr = dateFormat.format(task.getmScheduleDatetime());
             time.setText(timeStr);
             name.setText(task.getmTaskName());
+            petName.setText(((UpcomingActivity) ctext).getPetName(task.getmPetId()) + ":");
+
+            time.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
             name.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
-            /*desc.setText(task.getmDescription());
-            .setOnClickListener(v -> {
-                ((UpcomingActivity)ctext).showTask(task); });
-            removeButton.setOnClickListener(v -> { ((UpcomingActivity)ctext).removeTask(task.getmId()); });
-
-            desc.setVisibility(View.INVISIBLE);
-            editButton.setVisibility(View.INVISIBLE);
-            removeButton.setVisibility(View.INVISIBLE);
-            cLayout.setMaxHeight(150);
-
-            name.setOnClickListener(v -> {
-                if(desc.getVisibility() == View.INVISIBLE){
-                    desc.setVisibility(View.VISIBLE);
-                    editButton.setVisibility(View.VISIBLE);
-                    removeButton.setVisibility(View.VISIBLE);
-                    cLayout.setMaxHeight(700);
-                } else {
-                    desc.setVisibility(View.INVISIBLE);
-                    editButton.setVisibility(View.INVISIBLE);
-                    removeButton.setVisibility(View.INVISIBLE);
-                    cLayout.setMaxHeight(150);
-                }
-            });*/
+            petName.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
         }
     }
 }

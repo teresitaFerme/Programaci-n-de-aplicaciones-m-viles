@@ -27,6 +27,7 @@ public class UpcomingModel {
                 ", t." + TaskTable.COLUMN_NAME_TASKNAME +
                 ", t." + TaskTable.COLUMN_NAME_SCHEDULE_DATETIME +
                 ", t." + TaskTable.COLUMN_NAME_DESCRIPTION +
+                ", t." + TaskTable.COLUMN_NAME_FREQUENCY +
                 " FROM " + TaskTable.TABLE_NAME + " t JOIN " + PetTable.TABLE_NAME +
                 " p ON t." + TaskTable.COLUMN_NAME_ID_PET + " = p." + BaseColumns._ID + " WHERE p." + PetTable.COLUMN_NAME_ID_OWNER +
                 "= " + String.valueOf(userId) + " ORDER BY t." + TaskTable.COLUMN_NAME_SCHEDULE_DATETIME;
@@ -41,12 +42,40 @@ public class UpcomingModel {
             String taskName = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKNAME));
             String scheduleDatetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_SCHEDULE_DATETIME));
             String description = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_DESCRIPTION));
-            //Task.Frequency frequency = Task.Frequency.values()[cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_FREQUENCY))];
-            Task task = new Task(taskId, petIdAux, taskName, scheduleDatetime, description);
+            Integer freq = cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_FREQUENCY));
+            Task task = new Task(taskId, petIdAux, taskName, scheduleDatetime, description, freq);
             values.add(task);
         }
         cursor.close();
 
         return values;
+    }
+
+    public String getPetName(Integer petId) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String petName = null;
+        String[] projection = {
+                BaseColumns._ID,
+                PetTable.COLUMN_NAME_PETNAME
+        };
+
+        String selection = BaseColumns._ID + " = ?";
+        String[] selectionArgs = {String.valueOf(petId)};
+
+        Cursor cursor = db.query(
+                PetTable.TABLE_NAME,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                selectionArgs,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                null               // The sort order
+        );
+
+        if(cursor.moveToFirst())
+            petName = cursor.getString(cursor.getColumnIndex(PetTable.COLUMN_NAME_PETNAME));
+        cursor.close();
+
+        return petName;
     }
 }

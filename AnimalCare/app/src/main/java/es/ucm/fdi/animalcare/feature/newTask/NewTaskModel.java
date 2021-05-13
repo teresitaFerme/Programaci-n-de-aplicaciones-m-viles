@@ -22,7 +22,7 @@ public class NewTaskModel extends BaseModel {
 
     public NewTaskModel(Context ctx){dbHelper = new AnimalCareDbHelper(ctx);}
 
-    public Integer saveNewTask(String name, String desc, String datetime, Integer petId) {
+    public Integer saveNewTask(String name, String desc, String datetime, Integer petId, Integer freq) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -30,13 +30,14 @@ public class NewTaskModel extends BaseModel {
         values.put(TaskTable.COLUMN_NAME_DESCRIPTION, desc);
         values.put(TaskTable.COLUMN_NAME_SCHEDULE_DATETIME, datetime);
         values.put(TaskTable.COLUMN_NAME_ID_PET, petId);
+        values.put(TaskTable.COLUMN_NAME_FREQUENCY, freq);
 
         long newRowId = db.insert(TaskTable.TABLE_NAME, null, values);
 
         return (int) newRowId;
     }
 
-    public Integer saveUpdateTask(int taskId, String name, String desc, String datetime, Integer petId) {
+    public Integer saveUpdateTask(int taskId, String name, String desc, String datetime, Integer petId, Integer freq) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -44,6 +45,7 @@ public class NewTaskModel extends BaseModel {
         values.put(TaskTable.COLUMN_NAME_DESCRIPTION, desc);
         values.put(TaskTable.COLUMN_NAME_SCHEDULE_DATETIME, datetime);
         values.put(TaskTable.COLUMN_NAME_ID_PET, petId);
+        values.put(TaskTable.COLUMN_NAME_FREQUENCY, freq);
 
         long result = db.update(TaskTable.TABLE_NAME, values, BaseColumns._ID + "=?", new String[]{String.valueOf(taskId)});
 

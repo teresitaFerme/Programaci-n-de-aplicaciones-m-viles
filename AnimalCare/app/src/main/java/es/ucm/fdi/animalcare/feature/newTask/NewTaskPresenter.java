@@ -34,7 +34,7 @@ public class NewTaskPresenter extends BasePresenter {
         return petNames;
     }
 
-    public int validateNewTask(String name, String desc, String petName, String date, int hour, int minute, User user) {
+    public int validateNewTask(String name, String desc, String petName, String date, int hour, int minute, User user, int freq) {
         Integer taskId = null;
         Date dateAux = null;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -61,7 +61,7 @@ public class NewTaskPresenter extends BasePresenter {
                     break;
                 }
             }
-            taskId = mNewTaskModel.saveNewTask(name, desc, datetime, petId);
+            taskId = mNewTaskModel.saveNewTask(name, desc, datetime, petId, freq);
         }
 
         return taskId;
@@ -83,7 +83,7 @@ public class NewTaskPresenter extends BasePresenter {
         return petPosition;
     }
 
-    public Integer validateUpdateTask(int taskId, String name, String desc, String petName, String date, int hour, int minute, User user) {
+    public Integer validateUpdateTask(int taskId, String name, String desc, String petName, String date, int hour, int minute, User user, int freq) {
         Date dateAux = null;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String datetime;
@@ -110,7 +110,7 @@ public class NewTaskPresenter extends BasePresenter {
                     break;
                 }
             }
-            result = mNewTaskModel.saveUpdateTask(taskId, name, desc, datetime, petId);
+            result = mNewTaskModel.saveUpdateTask(taskId, name, desc, datetime, petId, freq);
         }
 
         return result;

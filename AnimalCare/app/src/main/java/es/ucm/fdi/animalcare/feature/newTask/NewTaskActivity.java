@@ -32,7 +32,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
     private User user;
     private Task task;
     private EditText mTaskName, mTaskDesc, mScheduleDate;
-    private Spinner mPetSpinner;
+    private Spinner mPetSpinner, mFreqSpinner;
     private TimePicker mScheduleTime;
     private Button buttonConfirmTask;
 
@@ -50,6 +50,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         mTaskName = findViewById(R.id.editTextTaskName);
         mTaskDesc = findViewById(R.id.editTextTaskDesc);
         mPetSpinner = findViewById(R.id.petSpinner);
+        mFreqSpinner = findViewById(R.id.freqSpinner);
         mScheduleDate = findViewById(R.id.scheduleDate);
         mScheduleTime = findViewById(R.id.scheduleTime);
         buttonConfirmTask = findViewById(R.id.buttonConfirmTask);
@@ -68,6 +69,10 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             String[] options = mNewTaskPresenter.getPetNames(user);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
             mPetSpinner.setAdapter(adapter);
+
+            options = Task.getmFreqNames();
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
+            mFreqSpinner.setAdapter(adapter);
 
             buttonConfirmTask.setText("Añadir");
             buttonConfirmTask.setOnClickListener(v -> confirmNewTask(v) );
@@ -89,6 +94,13 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             mPetSpinner.setAdapter(adapter);
             mPetSpinner.setSelection(mNewTaskPresenter.getPetPosition(user, task.getmPetId()));
             mPetSpinner.setEnabled(false);
+
+            String[] options2 = Task.getmFreqNames();
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options2);
+            mFreqSpinner.setAdapter(adapter2);
+            mFreqSpinner.setSelection(task.getmFreq());
+            mFreqSpinner.setEnabled(false);
+
         }
     }
 
@@ -111,7 +123,8 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         String date = mScheduleDate.getText().toString();
         Integer hour = mScheduleTime.getHour();
         Integer minutes = mScheduleTime.getMinute();
-        Integer result = mNewTaskPresenter.validateNewTask(name, desc, petName, date, hour, minutes, user);
+        Integer freq = mFreqSpinner.getSelectedItemPosition();
+        Integer result = mNewTaskPresenter.validateNewTask(name, desc, petName, date, hour, minutes, user, freq);
 
         returnFromNewTask(result != -1 ? NEW_TASK_SUCCESS: NEW_TASK_FAIL);
     }
@@ -125,7 +138,8 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         String date = mScheduleDate.getText().toString();
         Integer hour = mScheduleTime.getHour();
         Integer minutes = mScheduleTime.getMinute();
-        Integer result = mNewTaskPresenter.validateUpdateTask(task.getmId(), name, desc, petName, date, hour, minutes, user);
+        Integer freq = mFreqSpinner.getSelectedItemPosition();
+        Integer result = mNewTaskPresenter.validateUpdateTask(task.getmId(), name, desc, petName, date, hour, minutes, user, freq);
 
         returnFromNewTask(result != -1 ? EDIT_TASK_SUCCESS: EDIT_TASK_FAIL);
     }

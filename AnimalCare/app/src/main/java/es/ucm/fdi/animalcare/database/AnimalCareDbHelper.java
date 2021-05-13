@@ -9,7 +9,7 @@ import es.ucm.fdi.animalcare.database.AnimalCareDatabase.TaskTable;
 
 public class AnimalCareDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 7;
     public static final String DATABASE_NAME = "AnimalCare.db";
     private static final String SQL_CREATE_USER_TABLE =
             "CREATE TABLE " + UserTable.TABLE_NAME + " (" +
@@ -31,7 +31,7 @@ public class AnimalCareDbHelper extends SQLiteOpenHelper {
                     TaskTable.COLUMN_NAME_SCHEDULE_DATETIME + " DATETIME NOT NULL," +
                     TaskTable.COLUMN_NAME_TASKDONE_DATETIME + " DATETIME," +
                     TaskTable.COLUMN_NAME_DESCRIPTION + " TEXT," +
-                    TaskTable.COLUMN_NAME_FREQUENCY + "TEXT," +
+                    TaskTable.COLUMN_NAME_FREQUENCY + " INTEGER NOT NULL," +
                     TaskTable.COLUMN_NAME_ID_PET + " INTEGER, FOREIGN KEY (" + TaskTable.COLUMN_NAME_ID_PET + ") REFERENCES " +
                     PetTable.TABLE_NAME + "(" + PetTable._ID + "));";
 

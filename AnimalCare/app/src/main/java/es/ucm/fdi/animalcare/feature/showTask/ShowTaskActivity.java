@@ -23,7 +23,7 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
 
     private ShowTaskPresenter mShowTaskPresenter;
 
-    private TextView mTaskLabel, mTaskTime, mTaskDate, mTaskDesc;
+    private TextView mTaskLabel, mTaskTime, mTaskDate, mTaskDesc, mTaskFreq, mTaskPetName;
     private User user;
     private Task task;
 
@@ -39,15 +39,21 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
         mTaskTime = findViewById(R.id.taskTime);
         mTaskDate = findViewById(R.id.taskDate);
         mTaskDesc = findViewById(R.id.taskDesc);
+        mTaskFreq = findViewById(R.id.taskFreq);
+        mTaskPetName = findViewById(R.id.taskPetName);
 
         Integer taskId = getIntent().getIntExtra("taskId", 0);
         task = mShowTaskPresenter.getTaskById(taskId);
         user = (User) getIntent().getSerializableExtra("user");
+        String petName = mShowTaskPresenter.getPetName(task.getmPetId());
 
         mTaskLabel.setText(task.getmTaskName());
         mTaskTime.setText(timeFormat.format(task.getmScheduleDatetime()));
         mTaskDate.setText(dateFormat.format(task.getmScheduleDatetime()));
         mTaskDesc.setText(task.getmDescription());
+        mTaskPetName.setText(petName);
+        if (task.getmFreq() != Task.FREQUENCY_NONE)
+            mTaskFreq.setText(task.getmFreqName());
     }
 
     @Override
