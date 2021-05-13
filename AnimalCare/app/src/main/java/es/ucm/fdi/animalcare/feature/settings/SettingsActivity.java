@@ -1,6 +1,5 @@
 package es.ucm.fdi.animalcare.feature.settings;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Intent;
@@ -9,6 +8,7 @@ import android.view.View;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
@@ -16,6 +16,7 @@ import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 import es.ucm.fdi.animalcare.feature.user.UserActivity;
 
 public class SettingsActivity extends BaseActivity implements SettingsView, ToolBarManagement {
+    private User user;
     private SettingsPresenter mSettingsPresenter;
     private SwitchCompat mScreenModeSwitch, mNotificationsSwitch;
 
@@ -30,6 +31,8 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
         findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.white));
         findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
         findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.iconColor));
+
+        user = (User) getIntent().getSerializableExtra("user");
 
         mScreenModeSwitch = findViewById(R.id.settings_switch_screen_mode);
         mNotificationsSwitch = findViewById(R.id.settings_switch_notifications);
@@ -70,6 +73,8 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
                     break;
 
             }
+            intent.putExtra("user", user);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
     }

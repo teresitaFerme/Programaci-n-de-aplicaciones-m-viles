@@ -28,4 +28,26 @@
     <string name="material_calendar_positive_button">OK</string>
     <string name="material_calendar_negative_button">Cancelar</string>
     <string name="reg_strate"><u>Regístrate</u></string>
+    <string name="edit_something"><u>Editar</u></string>
+    <string name="delete_something"><u>Borrar</u></string>
+    <string name="add_pet"><u>Añadir mascota</u></string>
+
+    <string-array name = "Pets_animals">
+        <item>Perro</item>
+        <item>Gato</item>
+        <item>Pajaro</item>
+        <item>Pez</item>
+        <item>Tortuga</item>
+        <item>Caballo</item>
+    </string-array>
+
+    <string name="edit_pet"><u>Animal modificado</u></string>
+    <string name="del_pet"><u>Animal borrado</u></string>
+    <string name="log_please"><u>Logeate para mostrar tus mascotas</u></string>
+    <string name="fill_please"><u>Rellene todos los campos</u></string>
+    <string name="save_pet"><u>Animal guardado</u></string>
+    <string name="error_save_pet"><u>Error al guardar animal</u></string>
+    <string name="error_del_pet"><u>Error al borrar animal</u></string>
+    <string name="error_edit_pet"><u>Error al editar animal</u></string>
+
 </resources>

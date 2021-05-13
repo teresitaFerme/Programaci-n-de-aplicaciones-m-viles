@@ -3,8 +3,8 @@ package es.ucm.fdi.animalcare.feature.pets;
 import es.ucm.fdi.animalcare.base.BaseView;
 
 public interface PetsView extends BaseView {
-    boolean fillField();
-    void NewPetSuccessful();
     void addNewPet();
+    void viewPet(String name,String type, Integer id);
     void noRegister();
+
 }

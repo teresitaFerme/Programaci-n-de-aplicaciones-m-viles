@@ -16,10 +16,11 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgFoto"
             android:layout_width="132dp"
-            android:layout_height="125dp" />
+            android:layout_height="125dp"
+            app:shapeAppearanceOverlay="@style/RoundedSquare"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="123dp"
@@ -30,12 +31,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:textSize="20dp" />
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
 
             <TextView
                 android:id="@+id/TypePetView"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
                 android:textSize="15dp" />
         </LinearLayout>
 
