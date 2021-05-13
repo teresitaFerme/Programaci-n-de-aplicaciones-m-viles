@@ -17,16 +17,19 @@ public class Task implements Serializable {
     private Integer mPetId;
     private String mTaskName;
     private Date mScheduleDatetime;
-    //private Date mTaskDoneDatetime;
+    private Date mTaskDoneDatetime;
     private String mDescription;
     private Integer mFreq;
 
-    public Task(Integer mId, Integer mPetId, String mTaskName, String mScheduleDatetime, /*Date mTaskDoneDatetime, */String mDescription, Integer mFreq) {
+    public Task(Integer mId, Integer mPetId, String mTaskName, String mScheduleDatetime, String mTaskDoneDatetime, String mDescription, Integer mFreq) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        Date date = null;
+        Date schedDate = null;
+        Date doneDate = null;
 
         try {
-            date = dateFormat.parse(mScheduleDatetime);
+            schedDate = dateFormat.parse(mScheduleDatetime);
+            if(mTaskDoneDatetime != null)
+                doneDate = dateFormat.parse(mTaskDoneDatetime);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -34,8 +37,8 @@ public class Task implements Serializable {
         this.mId = mId;
         this.mPetId = mPetId;
         this.mTaskName = mTaskName;
-        this.mScheduleDatetime = date;
-        //this.mTaskDoneDatetime = mTaskDoneDatetime;
+        this.mScheduleDatetime = schedDate;
+        this.mTaskDoneDatetime = doneDate;
         this.mDescription = mDescription;
         this.mFreq = mFreq;
     }
@@ -72,14 +75,14 @@ public class Task implements Serializable {
         this.mScheduleDatetime = mScheduleDatetime;
     }
 
-/*    public Date getmTaskDoneDatetime() {
+    public Date getmTaskDoneDatetime() {
         return mTaskDoneDatetime;
     }
 
     public void setmTaskDoneDatetime(Date mTaskDoneDatetime) {
         this.mTaskDoneDatetime = mTaskDoneDatetime;
     }
-*/
+
     public String getmDescription() {
         return mDescription;
     }

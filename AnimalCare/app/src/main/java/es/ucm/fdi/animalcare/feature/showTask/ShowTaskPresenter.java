@@ -24,15 +24,22 @@ public class ShowTaskPresenter extends BasePresenter {
         return mShowTaskModel.getTaskById(taskId);
     }
 
-    public Integer removeTask(Integer taskId) {
-        Integer taskReturn;
+    public void removeTask(Integer taskId) {
+        if (mShowTaskModel.removeTask(taskId) > 0)
+            mShowTaskView.removeTaskSuccess();
+        else
+            mShowTaskView.removeTaskFail();
 
-        taskReturn = mShowTaskModel.removeTask(taskId);
-
-        return taskReturn;
     }
 
     public String getPetName(Integer petId) {
         return mShowTaskModel.getPetName(petId);
+    }
+
+    public void changeTaskState(Integer taskId) {
+        if(mShowTaskModel.changeTaskState(taskId) > 0)
+            mShowTaskView.changeTaskStateSuccess();
+        else
+            mShowTaskView.changeTaskStateFail();
     }
 }

@@ -26,6 +26,7 @@ public class UpcomingModel {
                 ", t." + TaskTable.COLUMN_NAME_ID_PET +
                 ", t." + TaskTable.COLUMN_NAME_TASKNAME +
                 ", t." + TaskTable.COLUMN_NAME_SCHEDULE_DATETIME +
+                ", t." + TaskTable.COLUMN_NAME_TASKDONE_DATETIME +
                 ", t." + TaskTable.COLUMN_NAME_DESCRIPTION +
                 ", t." + TaskTable.COLUMN_NAME_FREQUENCY +
                 " FROM " + TaskTable.TABLE_NAME + " t JOIN " + PetTable.TABLE_NAME +
@@ -35,15 +36,14 @@ public class UpcomingModel {
         List values = new ArrayList<Task>();
 
         while(cursor.moveToNext()){
-
-            //Date taskDoneDatetime;
             Integer taskId = cursor.getInt(cursor.getColumnIndex(TaskTable._ID));
             Integer petIdAux = cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_ID_PET));
             String taskName = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKNAME));
             String scheduleDatetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_SCHEDULE_DATETIME));
+            String taskDoneDatetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKDONE_DATETIME));
             String description = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_DESCRIPTION));
             Integer freq = cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_FREQUENCY));
-            Task task = new Task(taskId, petIdAux, taskName, scheduleDatetime, description, freq);
+            Task task = new Task(taskId, petIdAux, taskName, scheduleDatetime, taskDoneDatetime, description, freq);
             values.add(task);
         }
         cursor.close();

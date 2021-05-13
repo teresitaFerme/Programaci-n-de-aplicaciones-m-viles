@@ -1,9 +1,13 @@
 package es.ucm.fdi.animalcare.feature.showTask;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.database.AnimalCareDatabase.PetTable;
@@ -25,7 +29,7 @@ public class ShowTaskModel {
                 TaskTable.COLUMN_NAME_ID_PET,
                 TaskTable.COLUMN_NAME_TASKNAME,
                 TaskTable.COLUMN_NAME_SCHEDULE_DATETIME,
-                //TaskTable.COLUMN_NAME_TASKDONE_DATETIME,
+                TaskTable.COLUMN_NAME_TASKDONE_DATETIME,
                 TaskTable.COLUMN_NAME_DESCRIPTION,
                 TaskTable.COLUMN_NAME_FREQUENCY
         };
@@ -48,9 +52,10 @@ public class ShowTaskModel {
             Integer petIdAux = cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_ID_PET));
             String taskName = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKNAME));
             String scheduleDatetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_SCHEDULE_DATETIME));
+            String taskDoneDatetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKDONE_DATETIME));
             String description = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_DESCRIPTION));
             Integer frequency = cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_FREQUENCY));
-            task = new Task(taskId, petIdAux, taskName, scheduleDatetime, description, frequency);
+            task = new Task(taskId, petIdAux, taskName, scheduleDatetime, taskDoneDatetime, description, frequency);
         }
         cursor.close();
 
@@ -89,5 +94,46 @@ public class ShowTaskModel {
         cursor.close();
 
         return petName;
+    }
+
+    public Integer changeTaskState(Integer taskId) {
+        SQLiteDatabase dbRead = dbHelper.getReadableDatabase();
+        SQLiteDatabase dbWrite = dbHelper.getWritableDatabase();
+        Integer result = 0;
+        String[] projection = {
+                BaseColumns._ID,
+                TaskTable.COLUMN_NAME_TASKDONE_DATETIME
+        };
+
+
+        String selection = BaseColumns._ID + " = ?";
+        String[] selectionArgs = {String.valueOf(taskId)};
+
+        Cursor cursor = dbRead.query(
+                TaskTable.TABLE_NAME,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                selectionArgs,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                null               // The sort order
+        );
+
+        if(cursor.moveToFirst()){
+            String date = null;
+            ContentValues values = new ContentValues();
+            String datetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKDONE_DATETIME));
+            if(datetime == null){
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                Calendar calendar = Calendar.getInstance();
+                date = dateFormat.format(calendar.getTime());
+            }
+            values.put(TaskTable.COLUMN_NAME_TASKDONE_DATETIME, date);
+            result = dbWrite.update(TaskTable.TABLE_NAME, values, BaseColumns._ID + "=?", new String[]{String.valueOf(taskId)});
+        }
+        cursor.close();
+
+        return result;
+
     }
 }
