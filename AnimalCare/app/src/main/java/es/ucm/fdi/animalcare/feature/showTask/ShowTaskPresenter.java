@@ -2,14 +2,8 @@ package es.ucm.fdi.animalcare.feature.showTask;
 
 import android.content.Context;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import es.ucm.fdi.animalcare.base.BasePresenter;
-import es.ucm.fdi.animalcare.data.Pets;
 import es.ucm.fdi.animalcare.data.Task;
-import es.ucm.fdi.animalcare.data.User;
 
 public class ShowTaskPresenter extends BasePresenter {
     private ShowTaskView mShowTaskView;

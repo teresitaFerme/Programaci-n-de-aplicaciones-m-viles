@@ -5,23 +5,14 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import es.ucm.fdi.animalcare.R;
@@ -30,7 +21,6 @@ import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.newTask.NewTaskActivity;
-import es.ucm.fdi.animalcare.feature.password.PasswordActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.showTask.ShowTaskActivity;
@@ -124,9 +114,9 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         String text = "";
         if(requestCode == NEW_TASK){
             if(resultCode == NewTaskActivity.NEW_TASK_SUCCESS)
-                text = "Tarea Guardada.";
+                text = getResources().getString(R.string.toast_task_saved);
             else if (resultCode == NewTaskActivity.NEW_TASK_FAIL)
-                text = "Ha habido un error.";
+                text = getResources().getString(R.string.toast_error);
             Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
             toast.show();
         }

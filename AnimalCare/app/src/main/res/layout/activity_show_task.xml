@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.password.PasswordActivity">
+    tools:context=".feature.showTask.ShowTaskActivity">
 
     <!-- Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Tarea"
+                    android:text="@string/toolbar_label_show_task"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
@@ -57,7 +57,7 @@
     <TextView
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:text="Mascota:"
+        android:text="@string/show_task_name"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +69,7 @@
     <TextView
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:text="Tarea:"
+        android:text="@string/show_task_name"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="changeTaskState"
-        android:text="Hecha"
+        android:text="@string/done_task_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.897"
@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="editTask"
-        android:text="Modificar"
+        android:text="@string/edit_task_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/removeButton"
         app:layout_constraintHorizontal_bias="0.094"
@@ -120,7 +120,7 @@
     <TextView
         android:layout_width="80dp"
         android:layout_height="50dp"
-        android:text="Hora:"
+        android:text="@string/show_task_time"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +132,7 @@
     <TextView
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:text="Fecha:"
+        android:text="@string/show_task_date"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -144,7 +144,7 @@
     <TextView
         android:layout_width="120dp"
         android:layout_height="50dp"
-        android:text="Frecuencia:"
+        android:text="@string/show_task_frequency"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -180,7 +180,7 @@
     <TextView
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="Descripción:"
+        android:text="@string/show_task_desc"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

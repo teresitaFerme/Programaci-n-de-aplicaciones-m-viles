@@ -19,7 +19,6 @@ import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.User;
-import es.ucm.fdi.animalcare.feature.showTask.ShowTaskActivity;
 
 public class NewTaskActivity extends BaseActivity implements NewTaskView {
     public static final int NEW_TASK_SUCCESS = 1;
@@ -74,7 +73,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
             mFreqSpinner.setAdapter(adapter);
 
-            buttonConfirmTask.setText("Añadir");
+            buttonConfirmTask.setText(getResources().getString(R.string.new_task_button));
             buttonConfirmTask.setOnClickListener(v -> confirmNewTask(v) );
         } else {
 
@@ -144,7 +143,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
 
     @Override
     public void fillFields() {
-        Toast toast = Toast.makeText(this, "Por favor, rellene todos los campos.", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, getResources().getString(R.string.toast_fill_fields), Toast.LENGTH_LONG);
         toast.show();
     }
 

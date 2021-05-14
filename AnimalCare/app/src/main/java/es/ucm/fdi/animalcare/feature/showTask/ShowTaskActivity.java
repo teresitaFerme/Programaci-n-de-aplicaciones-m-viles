@@ -3,6 +3,7 @@ package es.ucm.fdi.animalcare.feature.showTask;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -60,19 +61,19 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
             mTaskFreq.setText(task.getmFreqName());
 
         if(task.getmTaskDoneDatetime() != null)
-            mChangeTaskStateButton.setText("NO HECHA");
+            mChangeTaskStateButton.setText(getResources().getString(R.string.undone_task_button));
     }
 
     @Override
     public void removeTask(View view) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage("Are you sure you want to delete this task?");
-        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+        alertDialog.setMessage(getResources().getString(R.string.remove_task_dialog));
+        alertDialog.setPositiveButton(getResources().getString(R.string.dialog_yes), new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which) {
                 mShowTaskPresenter.removeTask(task.getmId());
             }
         });
-        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener(){
+        alertDialog.setNegativeButton(getResources().getString(R.string.dialog_no), new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which) {
                 //Do nothing
             }
@@ -82,14 +83,14 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
 
     @Override
     public void removeTaskSuccess() {
-        Toast toast = Toast.makeText(ShowTaskActivity.this, "Tarea eliminado correctamente.", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(ShowTaskActivity.this, getResources().getString(R.string.toast_task_removed), Toast.LENGTH_LONG);
         toast.show();
         finish();
     }
 
     @Override
     public void removeTaskFail() {
-        Toast toast = Toast.makeText(ShowTaskActivity.this, "Ha habido un error.", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(ShowTaskActivity.this, getResources().getString(R.string.toast_error), Toast.LENGTH_LONG);
         toast.show();
     }
 
@@ -108,17 +109,18 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
 
     @Override
     public void changeTaskStateSuccess() {
-        Toast toast = Toast.makeText(ShowTaskActivity.this, "Tarea modificado correctamente.", Toast.LENGTH_LONG);
-        String str = "HECHA";
-        if(mChangeTaskStateButton.getText().toString().equals("HECHA"))
-            str = "NO HECHA";
+        Resources res = getResources();
+        Toast toast = Toast.makeText(ShowTaskActivity.this, res.getString(R.string.toast_task_edited) , Toast.LENGTH_LONG);
+        String str = res.getString(R.string.done_task_button);
+        if(mChangeTaskStateButton.getText().toString().equals(str))
+            str = res.getString(R.string.undone_task_button);
         mChangeTaskStateButton.setText(str);
         toast.show();
     }
 
     @Override
     public void changeTaskStateFail() {
-        Toast toast = Toast.makeText(ShowTaskActivity.this, "Ha habido un error.", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(ShowTaskActivity.this, getResources().getString(R.string.toast_error), Toast.LENGTH_LONG);
         toast.show();
     }
 
@@ -128,10 +130,10 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
         String text = "";
         if (requestCode == EDIT_TASK) {
             if (resultCode == NewTaskActivity.EDIT_TASK_SUCCESS) {
-                text = "Tarea Modificada.";
+                text = getResources().getString(R.string.toast_task_edited);
             }
             else
-                text = "Ha habido un error.";
+                text = getResources().getString(R.string.toast_error);
             Toast toast =  Toast.makeText(ShowTaskActivity.this, text, Toast.LENGTH_LONG);
             toast.show();
             finish();
