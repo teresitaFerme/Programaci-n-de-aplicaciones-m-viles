@@ -9,6 +9,7 @@ import android.provider.BaseColumns;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.database.AnimalCareDatabase.PetTable;
 import es.ucm.fdi.animalcare.database.AnimalCareDatabase.TaskTable;
@@ -16,8 +17,11 @@ import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
 
 public class ShowTaskModel {
     AnimalCareDbHelper dbHelper;
+    Context ctx;
 
-    public ShowTaskModel(Context ctx) { dbHelper = new AnimalCareDbHelper(ctx);
+    public ShowTaskModel(Context ctx) {
+        dbHelper = new AnimalCareDbHelper(ctx);
+        this.ctx = ctx;
     }
 
     public Task getTaskById(Integer taskId) {
@@ -55,7 +59,7 @@ public class ShowTaskModel {
             String taskDoneDatetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKDONE_DATETIME));
             String description = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_DESCRIPTION));
             Integer frequency = cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_FREQUENCY));
-            task = new Task(taskId, petIdAux, taskName, scheduleDatetime, taskDoneDatetime, description, frequency);
+            task = new Task(taskId, petIdAux, taskName, scheduleDatetime, taskDoneDatetime, description, frequency, ctx.getResources().getStringArray(R.array.task_frequency_array));
         }
         cursor.close();
 

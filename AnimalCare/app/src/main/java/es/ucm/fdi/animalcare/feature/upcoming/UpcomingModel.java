@@ -8,6 +8,7 @@ import android.provider.BaseColumns;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.database.AnimalCareDatabase.PetTable;
 import es.ucm.fdi.animalcare.database.AnimalCareDatabase.TaskTable;
@@ -15,8 +16,12 @@ import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
 
 public class UpcomingModel {
     AnimalCareDbHelper dbHelper;
+    Context ctx;
 
-    UpcomingModel(Context ctx) { dbHelper = new AnimalCareDbHelper(ctx); }
+    UpcomingModel(Context ctx) {
+        dbHelper = new AnimalCareDbHelper(ctx);
+        this.ctx = ctx;
+    }
 
     public List<Task> getAllTasks (Integer userId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -42,7 +47,7 @@ public class UpcomingModel {
             String taskDoneDatetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKDONE_DATETIME));
             String description = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_DESCRIPTION));
             Integer freq = cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_FREQUENCY));
-            Task task = new Task(taskId, petIdAux, taskName, scheduleDatetime, taskDoneDatetime, description, freq);
+            Task task = new Task(taskId, petIdAux, taskName, scheduleDatetime, taskDoneDatetime, description, freq, ctx.getResources().getStringArray(R.array.task_frequency_array));
             values.add(task);
         }
         cursor.close();
