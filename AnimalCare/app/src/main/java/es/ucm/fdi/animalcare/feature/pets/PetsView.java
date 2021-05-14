@@ -4,7 +4,8 @@ import es.ucm.fdi.animalcare.base.BaseView;
 
 public interface PetsView extends BaseView {
     void addNewPet();
-    void viewPet(String name,String type, Integer id);
+    void editPet(Integer id);
     void noRegister();
-
+    void EditPetSuccessful();
+    void DeletePetSuccessful();
 }

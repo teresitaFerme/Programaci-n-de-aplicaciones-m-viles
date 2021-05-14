@@ -20,6 +20,9 @@ public class UpcomingPresenter extends BasePresenter {
         mUpcomingView = view;
         mUpcomingModel = new UpcomingModel((Context) view);
     }
+    public String getPetName(Integer petId) {
+        return mUpcomingModel.getPetName(petId);
+    }
 
     public List<Task> getAllTasks(Integer userId) {
         List<Task> taskList;

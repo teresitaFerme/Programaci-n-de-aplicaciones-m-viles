@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,8 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
 
     private ShowTaskPresenter mShowTaskPresenter;
 
-    private TextView mTaskLabel, mTaskTime, mTaskDate, mTaskDesc;
+    private TextView mTaskLabel, mTaskTime, mTaskDate, mTaskDesc, mTaskFreq, mTaskPetName;
+    private Button mChangeTaskStateButton;
     private User user;
     private Task task;
 
@@ -39,15 +41,26 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
         mTaskTime = findViewById(R.id.taskTime);
         mTaskDate = findViewById(R.id.taskDate);
         mTaskDesc = findViewById(R.id.taskDesc);
+        mTaskFreq = findViewById(R.id.taskFreq);
+        mTaskPetName = findViewById(R.id.taskPetName);
+        mChangeTaskStateButton = findViewById(R.id.checkButton);
 
         Integer taskId = getIntent().getIntExtra("taskId", 0);
         task = mShowTaskPresenter.getTaskById(taskId);
         user = (User) getIntent().getSerializableExtra("user");
+        String petName = mShowTaskPresenter.getPetName(task.getmPetId());
 
         mTaskLabel.setText(task.getmTaskName());
         mTaskTime.setText(timeFormat.format(task.getmScheduleDatetime()));
         mTaskDate.setText(dateFormat.format(task.getmScheduleDatetime()));
         mTaskDesc.setText(task.getmDescription());
+
+        mTaskPetName.setText(petName);
+        if (task.getmFreq() != Task.FREQUENCY_NONE)
+            mTaskFreq.setText(task.getmFreqName());
+
+        if(task.getmTaskDoneDatetime() != null)
+            mChangeTaskStateButton.setText("NO HECHA");
     }
 
     @Override
@@ -56,14 +69,7 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
         alertDialog.setMessage("Are you sure you want to delete this task?");
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which) {
-                if(mShowTaskPresenter.removeTask(task.getmId()) < 0) {
-                    Toast toast = Toast.makeText(ShowTaskActivity.this, "Ha habido un error.", Toast.LENGTH_LONG);
-                    toast.show();
-                } else {
-                    Toast toast = Toast.makeText(ShowTaskActivity.this, "Tarea eliminado correctamente.", Toast.LENGTH_LONG);
-                    toast.show();
-                    finish();
-                }
+                mShowTaskPresenter.removeTask(task.getmId());
             }
         });
         alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener(){
@@ -75,11 +81,45 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
     }
 
     @Override
+    public void removeTaskSuccess() {
+        Toast toast = Toast.makeText(ShowTaskActivity.this, "Tarea eliminado correctamente.", Toast.LENGTH_LONG);
+        toast.show();
+        finish();
+    }
+
+    @Override
+    public void removeTaskFail() {
+        Toast toast = Toast.makeText(ShowTaskActivity.this, "Ha habido un error.", Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+    @Override
     public void editTask(View view) {
         Intent intent = new Intent(this, NewTaskActivity.class);
         intent.putExtra("task", task);
         intent.putExtra("user", user);
         startActivityForResult(intent, EDIT_TASK);
+    }
+
+    @Override
+    public void changeTaskState(View view) {
+        mShowTaskPresenter.changeTaskState(task.getmId());
+    }
+
+    @Override
+    public void changeTaskStateSuccess() {
+        Toast toast = Toast.makeText(ShowTaskActivity.this, "Tarea modificado correctamente.", Toast.LENGTH_LONG);
+        String str = "HECHA";
+        if(mChangeTaskStateButton.getText().toString().equals("HECHA"))
+            str = "NO HECHA";
+        mChangeTaskStateButton.setText(str);
+        toast.show();
+    }
+
+    @Override
+    public void changeTaskStateFail() {
+        Toast toast = Toast.makeText(ShowTaskActivity.this, "Ha habido un error.", Toast.LENGTH_LONG);
+        toast.show();
     }
 
     @Override
@@ -97,5 +137,9 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
             finish();
             startActivity(getIntent());
         }
+    }
+
+    public void goBack (View view){
+        finish();
     }
 }

@@ -102,6 +102,7 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         mTaskListView.setAdapter(taskAdapter);
     }
 
+    @Override
     public void addNewTask(){
         Intent intent = new Intent(this, NewTaskActivity.class);
         intent.putExtra("user", user);
@@ -136,5 +137,9 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
     protected void onRestart() {
         super.onRestart();
         this.recreate();
+    }
+
+    public String getPetName(Integer petId) {
+        return mUpcomingPresenter.getPetName(petId);
     }
 }

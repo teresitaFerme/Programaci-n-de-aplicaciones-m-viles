@@ -78,19 +78,15 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> im
             //image.setImageResource(R.drawable.pet_dog);
             name.setText(pet.getName());
             type.setText(pet.getType());
-            if(pet.getType().equals("Perro")){
-                image.setImageResource(R.drawable.dog_green);}
-            else if(pet.getType().equals("Gato")){
-                image.setImageResource(R.drawable.cat_green); }
-            else if(pet.getType().equals("Pajaro")){
-                image.setImageResource(R.drawable.bird_green);}
-            else if(pet.getType().equals("Caballo")){
-                image.setImageResource(R.drawable.horse_green);}
-            else if(pet.getType().equals("Pez")){
-                image.setImageResource(R.drawable.fish_green);}
-            else if(pet.getType().equals("Tortuga")){
-                image.setImageResource(R.drawable.turtle_green);}
-            else{image.setImageResource(R.drawable.dog_green);}
+            switch (pet.getType()) {
+                case "Perro": image.setImageResource(R.drawable.dog_green); break;
+                case "Gato": image.setImageResource(R.drawable.cat_green); break;
+                case "Pajaro": image.setImageResource(R.drawable.bird_green); break;
+                case "Caballo": image.setImageResource(R.drawable.horse_green); break;
+                case "Pez": image.setImageResource(R.drawable.fish_green); break;
+                case "Tortuga": image.setImageResource(R.drawable.turtle_green); break;
+                default: image.setImageResource(R.drawable.dog_green); break;
+            }
         }
     }
 }
