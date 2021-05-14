@@ -12,8 +12,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
@@ -22,7 +29,9 @@ import es.ucm.fdi.animalcare.feature.pets.newPets.NewPetsPresenter;
 import es.ucm.fdi.animalcare.feature.pets.newPets.NewPetsView;
 import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
+import es.ucm.fdi.animalcare.feature.upcoming.TaskAdapter;
 import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
+import es.ucm.fdi.animalcare.feature.upcoming.UpcomingPresenter;
 import es.ucm.fdi.animalcare.feature.user.UserActivity;
 
 public class ProfilePetActivity extends BaseActivity implements ProfilePetView, ToolBarManagement {
@@ -39,6 +48,9 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
     private Button mEditPet;
     private Button mDeletePet;
     private ProfilePetPresenter mProfilePetPresenter;
+    private RecyclerView mTaskListView;
+    private TaskAdapter taskAdapter;
+    private List<Task> taskList;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -65,6 +77,8 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
 
         mShowName.setText(name);
         imagePet(mShowImage,type);
+
+        updateList();
 
         mEditPet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +112,17 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
             image.setImageResource(R.drawable.turtle_green);}
         else{image.setImageResource(R.drawable.dog_green);}
 
+    }
+
+    public void  updateList(){
+        taskList = new ArrayList<>();
+        taskList = mProfilePetPresenter.getAllPetTasks(id);
+
+        mTaskListView = findViewById(R.id.taskListPetView);
+        mTaskListView.setLayoutManager(new LinearLayoutManager(this));
+        mTaskListView.setHasFixedSize(true);
+        taskAdapter = new TaskAdapter( taskList, this);
+        mTaskListView.setAdapter(taskAdapter);
     }
 
     @Override
