@@ -1,16 +1,15 @@
 package es.ucm.fdi.animalcare.feature.upcoming;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
@@ -94,12 +93,13 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //setheadersdata_flag = true;
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
             String labelStr = "";
+            Resources res = ctext.getResources();
             if (position == 0)
-                labelStr = "Today";
+                labelStr = res.getString(R.string.tasks_today_header);
             else if (position == numTodayTask + 1)
-                labelStr = "Tomorrow";
+                labelStr = res.getString(R.string.tasks_tomorrow_header);
             else if (position == numTomorrowTask + numTodayTask + 2)
-                labelStr = "Soon";
+                labelStr = res.getString(R.string.tasks_soon_header);
 
             headerViewHolder.label.setText(labelStr);
         }

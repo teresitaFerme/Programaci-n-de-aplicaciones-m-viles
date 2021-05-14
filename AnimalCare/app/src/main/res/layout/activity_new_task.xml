@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="confirmNewTask">
+    android:onClick="confirmNewTask"
+    tools:context=".feature.newTask.NewTaskActivity">
 
     <!-- Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
@@ -35,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Nueva Tarea"
+                    android:text="@string/new_task_name_hint"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -83,7 +84,7 @@
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:ems="10"
-        android:hint="Descripción"
+        android:hint="@string/new_task_desc_hint"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,8 +98,8 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:clickable="true"
-        android:focusable="false"
-        android:hint="Fecha"
+        android:focusable="true"
+        android:hint="@string/new_task_date_hint"
         android:inputType="date"
         android:maxLines="1"
         android:onClick="showDatePickerDialog"
@@ -114,7 +115,7 @@
         android:layout_width="180dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:hint="Nombre Tarea"
+        android:hint="@string/new_task_name_hint"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,7 +129,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="confirmNewTask"
-        android:text="Añadir"
+        android:text="@string/new_task_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -17,7 +17,7 @@
         android:id="@+id/addTaskButton"
         android:layout_width="259dp"
         android:layout_height="69dp"
-        android:text="Añadir Tarea"
+        android:text="@string/new_task_button"
         app:layout_constraintBottom_toTopOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

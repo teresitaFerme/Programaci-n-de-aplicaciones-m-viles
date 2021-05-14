@@ -28,4 +28,38 @@
     <string name="material_calendar_positive_button">OK</string>
     <string name="material_calendar_negative_button">Cancelar</string>
     <string name="reg_strate"><u>Regístrate</u></string>
+
+    <string name="toast_task_saved">Tarea guardada.</string>
+    <string name="toast_task_removed">Tarea eliminada correctamente.</string>
+    <string name="toast_task_edited">Tarea modificada correctamente.</string>
+    <string name="toast_fill_fields">Por favor, rellene todos los campos.</string>
+    <string name="toast_error">Ha habido un error.</string>
+
+    <string name="tasks_today_header">Hoy</string>
+    <string name="tasks_tomorrow_header">Mañana</string>
+    <string name="tasks_soon_header">Proximamente</string>
+
+    <string name="done_task_button">Hecha</string>
+    <string name="undone_task_button">No hecha</string>
+    <string name="edit_task_button">Modificar</string>
+    <string name="remove_task_button">Eliminar</string>
+    <string name="new_task_button">Añadir Tarea</string>
+
+    <string name="remove_task_dialog">Estás seguro que quieres eliminar esta tarea?</string>
+    <string name="dialog_yes">Sí</string>
+    <string name="dialog_no">No</string>
+
+    <string name="toolbar_label_new_task">Nueva Tarea</string>
+    <string name="toolbar_label_show_task">Tarea</string>
+
+    <string name="new_task_name_hint">Nombre Tarea</string>
+    <string name="new_task_date_hint">Fecha</string>
+    <string name="new_task_desc_hint">Descripción</string>
+
+    <string name="show_task_pet">Mascota:</string>
+    <string name="show_task_name">Tarea:</string>
+    <string name="show_task_time">Hora:</string>
+    <string name="show_task_date">Fecha:</string>
+    <string name="show_task_frequency">Frecuencia:</string>
+    <string name="show_task_desc">Descripción:</string>
 </resources>
