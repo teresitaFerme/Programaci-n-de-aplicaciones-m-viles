@@ -43,11 +43,7 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upcoming);
 
-        findViewById(R.id.button_toolbar_pets).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(App.getApp().getResources().getColor(R.color.white));
-        findViewById(R.id.button_toolbar_settings).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_user).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        setUpToolbar();
 
         mAddTaskButton = findViewById(R.id.addTaskButton);
         mAddTaskButton.setOnClickListener(v -> mUpcomingPresenter.addNewTask());
@@ -132,5 +128,19 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
 
     public String getPetName(Integer petId) {
         return mUpcomingPresenter.getPetName(petId);
+    }
+
+    @Override
+    public void bindViews() {
+
+    }
+
+    @Override
+    public void setUpToolbar() {
+        findViewById(R.id.button_toolbar_pets).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(App.getApp().getResources().getColor(R.color.white));
+        findViewById(R.id.button_toolbar_settings).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_user).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
     }
 }

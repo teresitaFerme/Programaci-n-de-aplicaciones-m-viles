@@ -10,6 +10,7 @@ public class App {
     private SharedPreferences sharedPreferences;
     private static App app = null;
     private String userName;
+    private String pass;
 
     public static App getApp(){
         if(app != null){
@@ -51,5 +52,13 @@ public class App {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }

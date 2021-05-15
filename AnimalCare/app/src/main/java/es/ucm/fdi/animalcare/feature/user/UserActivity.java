@@ -36,20 +36,15 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.white));
+        setUpToolbar();
+        bindViews();
 
-        mNameView = findViewById(R.id.name);
-        mLogoutButton = findViewById(R.id.button_logout);
 
         sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
         String mName = sp.getString("name", "User");
         mNameView.setText(mName);
 
-        mIconEdit = findViewById(R.id.icon_edit);
+
 
         mUserPresenter = new UserPresenter(this);
         user = (User) getIntent().getSerializableExtra("user");
@@ -63,6 +58,7 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         editoor.putBoolean("darkMode", App.getApp().getDarkMode());
         editoor.putString("language", App.getApp().getLanguage());
         editoor.putString("nombre" , App.getApp().getUserName());
+        editoor.putString("pass", "");
 
         editoor.commit();
 
@@ -162,5 +158,21 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
             startActivity(intent);
         }
 
+    }
+
+    @Override
+    public void bindViews() {
+        mNameView = findViewById(R.id.name);
+        mLogoutButton = findViewById(R.id.button_logout);
+        mIconEdit = findViewById(R.id.icon_edit);
+    }
+
+    @Override
+    public void setUpToolbar() {
+        findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.white));
     }
 }

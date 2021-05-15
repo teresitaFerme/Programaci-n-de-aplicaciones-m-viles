@@ -43,14 +43,10 @@ public class LoginActivity extends BaseActivity implements LoginView{
 
         mLoginPresenter = new LoginPresenter(this);
         App.getApp().setResources(getResources());
-
-        mUsername = findViewById(R.id.editText_username);
-        mPassword = findViewById(R.id.editText_password);
-        mRegister = findViewById(R.id.login_register_option);
+        bindViews();
 
         recover();
 
-        mIniciasesion = findViewById(R.id.button_inicia_sesion);
         mIniciasesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +67,19 @@ public class LoginActivity extends BaseActivity implements LoginView{
     @Override
     public void loginSuccessfull(User u) {
         App.getApp().setUserName(u.getmName());
+        App.getApp().setPass(String.valueOf(mPassword.getText()));
+
+        SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
+        SharedPreferences.Editor editoor = settings.edit();
+        editoor.putBoolean("darkMode", App.getApp().getDarkMode());
+        editoor.putString("language", App.getApp().getLanguage());
+        editoor.putString("nombre" , App.getApp().getUserName());
+        editoor.putString("pass", App.getApp().getPass());
+
+        editoor.commit();
+
+        sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
+
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("username", u.getmUsername());
         editor.putString("name", u.getmName());
@@ -101,6 +110,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         App.getApp().setLanguage(settings.getString("language", "es"));
         App.getApp().setUserName(settings.getString("nombre", ""));
         App.getApp().setDarkMode(settings.getBoolean("darkMode", false));
+        App.getApp().setPass(settings.getString("pass", ""));
 
         Context context;
         Locale locale;
@@ -116,6 +126,10 @@ public class LoginActivity extends BaseActivity implements LoginView{
         App.getApp().setResources(context.getResources());
         if(!App.getApp().getUserName().equals("")){
             mUsername.setText(App.getApp().getUserName());
+            if(!App.getApp().getPass().equals("")){
+                mPassword.setText(App.getApp().getPass());
+                mLoginPresenter.validateLogin(String.valueOf(mUsername.getText()), String.valueOf(mPassword.getText()));
+            }
         }
         if(App.getApp().getDarkMode()){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -123,4 +137,16 @@ public class LoginActivity extends BaseActivity implements LoginView{
     }
 
 
+    @Override
+    public void bindViews() {
+        mUsername = findViewById(R.id.editText_username);
+        mPassword = findViewById(R.id.editText_password);
+        mRegister = findViewById(R.id.login_register_option);
+        mIniciasesion = findViewById(R.id.button_inicia_sesion);
+    }
+
+    @Override
+    public void setUpToolbar() {
+
+    }
 }
