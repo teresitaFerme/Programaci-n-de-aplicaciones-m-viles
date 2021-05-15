@@ -9,6 +9,7 @@ import android.provider.BaseColumns;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseModel;
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.database.AnimalCareDatabase;
@@ -16,9 +17,10 @@ import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
 
 public class ProfilePetModel extends BaseModel {
     AnimalCareDbHelper dbHelper;
-
+    Context ctx;
     ProfilePetModel(Context ctx) {
         dbHelper = new AnimalCareDbHelper(ctx);
+        this.ctx = ctx;
     }
 
     public boolean deletePet(Integer petId) {
@@ -58,15 +60,14 @@ public class ProfilePetModel extends BaseModel {
         List values = new ArrayList<Task>();
 
         while(cursor.moveToNext()){
-
-            //Date taskDoneDatetime;
             Integer taskId = cursor.getInt(cursor.getColumnIndex(AnimalCareDatabase.TaskTable._ID));
             Integer petIdAux = cursor.getInt(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_ID_PET));
             String taskName = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_TASKNAME));
             String scheduleDatetime = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_SCHEDULE_DATETIME));
+            String taskDoneDatetime = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_TASKDONE_DATETIME));
             String description = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_DESCRIPTION));
-            //Task.Frequency frequency = Task.Frequency.values()[cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_FREQUENCY))];
-            Task task = new Task(taskId, petIdAux, taskName, scheduleDatetime, description);
+            Integer freq = cursor.getInt(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_FREQUENCY));
+            Task task = new Task(taskId, petIdAux, taskName, scheduleDatetime, taskDoneDatetime, description, freq, ctx.getResources().getStringArray(R.array.task_frequency_array));
             values.add(task);
         }
         cursor.close();

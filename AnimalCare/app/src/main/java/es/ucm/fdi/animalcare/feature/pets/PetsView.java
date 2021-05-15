@@ -8,4 +8,6 @@ public interface PetsView extends BaseView {
     void noRegister();
     void EditPetSuccessful();
     void DeletePetSuccessful();
+    boolean fillField();
+    void NewPetSuccessful();
 }
