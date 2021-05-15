@@ -22,7 +22,6 @@ public class PetsPresenter extends BasePresenter {
         else {
             mPetsModel.saveNewPet(name, type, userId);
             mPetsView.NewPetSuccessful();
-
         }
     }
 
@@ -36,4 +35,19 @@ public class PetsPresenter extends BasePresenter {
         }
         return mPetsModel.getPets(userId);
     }
+
+    public void validateDeletePet(Integer petId) {
+        mPetsModel.deletePet(petId);
+        mPetsView.DeletePetSuccessful();
+    }
+
+    public void validateEditPet(Integer petId, String name, String type, Integer user) {
+        mPetsModel.editPet(petId, name, type, user);
+        mPetsView.EditPetSuccessful();
+    }
+
+    public void editPet(Integer id) {
+            mPetsView.editPet(id);
+    }
+
 }

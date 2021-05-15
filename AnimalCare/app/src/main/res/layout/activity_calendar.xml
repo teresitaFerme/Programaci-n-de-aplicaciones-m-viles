@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".feature.calendar.CalendarActivity">
 
+    <include layout="@layout/top_bar" android:id="@+id/layout_top_bar"/>
+
     <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
@@ -20,7 +22,9 @@
     <include
         android:id="@+id/include"
         layout="@layout/toolbar"
-        tools:layout_editor_absoluteY="667dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
