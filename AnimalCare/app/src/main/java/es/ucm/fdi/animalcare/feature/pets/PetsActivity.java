@@ -55,7 +55,11 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets);
 
-        setUpToolbar();
+        findViewById(R.id.button_toolbar_pets).getBackground().setTint(App.getApp().getResources().getColor(R.color.white));
+        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_settings).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_user).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
 
         user = (User) getIntent().getSerializableExtra("user");
 
@@ -123,41 +127,19 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
     }
     
     public void addNewPet() {
-        setContentView(R.layout.activity_pets_new);
-
-        setUpToolbar();
-        mPetsPresenter = new PetsPresenter(this);
-
-        mNamePet = findViewById(R.id.editText_newpet_name);
-        mTypePet = findViewById(R.id.spinner);
-
-        String [] options = {"Perro","Gato","Pajaro","Pez","Tortuga","Caballo"};
-
-        recyclerView = findViewById(R.id.PetsList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-        mPetAdapter = new PetsAdapter( listPets, this);
-
-        mPetAdapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewPet(listPets.get(recyclerView.getChildAdapterPosition(view)).getName(),listPets.get(recyclerView.getChildAdapterPosition(view)).getType(), listPets.get(recyclerView.getChildAdapterPosition(view)).getId());
-            }
-        });
-        recyclerView.setAdapter(mPetAdapter);
         Intent intent = new Intent(this, NewPetsActivity.class);
-        mAddPet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPetsPresenter.validateNewPet(String.valueOf(mNamePet.getText()), mTypePet.getSelectedItem().toString(), user.getmId()) ;
-            }
-        });
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 
     public void editPet(Integer id) {
         setContentView(R.layout.activity_pets_new);
 
-        setUpToolbar();
+        findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.white));
+        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.iconColor));
 
         mPetsPresenter = new PetsPresenter(this);
 
@@ -181,7 +163,12 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
     public void viewPet(String name,String type, Integer id){
         setContentView(R.layout.activity_pets_profile);
 
-        setUpToolbar();
+        findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.white));
+        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.iconColor));
+
         mPetsPresenter = new PetsPresenter(this);
 
         mShowName = findViewById(R.id.NamePetView);
@@ -253,17 +240,4 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
         updateList();
     }
 
-    @Override
-    public void bindViews() {
-
-    }
-
-    @Override
-    public void setUpToolbar() {
-        findViewById(R.id.button_toolbar_pets).getBackground().setTint(App.getApp().getResources().getColor(R.color.white));
-        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_settings).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_user).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-    }
 }
