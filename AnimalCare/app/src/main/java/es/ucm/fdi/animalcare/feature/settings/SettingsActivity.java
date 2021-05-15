@@ -5,9 +5,11 @@ import androidx.appcompat.widget.SwitchCompat;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -128,9 +130,11 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
                 if(i == R.id.settings_spanish_language){
                     context = LocaleHelper.setLocale(SettingsActivity.this, "es");
                     locale = new Locale("es");
+                    App.getApp().setLanguage("es");
                 }else{
                     context = LocaleHelper.setLocale(SettingsActivity.this, "en");
                     locale = new Locale("es");
+                    App.getApp().setLanguage("en");
                 }
                 resources = context.getResources();
                 App.getApp().setResources(resources);
@@ -147,4 +151,6 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
         changePassword.setText(App.getApp().getResources().getString(R.string.cambiar_contrase_a));
         logOut.setText(App.getApp().getResources().getString(R.string.cerrar_sesi_n));
     }
+
+
 }

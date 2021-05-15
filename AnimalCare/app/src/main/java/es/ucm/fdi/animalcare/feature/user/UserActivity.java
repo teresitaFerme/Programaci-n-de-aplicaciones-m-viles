@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.login.LoginActivity;
@@ -56,6 +57,15 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
 
     @Override
     public void logout(View view){
+
+        SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
+        SharedPreferences.Editor editoor = settings.edit();
+        editoor.putBoolean("darkMode", App.getApp().getDarkMode());
+        editoor.putString("language", App.getApp().getLanguage());
+        editoor.putString("nombre" , App.getApp().getUserName());
+
+        editoor.commit();
+
         // Cerrar sesión
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
