@@ -88,6 +88,17 @@
     <string name="settings_title">Configuración:</string>
     <string name="modo_oscuro">Modo oscuro</string>
 
+    <string name="password_activity_title">Cambiar contraseña</string>
+    <string name="old_password_hint">Contraseña antigua</string>
+    <string name="new_password_hint">Contraseña nueva</string>
+    <string name="repeat_new_password_hint">Repita la nueva cotnraseña</string>
+    <string name="password_confirm_button">Confirmar</string>
+
+    <string name="password_fill_field">Por favor, rellene todos los campos.</string>
+    <string name="password_incorrect_password">Contraseña antigua incorrecta.</string>
+    <string name="password_no_match">Las dos contraseñas nuevas no coinciden.</string>
+    <string name="password_change_successful">Su contraseña se ha cambiado con éxito.</string>
+
     <array name="task_frequency_array">
         <item>Nada</item>
         <item>Diario</item>

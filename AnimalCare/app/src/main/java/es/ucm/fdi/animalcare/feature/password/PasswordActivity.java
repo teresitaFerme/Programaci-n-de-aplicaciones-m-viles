@@ -48,25 +48,25 @@ public class PasswordActivity extends BaseActivity implements PasswordView {
 
     @Override
     public void fillField() {
-        Toast toast = Toast.makeText(this, "Por favor, rellene todos los campos.", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, R.string.password_fill_field, Toast.LENGTH_LONG);
         toast.show();
     }
 
     @Override
     public void incorrectPassword(){
-        Toast toast = Toast.makeText(this, "Contraseña antigua incorrecta.", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, R.string.password_incorrect_password, Toast.LENGTH_LONG);
         toast.show();
     }
 
     @Override
     public void noPasswordMatch(){
-        Toast toast = Toast.makeText(this, "Las dos contraseñas nuevas no coinciden.", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, R.string.password_no_match, Toast.LENGTH_LONG);
         toast.show();
     }
 
     @Override
     public void changeSuccessful(){
-        Toast toast = Toast.makeText(this, "Su contraseña se ha cambiado con éxito.", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, R.string.password_change_successful, Toast.LENGTH_LONG);
         toast.show();
     }
 

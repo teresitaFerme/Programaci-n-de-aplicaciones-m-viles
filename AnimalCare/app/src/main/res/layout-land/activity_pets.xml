@@ -16,8 +16,8 @@
 
     <Button
         android:id="@+id/AddPet"
-        android:layout_width="259dp"
-        android:layout_height="69dp"
+        android:layout_width="243dp"
+        android:layout_height="46dp"
         android:text="Añadir Mascota"
         app:layout_constraintBottom_toTopOf="@+id/include2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/PetsList"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:requiresFadingEdge="vertical"
         app:layout_constraintBottom_toTopOf="@+id/AddPet"
