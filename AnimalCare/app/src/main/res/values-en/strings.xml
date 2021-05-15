@@ -69,4 +69,13 @@
         <item>November</item>
         <item>December</item>
     </array>
+    <string name="password_activity_title">Change password</string>
+    <string name="old_password_hint">Old password</string>
+    <string name="new_password_hint">New password</string>
+    <string name="repeat_new_password_hint">Repeat new password</string>
+    <string name="password_confirm_button">Confirm</string>
+    <string name="password_fill_field">Please, fill all the fields</string>
+    <string name="password_incorrect_password">Wrong old password.</string>
+    <string name="password_no_match">The two new passwords don\'t match.</string>
+    <string name="password_change_successful">You\'re password has been changed.</string>
 </resources>
