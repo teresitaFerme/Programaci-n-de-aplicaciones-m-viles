@@ -4,13 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <include
-        android:id="@+id/layout_top_bar"
-        layout="@layout/top_bar"
-        tools:layout_editor_absoluteX="-30dp"
-        tools:layout_editor_absoluteY="125dp" />
-
+    <include layout="@layout/top_bar" android:id="@+id/layout_top_bar"/>
     <include
         android:id="@+id/include3"
         layout="@layout/toolbar"
@@ -23,64 +17,63 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgPet"
-        android:layout_width="132dp"
-        android:layout_height="125dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toTopOf="@+id/include3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_top_bar"
-        app:layout_constraintVertical_bias="0.066"
+        app:layout_constraintVertical_bias="0.2"
         app:shapeAppearanceOverlay="@style/RoundedSquare"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/NamePetView"
-        android:layout_width="203dp"
-        android:layout_height="61dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
         android:textColor="@color/black"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/taskListView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.434"
-        app:layout_constraintStart_toEndOf="@+id/imgPet"
-        app:layout_constraintTop_toTopOf="@+id/imgPet"
+        app:layout_constraintHorizontal_bias="0.029"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgPet"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonDeletePet"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:text="Eliminar Mascota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonEditPet"
+        app:layout_constraintTop_toBottomOf="@+id/taskListPetView"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonEditPet"
-        android:layout_width="360dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="12dp"
         android:text="Editar Mascota"
         app:layout_constraintBottom_toTopOf="@+id/include3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskListPetView"
-        app:layout_constraintVertical_bias="0.184"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/buttonDeletePet"
-        android:layout_width="360dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:text="Eliminar Mascota"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.431"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEditPet"
         tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskListPetView"
-        android:layout_width="360dp"
-        android:layout_height="261dp"
+        android:layout_width="515dp"
+        android:layout_height="176dp"
         app:layout_constraintBottom_toTopOf="@+id/include3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.912"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_top_bar"
+        app:layout_constraintVertical_bias="0.255" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

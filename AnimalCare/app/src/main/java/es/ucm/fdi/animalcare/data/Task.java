@@ -104,8 +104,8 @@ public class Task implements Serializable {
         this.mFreqNames = mFreqNames;
     }
 
-    public static String[] getmFreqNames(){
-        return getmFreqNames();
+    public String[] getmFreqNames(){
+        return this.mFreqNames;
     }
 
     public Integer getmFreq() {

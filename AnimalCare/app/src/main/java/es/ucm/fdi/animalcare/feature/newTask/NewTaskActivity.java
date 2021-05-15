@@ -69,7 +69,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
             mPetSpinner.setAdapter(adapter);
 
-            options = Task.getmFreqNames();
+            options = getResources().getStringArray(R.array.task_frequency_array);
             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
             mFreqSpinner.setAdapter(adapter);
 
@@ -94,7 +94,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             mPetSpinner.setSelection(mNewTaskPresenter.getPetPosition(user, task.getmPetId()));
             mPetSpinner.setEnabled(false);
 
-            String[] options2 = Task.getmFreqNames();
+            String[] options2 = getResources().getStringArray(R.array.task_frequency_array);
             ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options2);
             mFreqSpinner.setAdapter(adapter2);
             mFreqSpinner.setSelection(task.getmFreq());
