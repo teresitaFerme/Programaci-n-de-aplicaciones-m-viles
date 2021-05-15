@@ -9,6 +9,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -30,7 +31,6 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
     private User user;
     private SettingsPresenter mSettingsPresenter;
     private SwitchCompat mScreenModeSwitch, mNotificationsSwitch;
-    private RadioButton mSpanish, mEnglish;
     private Context context;
     private Resources resources;
     private TextView title, darkMode, selectLanguage, notifications, changePassword, logOut;
@@ -48,13 +48,11 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
             radioGroup.check(R.id.settings_english_language);
         }else  radioGroup.check(R.id.settings_spanish_language);
 
-
         setUpToolbar();
         setUpListeners();
 
         user = (User) getIntent().getSerializableExtra("user");
 
-        //TODO implement languages spinner and translate strings
         updateLanguage();
     }
 
@@ -86,8 +84,6 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
     private void bindViews(){
         mScreenModeSwitch = findViewById(R.id.settings_switch_screen_mode);
         mNotificationsSwitch = findViewById(R.id.settings_switch_notifications);
-        mSpanish = findViewById(R.id.settings_spanish_language);
-        mEnglish = findViewById(R.id.settings_english_language);
         title = findViewById(R.id.settings_title);
         darkMode = findViewById(R.id.settings_screen_mode);
         notifications = findViewById(R.id.settings_enable_notifications);
@@ -106,10 +102,14 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
     }
 
     private void setUpListeners(){
+        mScreenModeSwitch.setChecked(true);
+        mScreenModeSwitch.setChecked(false);
+        mScreenModeSwitch.setChecked(App.getApp().getDarkMode());
 
-        mScreenModeSwitch.setOnClickListener(new View.OnClickListener() {
+        mScreenModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                App.getApp().setDarkMode(b);
                 mSettingsPresenter.screenModeChanged();
             }
         });

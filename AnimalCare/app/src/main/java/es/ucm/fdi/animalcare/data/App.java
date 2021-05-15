@@ -4,6 +4,7 @@ import android.content.res.Resources;
 
 public class App {
     private Resources resources;
+    private boolean darkMode = false;
     private static App app = null;
 
     public static App getApp(){
@@ -23,4 +24,13 @@ public class App {
     public Resources getResources() {
         return resources;
     }
+
+    public boolean getDarkMode(){
+        return darkMode;
+    }
+
+    public void setDarkMode(boolean bool){
+        darkMode = bool;
+    }
+
 }
