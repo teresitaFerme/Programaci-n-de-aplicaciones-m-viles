@@ -17,6 +17,7 @@ import java.util.Calendar;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.User;
 
@@ -73,7 +74,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
             mFreqSpinner.setAdapter(adapter);
 
-            buttonConfirmTask.setText(getResources().getString(R.string.new_task_button));
+            buttonConfirmTask.setText(App.getApp().getResources().getString(R.string.new_task_button));
             buttonConfirmTask.setOnClickListener(v -> confirmNewTask(v) );
         } else {
 

@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:padding="8dp"
         android:textColor="@color/black"
-        android:text="Configuración:"
+        android:text="@string/settings_title"
         android:textSize="24dp"/>
 
     <LinearLayout
@@ -39,7 +39,7 @@
                 app:layout_constraintBaseline_toBaselineOf="@id/settings_switch_screen_mode"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="Modo oscuro"/>
+                android:text="@string/modo_oscuro"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/settings_switch_screen_mode"
@@ -62,7 +62,7 @@
                 android:padding="8dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="Activar notificaciones"/>
+                android:text="@string/activar_notificaciones"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/settings_switch_notifications"
@@ -82,18 +82,34 @@
                 android:id="@+id/settings_select_language"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@id/settings_spinner_language"
                 android:padding="8dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="Seleccionar idioma"/>
+                android:text="@string/seleccionar_idioma"/>
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/settings_spinner_language"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+            <RadioGroup
+                android:id="@+id/settings_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_select_language">
+
+                <RadioButton
+                    android:id="@+id/settings_spanish_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="@string/espanol" />
+
+                <RadioButton
+                    android:id="@+id/settings_english_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="@string/english" />
+
+            </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -109,7 +125,7 @@
                 android:padding="8dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="Cambiar contraseña"/>
+                android:text="@string/cambiar_contrase_a"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
@@ -132,7 +148,7 @@
             android:padding="8dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="Cerrar sesión"/>
+            android:text="@string/cerrar_sesi_n"/>
 
 
     </androidx.cardview.widget.CardView>

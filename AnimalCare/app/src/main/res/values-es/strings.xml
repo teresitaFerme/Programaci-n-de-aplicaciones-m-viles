@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">AnimalCare</string>
 
     <string name="material_calendar_monday">L</string>
     <string name="material_calendar_tuesday">M</string>
@@ -25,7 +24,6 @@
     </array>
 
     <string name="material_calendar_today_button">Hoy</string>
-    <string name="material_calendar_positive_button" translatable="false">OK</string>
     <string name="material_calendar_negative_button">Cancelar</string>
     <string name="reg_strate"><u>Regístrate</u></string>
     <string name="edit_something"><u>Editar</u></string>
@@ -99,8 +97,6 @@
     <string name="activar_notificaciones">Activar notificaciones</string>
     <string name="cerrar_sesi_n">Cerrar sesión</string>
     <string name="seleccionar_idioma">Seleccionar idioma:</string>
-    <string name="espanol" translatable="false">Español</string>
-    <string name="english" translatable="false">English</string>
 
 
 </resources>

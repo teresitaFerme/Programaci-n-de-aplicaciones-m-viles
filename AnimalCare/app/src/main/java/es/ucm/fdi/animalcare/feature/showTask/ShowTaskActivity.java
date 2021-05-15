@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.newTask.NewTaskActivity;
@@ -61,13 +62,13 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
             mTaskFreq.setText(task.getmFreqName());
 
         if(task.getmTaskDoneDatetime() != null)
-            mChangeTaskStateButton.setText(getResources().getString(R.string.undone_task_button));
+            mChangeTaskStateButton.setText(App.getApp().getResources().getString(R.string.undone_task_button));
     }
 
     @Override
     public void removeTask(View view) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage(getResources().getString(R.string.remove_task_dialog));
+        alertDialog.setMessage(App.getApp().getResources().getString(R.string.remove_task_dialog));
         alertDialog.setPositiveButton(getResources().getString(R.string.dialog_yes), new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which) {
                 mShowTaskPresenter.removeTask(task.getmId());

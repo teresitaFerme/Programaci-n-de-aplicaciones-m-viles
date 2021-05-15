@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import es.ucm.fdi.animalcare.R;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
 
 public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -93,7 +94,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //setheadersdata_flag = true;
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
             String labelStr = "";
-            Resources res = ctext.getResources();
+            Resources res = App.getApp().getResources();
             if (position == 0)
                 labelStr = res.getString(R.string.tasks_today_header);
             else if (position == numTodayTask + 1)

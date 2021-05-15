@@ -6,6 +6,7 @@ import android.view.View;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
@@ -22,11 +23,11 @@ public class CalendarActivity extends BaseActivity implements CalendarView, Tool
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.white));
-        findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_pets).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_settings).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(App.getApp().getResources().getColor(R.color.white));
+        findViewById(R.id.button_toolbar_user).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
 
         user = (User) getIntent().getSerializableExtra("user");
 

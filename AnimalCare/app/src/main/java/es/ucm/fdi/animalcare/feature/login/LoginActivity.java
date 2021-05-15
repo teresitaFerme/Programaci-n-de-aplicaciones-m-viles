@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.register.RegisterActivity;
@@ -32,6 +33,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         setContentView(R.layout.activity_login);
 
         mLoginPresenter = new LoginPresenter(this);
+        App.getApp().setResources(getResources());
 
         mUsername = findViewById(R.id.editText_username);
         mPassword = findViewById(R.id.editText_password);
