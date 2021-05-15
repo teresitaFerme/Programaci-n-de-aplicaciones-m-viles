@@ -9,11 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimalCare">
+
         <activity android:name=".feature.user.UserActivity" />
+        <activity android:name=".feature.password.PasswordActivity"
+            android:parentActivityName=".feature.user.UserActivity">
+        </activity>
         <activity android:name=".feature.settings.SettingsActivity" />
         <activity android:name=".feature.calendar.CalendarActivity" />
         <activity android:name=".feature.upcoming.UpcomingActivity" />
+        <activity android:name=".feature.newTask.NewTaskActivity"
+            android:parentActivityName=".feature.upcoming.UpcomingActivity">
+        </activity>
+        <activity android:name=".feature.showTask.ShowTaskActivity"
+            android:parentActivityName=".feature.upcoming.UpcomingActivity">
+        </activity>
         <activity android:name=".feature.pets.PetsActivity" />
+        <activity android:name=".feature.pets.newPets.NewPetsActivity" />
+        <activity android:name=".feature.pets.profilePet.ProfilePetActivity" />
         <activity android:name=".feature.register.RegisterActivity" />
         <activity android:name=".feature.login.LoginActivity">
             <intent-filter>

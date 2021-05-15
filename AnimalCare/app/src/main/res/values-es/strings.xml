@@ -1,0 +1,111 @@
+<resources>
+
+    <string name="material_calendar_monday">L</string>
+    <string name="material_calendar_tuesday">M</string>
+    <string name="material_calendar_wednesday">X</string>
+    <string name="material_calendar_thursday">J</string>
+    <string name="material_calendar_friday">V</string>
+    <string name="material_calendar_saturday">S</string>
+    <string name="material_calendar_sunday">D</string>
+
+    <array name="material_calendar_months_array">
+        <item>Enero</item>
+        <item>Febrero</item>
+        <item>Marzo</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Junio</item>
+        <item>Julio</item>
+        <item>Agosto</item>
+        <item>Septiembre</item>
+        <item>Octubre</item>
+        <item>Noviembre</item>
+        <item>Diciembre</item>
+    </array>
+
+    <string name="material_calendar_today_button">Hoy</string>
+    <string name="material_calendar_negative_button">Cancelar</string>
+    <string name="reg_strate"><u>Regístrate</u></string>
+    <string name="edit_something"><u>Editar</u></string>
+    <string name="delete_something"><u>Borrar</u></string>
+    <string name="add_pet"><u>Añadir mascota</u></string>
+
+    <string-array name = "Pets_animals">
+        <item>Perro</item>
+        <item>Gato</item>
+        <item>Pajaro</item>
+        <item>Pez</item>
+        <item>Tortuga</item>
+        <item>Caballo</item>
+    </string-array>
+
+    <string name="edit_pet"><u>Animal modificado</u></string>
+    <string name="del_pet"><u>Animal borrado</u></string>
+    <string name="log_please"><u>Logeate para mostrar tus mascotas</u></string>
+    <string name="fill_please"><u>Rellene todos los campos</u></string>
+    <string name="save_pet"><u>Animal guardado</u></string>
+    <string name="error_save_pet"><u>Error al guardar animal</u></string>
+    <string name="error_del_pet"><u>Error al borrar animal</u></string>
+    <string name="error_edit_pet"><u>Error al editar animal</u></string>
+
+    <string name="toast_task_saved">Tarea guardada.</string>
+    <string name="toast_task_removed">Tarea eliminada correctamente.</string>
+    <string name="toast_task_edited">Tarea modificada correctamente.</string>
+    <string name="toast_fill_fields">Por favor, rellene todos los campos.</string>
+    <string name="toast_error">Ha habido un error.</string>
+
+    <string name="tasks_today_header">Hoy</string>
+    <string name="tasks_tomorrow_header">Mañana</string>
+    <string name="tasks_soon_header">Proximamente</string>
+
+    <string name="done_task_button">Hecha</string>
+    <string name="undone_task_button">No hecha</string>
+    <string name="edit_task_button">Modificar</string>
+    <string name="remove_task_button">Eliminar</string>
+    <string name="new_task_button">Añadir Tarea</string>
+
+    <string name="remove_task_dialog">¿Estás seguro que quieres eliminar esta tarea?</string>
+    <string name="dialog_yes">Sí</string>
+    <string name="dialog_no">No</string>
+
+    <string name="toolbar_label_new_task">Nueva Tarea</string>
+    <string name="toolbar_label_show_task">Tarea</string>
+
+    <string name="new_task_name_hint">Nombre Tarea</string>
+    <string name="new_task_date_hint">Fecha</string>
+    <string name="new_task_desc_hint">Descripción</string>
+
+    <string name="show_task_pet">Mascota:</string>
+    <string name="show_task_name">Tarea:</string>
+    <string name="show_task_time">Hora:</string>
+    <string name="show_task_date">Fecha:</string>
+    <string name="show_task_frequency">Frecuencia:</string>
+    <string name="show_task_desc">Descripción:</string>
+    <string name="cambiar_contrase_a">Cambiar contraseña</string>
+
+    <string name="settings_title">Configuración:</string>
+    <string name="modo_oscuro">Modo oscuro</string>
+
+    <array name="task_frequency_array">
+        <item>Nada</item>
+        <item>Diario</item>
+        <item>Semanal</item>
+        <item>Mensual</item>
+        <item>Anual</item>
+    </array>
+
+    <string name="activar_notificaciones">Activar notificaciones</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
+    <string name="seleccionar_idioma">Seleccionar idioma:</string>
+    <string name="password_activity_title">Cambiar contraseña</string>
+    <string name="old_password_hint">Contraseña antigua</string>
+    <string name="new_password_hint">Contraseña nueva</string>
+    <string name="repeat_new_password_hint">Repita la nueva contraseña</string>
+    <string name="password_confirm_button">Confirmar</string>
+    <string name="password_fill_field">Por favor, rellene todos los campos.</string>
+    <string name="password_incorrect_password">Contraseña antigua incorrecta.</string>
+    <string name="password_no_match">Las dos contraseñas nuevas no coinciden.</string>
+    <string name="password_change_successful">Su contraseña se ha cambiado con éxito.</string>
+
+
+</resources>

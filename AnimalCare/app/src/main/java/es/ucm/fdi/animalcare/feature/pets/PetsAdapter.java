@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import es.ucm.fdi.animalcare.R;
@@ -15,10 +16,12 @@ import java.util.List;
 
 import es.ucm.fdi.animalcare.data.Pets;
 
-public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
+public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> implements View.OnClickListener {
     private List<Pets> mData;
     private LayoutInflater mInflater;
     private Context ctext;
+
+    private View.OnClickListener listener;
 
     public PetsAdapter(List<Pets> itemList, Context context){
         this.mInflater = LayoutInflater.from(context);
@@ -29,6 +32,9 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
     @Override
     public PetsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.pet_list_item, parent, false);
+
+        view.setOnClickListener(this);
+
         return new  ViewHolder(view);
     }
 
@@ -46,9 +52,20 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
         return mData.size();
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (listener != null){
+            listener.onClick(view);
+        }
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView image;
-        TextView name, type;
+        public ImageView image;
+        public TextView name, type;
 
         ViewHolder(View itemView){
             super(itemView);
@@ -58,9 +75,18 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> {
         }
 
         void bindData(final Pets pet){
-           image.setImageResource(R.drawable.pet_dog);
-           name.setText(pet.getName());
-           type.setText(pet.getType());
+            //image.setImageResource(R.drawable.pet_dog);
+            name.setText(pet.getName());
+            type.setText(pet.getType());
+            switch (pet.getType()) {
+                case "Perro": image.setImageResource(R.drawable.dog_green); break;
+                case "Gato": image.setImageResource(R.drawable.cat_green); break;
+                case "Pajaro": image.setImageResource(R.drawable.bird_green); break;
+                case "Caballo": image.setImageResource(R.drawable.horse_green); break;
+                case "Pez": image.setImageResource(R.drawable.fish_green); break;
+                case "Tortuga": image.setImageResource(R.drawable.turtle_green); break;
+                default: image.setImageResource(R.drawable.dog_green); break;
+            }
         }
     }
 }
