@@ -24,6 +24,7 @@ import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.LocaleHelper;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
+import es.ucm.fdi.animalcare.feature.login.LoginActivity;
 import es.ucm.fdi.animalcare.feature.password.PasswordActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
@@ -114,6 +115,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 App.getApp().setDarkMode(b);
                 mSettingsPresenter.screenModeChanged();
+                saveSettings();
             }
         });
 
@@ -147,6 +149,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
                 resources = context.getResources();
                 App.getApp().setResources(resources);
                 updateLanguage();
+                saveSettings();
             }
         });
     }
@@ -165,5 +168,15 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
         startActivity(intent);
     }
 
+    private void saveSettings(){
+        SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
+        SharedPreferences.Editor editoor = settings.edit();
+        editoor.putBoolean("darkMode", App.getApp().getDarkMode());
+        editoor.putString("language", App.getApp().getLanguage());
+        editoor.putString("nombre" , App.getApp().getUserName());
+        editoor.putString("pass", App.getApp().getPass());
+
+        editoor.commit();
+    }
 
 }
