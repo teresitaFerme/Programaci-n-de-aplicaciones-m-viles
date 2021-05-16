@@ -24,9 +24,13 @@
             android:parentActivityName=".feature.upcoming.UpcomingActivity">
         </activity>
         <activity android:name=".feature.pets.PetsActivity" />
-        <activity android:name=".feature.pets.newPets.NewPetsActivity" />
-        <activity android:name=".feature.pets.profilePet.ProfilePetActivity" />
-        <activity android:name=".feature.register.RegisterActivity" />
+        <activity android:name=".feature.pets.newPets.NewPetsActivity"
+            android:parentActivityName=".feature.pets.PetsActivity"/>
+        <activity android:name=".feature.pets.profilePet.ProfilePetActivity"
+            android:parentActivityName=".feature.pets.PetsActivity"/>
+        <activity android:name=".feature.register.RegisterActivity"
+            android:parentActivityName=".feature.login.LoginActivity"/>
+
         <activity android:name=".feature.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
