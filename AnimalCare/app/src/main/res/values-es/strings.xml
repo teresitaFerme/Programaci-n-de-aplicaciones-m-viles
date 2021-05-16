@@ -47,6 +47,7 @@
     <string name="error_save_pet"><u>Error al guardar animal</u></string>
     <string name="error_del_pet"><u>Error al borrar animal</u></string>
     <string name="error_edit_pet"><u>Error al editar animal</u></string>
+    <string name="remove_task_dialog">¿Estás seguro que quieres eliminar esta mascota?</string>
 
     <string name="toast_task_saved">Tarea guardada.</string>
     <string name="toast_task_removed">Tarea eliminada correctamente.</string>
@@ -64,7 +65,7 @@
     <string name="remove_task_button">Eliminar</string>
     <string name="new_task_button">Añadir Tarea</string>
 
-    <string name="remove_task_dialog">¿Estás seguro que quieres eliminar esta tarea?</string>
+    <string name="remove_pet_dialog">¿Estás seguro que quieres eliminar esta tarea?</string>
     <string name="dialog_yes">Sí</string>
     <string name="dialog_no">No</string>
 
