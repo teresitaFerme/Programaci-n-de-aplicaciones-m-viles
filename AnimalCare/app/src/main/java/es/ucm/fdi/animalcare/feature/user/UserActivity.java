@@ -2,7 +2,9 @@ package es.ucm.fdi.animalcare.feature.user;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -174,5 +176,28 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.iconColor));
         findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
         findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.white));
+    }
+
+    public void llamarUrgencias(View view) {
+        Intent i = new Intent(Intent.ACTION_DIAL);
+        i.setData(Uri.parse("tel:915627769"));
+        startActivity(i);
+    }
+
+    public void localizarClinicas(View view) {
+        // Get the string indicating a location. Input is not validated; it is
+        // passed to the location handler intact.
+        String loc = "clínica+veterinaria";
+
+        // Parse the location and create the intent.
+        Uri addressUri = Uri.parse("geo:0,0?q=" + loc);
+        Intent intent = new Intent(Intent.ACTION_VIEW, addressUri);
+
+        // Find an activity to handle the intent, and start that activity.
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.d("ImplicitIntents", "Can't handle this intent!");
+        }
     }
 }
