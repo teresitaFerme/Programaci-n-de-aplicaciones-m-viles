@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="es.ucm.fdi.animalcare">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AnimalCare">
+
+        <activity android:name=".feature.user.UserActivity" />
+        <activity android:name=".feature.password.PasswordActivity"
+            android:parentActivityName=".feature.user.UserActivity">
+        </activity>
+        <activity android:name=".feature.settings.SettingsActivity" />
+        <activity android:name=".feature.calendar.CalendarActivity" />
+        <activity android:name=".feature.upcoming.UpcomingActivity" />
+        <activity android:name=".feature.newTask.NewTaskActivity"
+            android:parentActivityName=".feature.upcoming.UpcomingActivity">
+        </activity>
+        <activity android:name=".feature.showTask.ShowTaskActivity"
+            android:parentActivityName=".feature.upcoming.UpcomingActivity">
+        </activity>
+        <activity android:name=".feature.pets.PetsActivity" />
+        <activity android:name=".feature.pets.newPets.NewPetsActivity" />
+        <activity android:name=".feature.pets.profilePet.ProfilePetActivity" />
+        <activity android:name=".feature.register.RegisterActivity" />
+        <activity android:name=".feature.login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".base.BaseActivity" />
+    </application>
+
+</manifest>
