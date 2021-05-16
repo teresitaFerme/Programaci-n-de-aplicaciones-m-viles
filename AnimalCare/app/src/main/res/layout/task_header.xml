@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:layout_margin="8dp"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:gravity="center"
             android:textAlignment="center"
             tools:text="Hola"
