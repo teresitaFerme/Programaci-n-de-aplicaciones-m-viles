@@ -3,6 +3,7 @@ package es.ucm.fdi.animalcare.feature.upcoming;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -111,10 +112,16 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 realPosition = position - 1;
             else if (position > numTodayTask + 1 && position <= numTodayTask + numTomorrowTask + 1)
                 realPosition = position - 2;
-            else if (position > numTomorrowTask + numTodayTask + 2)
-                realPosition =  position - 3;
+            else if (position > numTomorrowTask + numTodayTask + 2) {
+                realPosition = position - 3;
+            }
 
             itemViewHolder.bindData(mData.get(realPosition));
+            if (position > numTomorrowTask + numTodayTask + 2) {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+                String timeStr = dateFormat.format(((ItemViewHolder) holder).getTask().getmScheduleDatetime());
+                ((ItemViewHolder) holder).time.setText(timeStr);
+            }
         }
     }
 
@@ -147,6 +154,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         TextView name, time, petName;
+        Task task;
 
         ItemViewHolder(View itemView){
             super(itemView);
@@ -157,6 +165,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @RequiresApi(api = Build.VERSION_CODES.M)
         void bindData(Task task){
+            this.task = task;
             SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
             String timeStr = dateFormat.format(task.getmScheduleDatetime());
             time.setText(timeStr);
@@ -166,6 +175,10 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             time.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
             name.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
             petName.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
+        }
+
+        public Task getTask(){
+            return task;
         }
     }
 }

@@ -32,7 +32,7 @@
     <string name="delete_something"><u>Borrar</u></string>
     <string name="add_pet"><u>Añadir mascota</u></string>
 
-    <string-array name = "Pets_animals">
+    <string-array name="Pets_animals">
         <item>Perro</item>
         <item>Gato</item>
         <item>Pajaro</item>
@@ -112,6 +112,8 @@
     <string name="seleccionar_idioma">Seleccionar idioma:</string>
     <string name="espanol" translatable="false">Español</string>
     <string name="english" translatable="false">English</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 
 </resources>

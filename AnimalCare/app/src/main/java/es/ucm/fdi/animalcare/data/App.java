@@ -3,13 +3,16 @@ package es.ucm.fdi.animalcare.data;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
+import es.ucm.fdi.animalcare.feature.login.LoginActivity;
+
 public class App {
-    private Resources resources;
+    private Resources resources = null;
     private boolean darkMode = false;
     private String language = "es";
     private SharedPreferences sharedPreferences;
     private static App app = null;
     private String userName;
+    private String userId;
     private String pass;
 
     public static App getApp(){
@@ -60,5 +63,13 @@ public class App {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
