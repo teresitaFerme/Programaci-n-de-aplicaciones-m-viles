@@ -55,17 +55,18 @@ public class NewTaskPresenter extends BasePresenter {
         if(name.length() == 0 && desc.length() == 0) mNewTaskView.fillFields();
         else {
             Integer petId = null;
-            for(Pets p: user.getmPetList()){
-                if (p.getName().equals(petName)){
+            for (Pets p : user.getmPetList()) {
+                if (p.getName().equals(petName)) {
                     petId = p.getId();
                     break;
                 }
             }
             taskId = mNewTaskModel.saveNewTask(name, desc, datetime, petId, freq);
-            if(taskId <= 0)
+            if (taskId <= 0)
                 mNewTaskView.newTaskFail();
-            else
+            else {
                 mNewTaskView.returnFromNewTask(taskId);
+            }
         }
     }
 

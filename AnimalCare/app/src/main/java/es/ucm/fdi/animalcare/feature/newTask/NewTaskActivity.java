@@ -1,5 +1,8 @@
 package es.ucm.fdi.animalcare.feature.newTask;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -12,15 +15,17 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.User;
-import es.ucm.fdi.animalcare.feature.showTask.ShowTaskActivity;
+import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 
 public class NewTaskActivity extends BaseActivity implements NewTaskView {
 
@@ -31,6 +36,9 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
     private Spinner mPetSpinner, mFreqSpinner;
     private TimePicker mScheduleTime;
     private Button buttonConfirmTask;
+    private String date;
+    private Integer hour;
+    private Integer minutes;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -107,10 +115,10 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
 
             if(day < 10)
                 selectedDate = "0";
-            selectedDate += String.valueOf(day) + "/";
+            selectedDate += day + "/";
             if(month < 9)
                 selectedDate += "0";
-            selectedDate += String.valueOf(month+1) + "/" + String.valueOf(year);
+            selectedDate += (month + 1) + "/" + year;
 
             mScheduleDate.setText(selectedDate);
         });
@@ -124,9 +132,9 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         String name = mTaskName.getText().toString();
         String desc = mTaskDesc.getText().toString();
         String petName = mPetSpinner.getSelectedItem().toString();
-        String date = mScheduleDate.getText().toString();
-        Integer hour = mScheduleTime.getHour();
-        Integer minutes = mScheduleTime.getMinute();
+        date = mScheduleDate.getText().toString();
+        hour = mScheduleTime.getHour();
+        minutes = mScheduleTime.getMinute();
         Integer freq = mFreqSpinner.getSelectedItemPosition();
         mNewTaskPresenter.validateNewTask(name, desc, petName, date, hour, minutes, user, freq);
     }
@@ -152,8 +160,36 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
 
     @Override
     public void returnFromNewTask(int result) {
+        App.getApp();
+        Intent intent = new Intent(NewTaskActivity.this, AlarmBroadcastReceiver.class);
+        intent.putExtra("taskId", result);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(NewTaskActivity.this, result, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, getDateFromStr().getTime(), pendingIntent);
+
         setResult(result);
         finish();
+    }
+
+    private Date getDateFromStr(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String dateStr = date + " ";
+        if(hour < 10)
+            dateStr += "0";
+        dateStr += hour + ":";
+        if(minutes < 10)
+            dateStr += "0";
+        dateStr += minutes;
+
+        Date date = null;
+        try {
+            date = dateFormat.parse(dateStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
     }
 
     @Override

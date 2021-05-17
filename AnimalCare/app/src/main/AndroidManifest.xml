@@ -52,6 +52,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".base.BaseActivity" />
+
+        <receiver android:name=".feature.newTask.AlarmBroadcastReceiver"/>
     </application>
 
 </manifest>
