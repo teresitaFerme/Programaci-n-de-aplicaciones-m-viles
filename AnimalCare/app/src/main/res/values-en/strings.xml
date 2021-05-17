@@ -79,4 +79,5 @@
     <string name="password_incorrect_password">Wrong old password.</string>
     <string name="password_no_match">The two new passwords don\'t match.</string>
     <string name="password_change_successful">You\'re password has been changed.</string>
+    <string name="calendar_tasks">Tasks</string>
 </resources>
