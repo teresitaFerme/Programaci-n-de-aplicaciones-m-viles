@@ -1,9 +1,8 @@
-package es.ucm.fdi.animalcare.feature.upcoming;
+package es.ucm.fdi.animalcare.feature.pets.profilePet;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +21,10 @@ import java.util.List;
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
+import es.ucm.fdi.animalcare.feature.pets.profilePet.ProfilePetActivity;
+import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 
-public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ProfilePetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
 
@@ -34,7 +35,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int numTomorrowTask;
     private int numAfterTomorrowTask;
 
-    public TaskAdapter(List<Task> itemList, Context context){
+    public ProfilePetAdapter(List<Task> itemList, Context context){
         Calendar calendar = Calendar.getInstance();
         this.mInflater = LayoutInflater.from(context);
         this.ctext = context;
@@ -79,7 +80,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             View view = mInflater.inflate(R.layout.task_list_item, parent, false);
             return new ItemViewHolder(view);
         } else if (viewType == TYPE_HEADER) {
-            View view = mInflater.inflate(R.layout.task_header, parent, false);
+            View view = mInflater.inflate(R.layout.task_header_pet_profile, parent, false);
             return new HeaderViewHolder(view);
         }
         else return null;
@@ -112,9 +113,8 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 realPosition = position - 1;
             else if (position > numTodayTask + 1 && position <= numTodayTask + numTomorrowTask + 1)
                 realPosition = position - 2;
-            else if (position > numTomorrowTask + numTodayTask + 2) {
-                realPosition = position - 3;
-            }
+            else if (position > numTomorrowTask + numTodayTask + 2)
+                realPosition =  position - 3;
 
             itemViewHolder.bindData(mData.get(realPosition));
             if (position > numTomorrowTask + numTodayTask + 2) {
@@ -170,11 +170,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             String timeStr = dateFormat.format(task.getmScheduleDatetime());
             time.setText(timeStr);
             name.setText(task.getmTaskName());
-            petName.setText(((UpcomingActivity) ctext).getPetName(task.getmPetId()) + ":");
 
-            time.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
-            name.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
-            petName.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
         }
 
         public Task getTask(){

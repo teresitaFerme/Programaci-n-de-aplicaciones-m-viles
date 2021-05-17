@@ -24,6 +24,8 @@ import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.LocaleHelper;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
+import es.ucm.fdi.animalcare.feature.login.LoginActivity;
+import es.ucm.fdi.animalcare.feature.password.PasswordActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
@@ -83,7 +85,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
         }
     }
 
-    private void bindViews(){
+    public void bindViews(){
         mScreenModeSwitch = findViewById(R.id.settings_switch_screen_mode);
         mNotificationsSwitch = findViewById(R.id.settings_switch_notifications);
         title = findViewById(R.id.settings_title);
@@ -95,7 +97,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
         radioGroup = findViewById(R.id.settings_radio_group);
     }
 
-    private void setUpToolbar(){
+    public void setUpToolbar(){
         findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.iconColor));
         findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
         findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.white));
@@ -113,6 +115,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 App.getApp().setDarkMode(b);
                 mSettingsPresenter.screenModeChanged();
+                saveSettings();
             }
         });
 
@@ -120,6 +123,13 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
             @Override
             public void onClick(View v) {
                 mSettingsPresenter.notificationsEnabled();
+            }
+        });
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changePassword(view);
             }
         });
 
@@ -139,6 +149,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
                 resources = context.getResources();
                 App.getApp().setResources(resources);
                 updateLanguage();
+                saveSettings();
             }
         });
     }
@@ -152,5 +163,20 @@ public class SettingsActivity extends BaseActivity implements SettingsView, Tool
         logOut.setText(App.getApp().getResources().getString(R.string.cerrar_sesi_n));
     }
 
+    public void changePassword(View view){
+        Intent intent = new Intent(this, PasswordActivity.class);
+        startActivity(intent);
+    }
+
+    private void saveSettings(){
+        SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
+        SharedPreferences.Editor editoor = settings.edit();
+        editoor.putBoolean("darkMode", App.getApp().getDarkMode());
+        editoor.putString("language", App.getApp().getLanguage());
+        editoor.putString("nombre" , App.getApp().getUserName());
+        editoor.putString("pass", App.getApp().getPass());
+
+        editoor.commit();
+    }
 
 }

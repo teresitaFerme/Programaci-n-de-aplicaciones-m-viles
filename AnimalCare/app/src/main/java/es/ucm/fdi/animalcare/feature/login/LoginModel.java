@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import es.ucm.fdi.animalcare.base.BaseModel;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.database.AnimalCareDatabase.UserTable;
 import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
@@ -58,6 +59,7 @@ public class LoginModel extends BaseModel {
             mUsername = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_NAME_USERNAME));
             mPassword = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_NAME_PASSWORD));
             mId = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID));
+            App.getApp().setUserId(String.valueOf(mId));
             cursor.close();
         } else return null;
 

@@ -33,19 +33,12 @@ public class NewPetsActivity extends BaseActivity implements NewPetsView, ToolBa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets_new);
-
-        findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.white));
-        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        setUpToolbar();
+        bindViews();
 
         user = (User) getIntent().getSerializableExtra("user");
 
         mNewPetsPresenter = new NewPetsPresenter(this);
-
-        mNamePet = findViewById(R.id.editText_newpet_name);
-        mTypePet = findViewById(R.id.spinner);
 
         Resources res = getResources();
         String[] options = res.getStringArray(R.array.Pets_animals);
@@ -53,7 +46,6 @@ public class NewPetsActivity extends BaseActivity implements NewPetsView, ToolBa
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
         mTypePet.setAdapter(adapter);
 
-        mNewPet = findViewById(R.id.button_newpet_add);
         mNewPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,4 +104,19 @@ public class NewPetsActivity extends BaseActivity implements NewPetsView, ToolBa
         startActivity(intent);
     }
 
+    @Override
+    public void bindViews() {
+        mNamePet = findViewById(R.id.editText_newpet_name);
+        mTypePet = findViewById(R.id.spinner);
+        mNewPet = findViewById(R.id.button_newpet_add);
+    }
+
+    @Override
+    public void setUpToolbar() {
+        findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.white));
+        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
+        findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.iconColor));
+    }
 }
