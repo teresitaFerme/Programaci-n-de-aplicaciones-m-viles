@@ -10,7 +10,6 @@ import android.util.Log;
 import com.applandeo.materialcalendarview.EventDay;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,7 +33,6 @@ public class CalendarModel extends BaseModel {
 
     public List<Task> getAllTasks (Integer userId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         String query = "SELECT t." + BaseColumns._ID +
                 ", t." + AnimalCareDatabase.TaskTable.COLUMN_NAME_ID_PET +
@@ -50,6 +48,8 @@ public class CalendarModel extends BaseModel {
         List values = new ArrayList<Task>();
 
         while(cursor.moveToNext()){
+
+            //Date taskDoneDatetime;
             Integer taskId = cursor.getInt(cursor.getColumnIndex(AnimalCareDatabase.TaskTable._ID));
             Integer petIdAux = cursor.getInt(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_ID_PET));
             String taskName = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_TASKNAME));
@@ -57,59 +57,8 @@ public class CalendarModel extends BaseModel {
             String taskDoneDatetime = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_TASKDONE_DATETIME));
             String description = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_DESCRIPTION));
             Integer freq = cursor.getInt(cursor.getColumnIndex(AnimalCareDatabase.TaskTable.COLUMN_NAME_FREQUENCY));
-
             Task task = new Task(taskId, petIdAux, taskName, scheduleDatetime, taskDoneDatetime, description, freq, ctx.getResources().getStringArray(R.array.task_frequency_array));
             values.add(task);
-
-            int interval=1, loopLimit=1; // Interval: number of days/weeks/months/years to add to original date
-
-            // Check frequency and insert necessary number of copies of task within a year into database
-            switch(freq){
-                case Task.FREQUENCY_DAILY:
-                    loopLimit = 365;
-                    break;
-                case Task.FREQUENCY_WEEKLY:
-                    loopLimit = 52;
-                    break;
-                case Task.FREQUENCY_MONTHLY:
-                    loopLimit = 12;
-                    break;
-                case Task.FREQUENCY_YEARLY:
-                    loopLimit = 2;
-                    break;
-                default: // No frequency
-                    interval = 0;
-            }
-
-            Calendar calendar = Calendar.getInstance();
-            try {
-                calendar.setTime(dateFormat.parse(scheduleDatetime));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            for (int i = 1; i < loopLimit; i++){
-                switch(freq){
-                    case Task.FREQUENCY_DAILY:
-                        calendar.add(Calendar.DATE, interval);
-                        break;
-                    case Task.FREQUENCY_WEEKLY:
-                        calendar.add(Calendar.WEEK_OF_YEAR, interval);
-                        break;
-                    case Task.FREQUENCY_MONTHLY:
-                        calendar.add(Calendar.MONTH, interval);
-                        break;
-                    case Task.FREQUENCY_YEARLY:
-                        calendar.add(Calendar.YEAR, interval);
-                        break;
-                    default: // No frequency: for loop not reachable for this case
-                }
-
-                String dateTimeString = dateFormat.format(calendar.getTime());
-
-                task = new Task(taskId, petIdAux, taskName, dateTimeString, taskDoneDatetime, description, freq, ctx.getResources().getStringArray(R.array.task_frequency_array));
-                values.add(task);
-            }
         }
         cursor.close();
 
@@ -134,7 +83,42 @@ public class CalendarModel extends BaseModel {
 
             calendar.set(year, month, day, hours, mins);
 
-            events.add(new EventDay(calendar, R.drawable.ic_calendar_event));
+            // Get pet type then set icon
+            int icon = R.drawable.bird_green;
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+            String query = "SELECT p." + BaseColumns._ID +
+                    ", p." + AnimalCareDatabase.PetTable.COLUMN_NAME_TYPE +
+                    " FROM " + AnimalCareDatabase.PetTable.TABLE_NAME + " p WHERE p." + BaseColumns._ID +
+                    "= " + String.valueOf(t.getmPetId());
+
+            Cursor cursor = db.rawQuery(query, null);
+
+            while(cursor.moveToNext()){
+                String type = cursor.getString(cursor.getColumnIndex(AnimalCareDatabase.PetTable.COLUMN_NAME_TYPE));
+
+                switch(type){
+                    case "Perro":
+                        icon = R.drawable.dog_green;
+                        break;
+                    case "Gato":
+                        icon = R.drawable.cat_green;
+                        break;
+                    case "Pajaro":
+                        icon = R.drawable.bird_green;
+                        break;
+                    case "Pez":
+                        icon = R.drawable.fish_green;
+                        break;
+                    case "Tortuga":
+                        icon = R.drawable.turtle_green;
+                        break;
+                    default: // "Caballo"
+                        icon = R.drawable.horse_green;
+                }
+            }
+
+            events.add(new EventDay(calendar, icon)); //TODO: set logic for setting icons
         }
 
         return events;
