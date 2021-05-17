@@ -34,8 +34,8 @@ public class NewTaskPresenter extends BasePresenter {
         return petNames;
     }
 
-    public int validateNewTask(String name, String desc, String petName, String date, int hour, int minute, User user, int freq) {
-        Integer taskId = null;
+    public void validateNewTask(String name, String desc, String petName, String date, int hour, int minute, User user, int freq) {
+        Integer taskId;
         Date dateAux = null;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String datetime;
@@ -49,7 +49,7 @@ public class NewTaskPresenter extends BasePresenter {
         dateAux.setHours(hour);
         dateAux.setMinutes(minute);
 
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         datetime = dateFormat.format(dateAux);
 
         if(name.length() == 0 && desc.length() == 0) mNewTaskView.fillFields();
@@ -62,9 +62,11 @@ public class NewTaskPresenter extends BasePresenter {
                 }
             }
             taskId = mNewTaskModel.saveNewTask(name, desc, datetime, petId, freq);
+            if(taskId <= 0)
+                mNewTaskView.newTaskFail();
+            else
+                mNewTaskView.returnFromNewTask(taskId);
         }
-
-        return taskId;
     }
 
     public Integer getPetPosition(User user, Integer petId){
@@ -83,11 +85,11 @@ public class NewTaskPresenter extends BasePresenter {
         return petPosition;
     }
 
-    public Integer validateUpdateTask(int taskId, String name, String desc, String petName, String date, int hour, int minute, User user, int freq) {
+    public void validateUpdateTask(int taskId, String name, String desc, String petName, String date, int hour, int minute, User user, int freq) {
         Date dateAux = null;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String datetime;
-        Integer result = null;
+        Integer result;
 
         try {
             dateAux = dateFormat.parse(date);
@@ -111,8 +113,10 @@ public class NewTaskPresenter extends BasePresenter {
                 }
             }
             result = mNewTaskModel.saveUpdateTask(taskId, name, desc, datetime, petId, freq);
+            if(result <= 0)
+                mNewTaskView.newTaskFail();
+            else
+                mNewTaskView.returnFromNewTask(taskId);
         }
-
-        return result;
     }
 }

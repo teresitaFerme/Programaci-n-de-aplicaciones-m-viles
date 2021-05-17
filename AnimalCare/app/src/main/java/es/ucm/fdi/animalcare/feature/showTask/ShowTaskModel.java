@@ -128,7 +128,7 @@ public class ShowTaskModel {
             ContentValues values = new ContentValues();
             String datetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKDONE_DATETIME));
             if(datetime == null){
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
                 Calendar calendar = Calendar.getInstance();
                 date = dateFormat.format(calendar.getTime());
             }

@@ -110,9 +110,9 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         super.onActivityResult(requestCode, resultCode, data);
         String text = "";
         if(requestCode == NEW_TASK){
-            if(resultCode == NewTaskActivity.NEW_TASK_SUCCESS)
+            if(resultCode > 0)
                 text = getResources().getString(R.string.toast_task_saved);
-            else if (resultCode == NewTaskActivity.NEW_TASK_FAIL)
+            else
                 text = getResources().getString(R.string.toast_error);
             Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
             toast.show();
