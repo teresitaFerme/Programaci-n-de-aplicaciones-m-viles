@@ -20,6 +20,15 @@ public class Task implements Serializable {
     private String mTaskName;
     private Date mScheduleDatetime;
     private Date mTaskDoneDatetime;
+
+    public Date getmTaskDoneDatetime() {
+        return mTaskDoneDatetime;
+    }
+
+    public void setmTaskDoneDatetime(Date mTaskDoneDatetime) {
+        this.mTaskDoneDatetime = mTaskDoneDatetime;
+    }
+
     private String mDescription;
     private Integer mFreq;
     private String[] mFreqNames;
@@ -77,14 +86,6 @@ public class Task implements Serializable {
 
     public void setmScheduleDatetime(Date mScheduleDatetime) {
         this.mScheduleDatetime = mScheduleDatetime;
-    }
-
-    public Date getmTaskDoneDatetime() {
-        return mTaskDoneDatetime;
-    }
-
-    public void setmTaskDoneDatetime(Date mTaskDoneDatetime) {
-        this.mTaskDoneDatetime = mTaskDoneDatetime;
     }
 
     public String getmDescription() {

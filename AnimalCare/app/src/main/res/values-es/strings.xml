@@ -106,7 +106,6 @@
     <string name="password_incorrect_password">Contraseña antigua incorrecta.</string>
     <string name="password_no_match">Las dos contraseñas nuevas no coinciden.</string>
     <string name="password_change_successful">Su contraseña se ha cambiado con éxito.</string>
-    <string name="calendar_tasks">Tareas</string>
 
 
 </resources>
