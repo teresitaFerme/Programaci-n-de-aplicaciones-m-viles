@@ -1,5 +1,7 @@
 package es.ucm.fdi.animalcare.feature.pets.profilePet;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import java.util.List;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
@@ -49,7 +52,7 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
     private Button mDeletePet;
     private ProfilePetPresenter mProfilePetPresenter;
     private RecyclerView mTaskListView;
-    private TaskAdapter taskAdapter;
+    private ProfilePetAdapter taskAdapter;
     private List<Task> taskList;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +93,7 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
         mDeletePet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mProfilePetPresenter.validateDeletePet(id);
+                mProfilePetPresenter.deletePet(id);
             }
         });
 
@@ -98,17 +101,17 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
 
     public void imagePet (ImageView image, String type){
 
-        if(type.equals("Perro")){
+        if(type.equals("Perro") || type.equals("Dog")){
             image.setImageResource(R.drawable.dog_green);}
-        else if(type.equals("Gato")){
+        else if(type.equals("Gato") || type.equals("Cat")){
             image.setImageResource(R.drawable.cat_green); }
-        else if(type.equals("Pajaro")){
+        else if(type.equals("Pajaro") || type.equals("Bird")){
             image.setImageResource(R.drawable.bird_green);}
-        else if(type.equals("Caballo")){
+        else if(type.equals("Caballo") || type.equals("Horse")){
             image.setImageResource(R.drawable.horse_green);}
-        else if(type.equals("Pez")){
+        else if(type.equals("Pez") || type.equals("Fish")){
             image.setImageResource(R.drawable.fish_green);}
-        else if(type.equals("Tortuga")){
+        else if(type.equals("Tortuga") || type.equals("Turtle")){
             image.setImageResource(R.drawable.turtle_green);}
         else{image.setImageResource(R.drawable.dog_green);}
 
@@ -121,8 +124,24 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
         mTaskListView = findViewById(R.id.taskListPetView);
         mTaskListView.setLayoutManager(new LinearLayoutManager(this));
         mTaskListView.setHasFixedSize(true);
-        taskAdapter = new TaskAdapter( taskList, this);
+        taskAdapter = new ProfilePetAdapter( taskList, this);
         mTaskListView.setAdapter(taskAdapter);
+    }
+
+    public void deletePet(Integer id) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage(App.getApp().getResources().getString(R.string.remove_pet_dialog));
+        alertDialog.setPositiveButton(getResources().getString(R.string.dialog_yes), new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int which) {
+                mProfilePetPresenter.validateDeletePet(id);
+            }
+        });
+        alertDialog.setNegativeButton(getResources().getString(R.string.dialog_no), new DialogInterface.OnClickListener(){
+            public void onClick(DialogInterface dialog, int which) {
+                //Do nothing
+            }
+        });
+        alertDialog.show();
     }
 
     @Override
@@ -146,6 +165,8 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
         mTypePet.setAdapter(adapter);
+
+        mTypePet.setSelection(num_type(type));
 
         mNewPet = findViewById(R.id.button_newpet_add);
         mNewPet.setOnClickListener(new View.OnClickListener() {
@@ -221,5 +242,15 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
         toast.show();
     }
 
+    public int num_type (String type){
+        int value = 0;
+        if(type.equals("Perro") || type.equals("Dog")){ value = 0; }
+        else if(type.equals("Gato") || type.equals("Cat")){ value = 1; }
+        else if(type.equals("Pajaro") || type.equals("Bird")){ value =2;}
+        else if(type.equals("Pez") || type.equals("Fish")){ value =3;}
+        else if(type.equals("Tortuga") || type.equals("Turtle")){ value = 4;}
+        else if(type.equals("Caballo") || type.equals("Horse")){ value =5;}
+        return value;
+    }
 
 }

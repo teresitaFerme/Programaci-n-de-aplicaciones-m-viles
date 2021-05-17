@@ -14,7 +14,8 @@
         tools:layout_editor_absoluteY="109dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgFoto"
