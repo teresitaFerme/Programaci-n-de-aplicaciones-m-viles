@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_gradient_background"
+    android:padding="@dimen/widget_margin"
+    android:theme="@style/ThemeOverlay.AnimalCare.AppWidgetContainer">
+
+    <include
+        android:id="@+id/logo"
+        layout="@layout/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"/>
+
+    <LinearLayout
+        android:id="@+id/tarea_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        style="@style/AppWidgetSection">
+
+      <TextView
+          android:id="@+id/tarea_title"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="Tarea:"
+          style="@style/AppWidgetLabel"/>
+
+      <TextView
+          android:id="@+id/tarea_name"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="2"
+          android:text="Nombre tarea"
+          style="@style/AppWidgetText"/>
+
+  </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mascota_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tarea_section"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        style="@style/AppWidgetSection">
+
+        <TextView
+            android:id="@+id/mascota_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mascota:"
+            style="@style/AppWidgetLabel"/>
+
+        <TextView
+            android:id="@+id/mascota_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Nombre Mascota"
+            style="@style/AppWidgetText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/date_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mascota_section"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        style="@style/AppWidgetSection">
+
+        <TextView
+            android:id="@+id/date_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fecha:"
+            style="@style/AppWidgetLabel"/>
+
+        <TextView
+            android:id="@+id/date_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Fecha"
+            style="@style/AppWidgetText"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

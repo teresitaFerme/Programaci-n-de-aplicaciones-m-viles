@@ -32,7 +32,7 @@
     <string name="delete_something"><u>Borrar</u></string>
     <string name="add_pet"><u>Añadir mascota</u></string>
 
-    <string-array name = "Pets_animals">
+    <string-array name="Pets_animals">
         <item>Perro</item>
         <item>Gato</item>
         <item>Pajaro</item>
@@ -49,6 +49,7 @@
     <string name="error_save_pet"><u>Error al guardar animal</u></string>
     <string name="error_del_pet"><u>Error al borrar animal</u></string>
     <string name="error_edit_pet"><u>Error al editar animal</u></string>
+    <string name="remove_pet_dialog">¿Estás seguro que quieres eliminar esta mascota?</string>
 
     <string name="toast_task_saved">Tarea guardada.</string>
     <string name="toast_task_removed">Tarea eliminada correctamente.</string>
@@ -112,6 +113,8 @@
     <string name="seleccionar_idioma">Seleccionar idioma:</string>
     <string name="espanol" translatable="false">Español</string>
     <string name="english" translatable="false">English</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 
 </resources>

@@ -28,12 +28,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
 
         mRegisterPresenter = new RegisterPresenter(this);
 
-        mName = findViewById(R.id.editText_register_name);
-        mUsername = findViewById(R.id.editText_register_username);
-        mPassword = findViewById(R.id.editText_register_password);
-        mPasswordRepeat = findViewById(R.id.editText_register_password_repeat);
+        bindViews();
 
-        mRegistrarUsuario = findViewById(R.id.button_registrar_usuario);
         mRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,4 +74,17 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
         toast.show();
     }
 
+    @Override
+    public void bindViews() {
+        mName = findViewById(R.id.editText_register_name);
+        mUsername = findViewById(R.id.editText_register_username);
+        mPassword = findViewById(R.id.editText_register_password);
+        mPasswordRepeat = findViewById(R.id.editText_register_password_repeat);
+        mRegistrarUsuario = findViewById(R.id.button_registrar_usuario);
+    }
+
+    @Override
+    public void setUpToolbar() {
+
+    }
 }

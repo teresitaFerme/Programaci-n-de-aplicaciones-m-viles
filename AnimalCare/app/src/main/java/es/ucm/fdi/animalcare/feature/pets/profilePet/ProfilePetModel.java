@@ -18,6 +18,7 @@ import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
 public class ProfilePetModel extends BaseModel {
     AnimalCareDbHelper dbHelper;
     Context ctx;
+
     ProfilePetModel(Context ctx) {
         dbHelper = new AnimalCareDbHelper(ctx);
         this.ctx = ctx;
@@ -52,7 +53,9 @@ public class ProfilePetModel extends BaseModel {
                 ", t." + AnimalCareDatabase.TaskTable.COLUMN_NAME_ID_PET +
                 ", t." + AnimalCareDatabase.TaskTable.COLUMN_NAME_TASKNAME +
                 ", t." + AnimalCareDatabase.TaskTable.COLUMN_NAME_SCHEDULE_DATETIME +
+                ", t." + AnimalCareDatabase.TaskTable.COLUMN_NAME_TASKDONE_DATETIME +
                 ", t." + AnimalCareDatabase.TaskTable.COLUMN_NAME_DESCRIPTION +
+                ", t." + AnimalCareDatabase.TaskTable.COLUMN_NAME_FREQUENCY +
                 " FROM " + AnimalCareDatabase.TaskTable.TABLE_NAME + " t JOIN " + AnimalCareDatabase.PetTable.TABLE_NAME +
                 " p ON t." + AnimalCareDatabase.TaskTable.COLUMN_NAME_ID_PET + " = p." + BaseColumns._ID + " WHERE p." + AnimalCareDatabase.PetTable._ID +
                 "= " + String.valueOf(petId) + " ORDER BY t." + AnimalCareDatabase.TaskTable.COLUMN_NAME_SCHEDULE_DATETIME;

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="es.ucm.fdi.animalcare">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,24 +11,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AnimalCare">
+        <receiver android:name=".feature.NewAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/new_app_widget_info" />
+        </receiver>
 
         <activity android:name=".feature.user.UserActivity" />
-        <activity android:name=".feature.password.PasswordActivity"
-            android:parentActivityName=".feature.user.UserActivity">
-        </activity>
+        <activity
+            android:name=".feature.password.PasswordActivity"
+            android:parentActivityName=".feature.user.UserActivity"></activity>
         <activity android:name=".feature.settings.SettingsActivity" />
         <activity android:name=".feature.calendar.CalendarActivity" />
         <activity android:name=".feature.upcoming.UpcomingActivity" />
-        <activity android:name=".feature.newTask.NewTaskActivity"
-            android:parentActivityName=".feature.upcoming.UpcomingActivity">
-        </activity>
-        <activity android:name=".feature.showTask.ShowTaskActivity"
-            android:parentActivityName=".feature.upcoming.UpcomingActivity">
-        </activity>
+        <activity
+            android:name=".feature.newTask.NewTaskActivity"
+            android:parentActivityName=".feature.upcoming.UpcomingActivity"></activity>
+        <activity
+            android:name=".feature.showTask.ShowTaskActivity"
+            android:parentActivityName=".feature.upcoming.UpcomingActivity"></activity>
         <activity android:name=".feature.pets.PetsActivity" />
-        <activity android:name=".feature.pets.newPets.NewPetsActivity" />
-        <activity android:name=".feature.pets.profilePet.ProfilePetActivity" />
-        <activity android:name=".feature.register.RegisterActivity" />
+        <activity
+            android:name=".feature.pets.newPets.NewPetsActivity"
+            android:parentActivityName=".feature.pets.PetsActivity" />
+        <activity
+            android:name=".feature.pets.profilePet.ProfilePetActivity"
+            android:parentActivityName=".feature.pets.PetsActivity" />
+        <activity
+            android:name=".feature.register.RegisterActivity"
+            android:parentActivityName=".feature.login.LoginActivity" />
         <activity android:name=".feature.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

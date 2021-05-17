@@ -77,4 +77,43 @@
         app:srcCompat="@drawable/ic_edit"
         android:onClick="changeName"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/button_logout"
+        android:padding="16dp"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:text="Llamar a \n urgencias"
+            android:textAlignment="center"
+            android:backgroundTint="@color/iconColor"
+            android:onClick="llamarUrgencias"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_pw" />
+
+        <Button
+            android:id="@+id/gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="4dp"
+            android:text="Localizar \n clínicas"
+            android:onClick="localizarClinicas"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/iconColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_pw" />
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,4 +49,8 @@ public class ProfilePetPresenter extends BasePresenter {
         taskList = mProfilePetModel.getAllPetTasks(petId);
         return taskList;
     }
+
+    public void deletePet(Integer id) {
+        mProfilePetView.deletePet(id);
+    }
 }
