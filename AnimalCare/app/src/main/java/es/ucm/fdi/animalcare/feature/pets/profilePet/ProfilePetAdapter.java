@@ -80,7 +80,7 @@ public class ProfilePetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             View view = mInflater.inflate(R.layout.task_list_item, parent, false);
             return new ItemViewHolder(view);
         } else if (viewType == TYPE_HEADER) {
-            View view = mInflater.inflate(R.layout.task_header, parent, false);
+            View view = mInflater.inflate(R.layout.task_header_pet_profile, parent, false);
             return new HeaderViewHolder(view);
         }
         else return null;
