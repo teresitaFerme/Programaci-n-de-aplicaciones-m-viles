@@ -29,29 +29,7 @@ public class NewTaskModel extends BaseModel {
     public Integer saveNewTask(String name, String desc, String datetime, Integer petId, Integer freq) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        Calendar calendar;
-        int interval=1, loopLimit=1; // Interval: number of days/weeks/months/years to add to original date
-
-        // Check frequency and insert necessary number of copies of task within a year into database
-        switch(freq){
-            case Task.FREQUENCY_DAILY:
-                loopLimit = 365;
-                break;
-            case Task.FREQUENCY_WEEKLY:
-                loopLimit = 52;
-                break;
-            case Task.FREQUENCY_MONTHLY:
-                loopLimit = 12;
-                break;
-            case Task.FREQUENCY_YEARLY:
-                loopLimit = 2;
-                break;
-            default: // No frequency
-                interval = 0;
-        }
-
-        // First iteration
+        // Insertion
         ContentValues values = new ContentValues();
         values.put(TaskTable.COLUMN_NAME_TASKNAME, name);
         values.put(TaskTable.COLUMN_NAME_DESCRIPTION, desc);
@@ -59,40 +37,6 @@ public class NewTaskModel extends BaseModel {
         values.put(TaskTable.COLUMN_NAME_ID_PET, petId);
         values.put(TaskTable.COLUMN_NAME_FREQUENCY, freq);
         long newRowId = db.insert(TaskTable.TABLE_NAME, null, values);
-
-        calendar = Calendar.getInstance();
-        try {
-            calendar.setTime(dateFormat.parse(datetime));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        for (int i = 1; i < loopLimit; i++){
-            switch(freq){
-                case Task.FREQUENCY_DAILY:
-                    calendar.add(Calendar.DATE, interval);
-                    break;
-                case Task.FREQUENCY_WEEKLY:
-                    calendar.add(Calendar.WEEK_OF_YEAR, interval);
-                    break;
-                case Task.FREQUENCY_MONTHLY:
-                    calendar.add(Calendar.MONTH, interval);
-                    break;
-                case Task.FREQUENCY_YEARLY:
-                    calendar.add(Calendar.YEAR, interval);
-                    break;
-                default: // No frequency: for loop not reachable for this case
-            }
-
-            String dateTimeString = dateFormat.format(calendar.getTime());
-            values = new ContentValues();
-            values.put(TaskTable.COLUMN_NAME_TASKNAME, name);
-            values.put(TaskTable.COLUMN_NAME_DESCRIPTION, desc);
-            values.put(TaskTable.COLUMN_NAME_SCHEDULE_DATETIME, dateTimeString);
-            values.put(TaskTable.COLUMN_NAME_ID_PET, petId);
-            values.put(TaskTable.COLUMN_NAME_FREQUENCY, freq);
-            db.insert(TaskTable.TABLE_NAME, null, values);
-        }
 
         return (int) newRowId;
     }
