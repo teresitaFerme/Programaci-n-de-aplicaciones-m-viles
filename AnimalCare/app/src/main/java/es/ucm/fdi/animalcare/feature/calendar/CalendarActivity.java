@@ -75,10 +75,6 @@ public class CalendarActivity extends BaseActivity implements CalendarView, Tool
                 searchEventsOfDay(calendar);
             }
         });
-
-        //Get events of current day
-        Calendar calendar = Calendar.getInstance();
-        searchEventsOfDay(calendar);
     }
 
     @Override
