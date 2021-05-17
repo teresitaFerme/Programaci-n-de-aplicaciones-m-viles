@@ -6,4 +6,5 @@ public interface UpcomingView extends BaseView {
     void addNewTask();
     void showTask(Integer taskId);
     void updateList();
+    void noPets();
 }

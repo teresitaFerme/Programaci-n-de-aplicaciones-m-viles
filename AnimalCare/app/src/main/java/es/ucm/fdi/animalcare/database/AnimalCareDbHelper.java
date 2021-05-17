@@ -9,7 +9,7 @@ import es.ucm.fdi.animalcare.database.AnimalCareDatabase.TaskTable;
 
 public class AnimalCareDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 8;
+    public static final int DATABASE_VERSION = 11;
     public static final String DATABASE_NAME = "AnimalCare.db";
     private static final String SQL_CREATE_USER_TABLE =
             "CREATE TABLE " + UserTable.TABLE_NAME + " (" +
@@ -23,7 +23,7 @@ public class AnimalCareDbHelper extends SQLiteOpenHelper {
                     PetTable.COLUMN_NAME_PETNAME + " TEXT NOT NULL," +
                     PetTable.COLUMN_NAME_TYPE + " TEXT NOT NULL," +
                     PetTable.COLUMN_NAME_ID_OWNER + " INTEGER, FOREIGN KEY (" + PetTable.COLUMN_NAME_ID_OWNER + ") REFERENCES " +
-                    UserTable.TABLE_NAME + "(" + UserTable._ID + "));";
+                    UserTable.TABLE_NAME + "(" + UserTable._ID + ") ON DELETE CASCADE );";
     private static final String SQL_CREATE_TASK_TABLE =
             "CREATE TABLE " + TaskTable.TABLE_NAME + " (" +
                     TaskTable._ID + " INTEGER PRIMARY KEY," +
@@ -33,7 +33,7 @@ public class AnimalCareDbHelper extends SQLiteOpenHelper {
                     TaskTable.COLUMN_NAME_DESCRIPTION + " TEXT," +
                     TaskTable.COLUMN_NAME_FREQUENCY + " INTEGER NOT NULL," +
                     TaskTable.COLUMN_NAME_ID_PET + " INTEGER, FOREIGN KEY (" + TaskTable.COLUMN_NAME_ID_PET + ") REFERENCES " +
-                    PetTable.TABLE_NAME + "(" + PetTable._ID + "));";
+                    PetTable.TABLE_NAME + "(" + PetTable._ID + ") ON DELETE CASCADE );";
 
     private static final String SQL_DELETE_USER_TABLE =
             "DROP TABLE IF EXISTS " + UserTable.TABLE_NAME;

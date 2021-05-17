@@ -27,4 +27,7 @@ public class UpcomingPresenter extends BasePresenter {
     }
 
     public void addNewTask() { mUpcomingView.addNewTask(); }
+
+    public boolean hasPets() { return mUpcomingModel.hasPets();
+    }
 }

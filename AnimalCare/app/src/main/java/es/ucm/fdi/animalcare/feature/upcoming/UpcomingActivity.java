@@ -45,10 +45,17 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
 
         setUpToolbar();
 
-        mAddTaskButton = findViewById(R.id.addTaskButton);
-        mAddTaskButton.setOnClickListener(v -> mUpcomingPresenter.addNewTask());
-
         mUpcomingPresenter = new UpcomingPresenter(this);
+
+        mAddTaskButton = findViewById(R.id.addTaskButton);
+
+        mAddTaskButton.setOnClickListener(v -> {
+            if (mUpcomingPresenter.hasPets())
+                mUpcomingPresenter.addNewTask();
+            else
+                noPets();
+        });
+
         user = (User) getIntent().getSerializableExtra("user");
         updateList();
     }
@@ -87,6 +94,12 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         mTaskListView.setHasFixedSize(true);
         taskAdapter = new TaskAdapter( taskList, this);
         mTaskListView.setAdapter(taskAdapter);
+    }
+
+    @Override
+    public void noPets() {
+        Toast toast = Toast.makeText(this, R.string.noPets, Toast.LENGTH_LONG);
+        toast.show();
     }
 
     @Override

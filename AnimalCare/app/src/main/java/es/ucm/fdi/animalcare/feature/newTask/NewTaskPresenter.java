@@ -100,7 +100,7 @@ public class NewTaskPresenter extends BasePresenter {
         dateAux.setHours(hour);
         dateAux.setMinutes(minute);
 
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         datetime = dateFormat.format(dateAux);
 
         if(name.length() == 0 && desc.length() == 0) mNewTaskView.fillFields();
