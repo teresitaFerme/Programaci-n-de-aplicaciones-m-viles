@@ -129,9 +129,6 @@ public class CalendarModel extends BaseModel {
             int hours = scheduleDateTime.getHours();
             int mins = scheduleDateTime.getMinutes();
 
-            String datetime = Integer.toString(year) + " " + Integer.toString(month) + " " + Integer.toString(day)
-                    + " " + Integer.toString(hours) + " " + Integer.toString(mins);
-
             calendar.set(year, month, day, hours, mins);
 
             events.add(new EventDay(calendar, R.drawable.ic_calendar_event));
