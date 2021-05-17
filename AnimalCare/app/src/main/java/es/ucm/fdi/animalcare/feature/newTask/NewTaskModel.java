@@ -29,7 +29,7 @@ public class NewTaskModel extends BaseModel {
     public Integer saveNewTask(String name, String desc, String datetime, Integer petId, Integer freq) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Calendar calendar;
         int interval=1, loopLimit=1; // Interval: number of days/weeks/months/years to add to original date
 
