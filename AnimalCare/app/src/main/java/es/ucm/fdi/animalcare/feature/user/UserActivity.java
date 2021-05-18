@@ -2,6 +2,7 @@ package es.ucm.fdi.animalcare.feature.user;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
@@ -28,6 +30,7 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
     private User user;
     private UserPresenter mUserPresenter;
     private EditText mNameView;
+    private TextView greetings;
     private Button mLogoutButton;
     private ImageView mIconEdit;
 
@@ -45,6 +48,7 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
         String mName = sp.getString("name", "User");
         mNameView.setText(mName);
+
 
 
 
@@ -167,6 +171,18 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         mNameView = findViewById(R.id.name);
         mLogoutButton = findViewById(R.id.button_logout);
         mIconEdit = findViewById(R.id.icon_edit);
+        greetings = findViewById(R.id.greeting);
+        Button button_pw = findViewById(R.id.button_pw);
+        Button urgencias = findViewById(R.id.call);
+        Button gps = findViewById(R.id.gps);
+
+        Resources resources = App.getApp().getResources();
+
+        greetings.setText(resources.getString(R.string.greetings));
+        button_pw.setText(resources.getString(R.string.cambiar_contrase_a));
+        mLogoutButton.setText(resources.getString(R.string.cerrar_sesi_n));
+        urgencias.setText(resources.getString(R.string.llamar_a_nurgencias));
+        gps.setText(resources.getString(R.string.localizar_ncl_nicas));
     }
 
     @Override

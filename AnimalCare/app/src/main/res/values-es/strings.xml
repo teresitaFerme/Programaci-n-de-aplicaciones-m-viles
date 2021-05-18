@@ -111,6 +111,15 @@
     <string name="iniciar_sesion_button">Iniciar Sesión</string>
     <string name="aun_no_tienes_cuenta">¿Aún no tienes cuenta?</string>
     <string name="add_widget">Añadir widget</string>
+    <string name="modificar_nueva_tarea">Modificar</string>
+    <string name="anadir_mascota">Añadir Mascota</string>
+    <string name="nombre_mascota">Nombre Mascota</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="editar_boton">Editar</string>
+    <string name="eliminar_boton">Eliminar</string>
+    <string name="greetings">Hola,</string>
+    <string name="llamar_a_nurgencias">Llamar a \\urgencias</string>
+    <string name="localizar_ncl_nicas">Look for \\nclinics</string>
 
 
 </resources>
