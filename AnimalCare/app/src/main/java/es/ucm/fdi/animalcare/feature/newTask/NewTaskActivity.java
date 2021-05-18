@@ -47,14 +47,9 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         user = (User) getIntent().getSerializableExtra("user");
         task = (Task) getIntent().getSerializableExtra("task");
 
-        mTaskName = findViewById(R.id.editTextTaskName);
-        mTaskDesc = findViewById(R.id.editTextTaskDesc);
-        mPetSpinner = findViewById(R.id.petSpinner);
-        mFreqSpinner = findViewById(R.id.freqSpinner);
-        mScheduleDate = findViewById(R.id.scheduleDate);
-        mScheduleTime = findViewById(R.id.scheduleTime);
-        buttonConfirmTask = findViewById(R.id.buttonConfirmTask);
+        bindViews();
 
+        buttonConfirmTask.setText(App.getApp().getResources().getString(R.string.new_task_button));
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         if(task == null){
@@ -70,7 +65,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
             mPetSpinner.setAdapter(adapter);
 
-            options = getResources().getStringArray(R.array.task_frequency_array);
+            options = App.getApp().getResources().getStringArray(R.array.task_frequency_array);
             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
             mFreqSpinner.setAdapter(adapter);
 
@@ -85,7 +80,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             mScheduleTime.setMinute(task.getmScheduleDatetime().getMinutes());
             mScheduleDate.setText(dateFormat.format(task.getmScheduleDatetime()));
 
-            buttonConfirmTask.setText("Modificar");
+            buttonConfirmTask.setText(App.getApp().getResources().getString(R.string.modificar_nueva_tarea));
             buttonConfirmTask.setOnClickListener(v -> confirmUpdateTask(v));
 
             mPetSpinner = findViewById(R.id.petSpinner);
@@ -144,7 +139,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
 
     @Override
     public void fillFields() {
-        Toast toast = Toast.makeText(this, getResources().getString(R.string.toast_fill_fields), Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, App.getApp().getResources().getString(R.string.toast_fill_fields), Toast.LENGTH_LONG);
         toast.show();
     }
 
@@ -156,5 +151,21 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
 
     public void goBack (View view){
         finish();
+    }
+
+    private void bindViews(){
+        mTaskName = findViewById(R.id.editTextTaskName);
+        mTaskDesc = findViewById(R.id.editTextTaskDesc);
+        mPetSpinner = findViewById(R.id.petSpinner);
+        mFreqSpinner = findViewById(R.id.freqSpinner);
+        mScheduleDate = findViewById(R.id.scheduleDate);
+        mScheduleTime = findViewById(R.id.scheduleTime);
+        buttonConfirmTask = findViewById(R.id.buttonConfirmTask);
+        EditText editTextTaskName = findViewById(R.id.editTextTaskName);
+        editTextTaskName.setHint(App.getApp().getResources().getString(R.string.new_task_name_hint));
+
+        EditText editTextTaskDesc = findViewById(R.id.editTextTaskDesc);
+        editTextTaskDesc.setHint(App.getApp().getResources().getString(R.string.new_task_desc_hint));
+
     }
 }

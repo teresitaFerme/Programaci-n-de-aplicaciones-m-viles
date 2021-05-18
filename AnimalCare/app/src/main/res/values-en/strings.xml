@@ -80,4 +80,24 @@
     <string name="password_no_match">The two new passwords don\'t match.</string>
     <string name="password_change_successful">You\'re password has been changed.</string>
     <string name="calendar_tasks">Tasks</string>
+    <string name="iniciar_sesion_button">Log in</string>
+    <string name="aun_no_tienes_cuenta">Haven\'t you got an account?</string>
+    <string name="add_widget">Add widget</string>
+
+    <array name="task_frequency_array">
+        <item>None</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </array>
+
+    <string-array name="Pets_animals">
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Bird</item>
+        <item>Fish</item>
+        <item>Turtle</item>
+        <item>Horse</item>
+    </string-array>
 </resources>

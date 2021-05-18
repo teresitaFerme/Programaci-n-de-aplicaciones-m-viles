@@ -47,6 +47,11 @@ public class LoginActivity extends BaseActivity implements LoginView{
 
         recover();
 
+        mIniciasesion.setText(App.getApp().getResources().getString(R.string.iniciar_sesion_button));
+        TextView registerInfo = findViewById(R.id.login_register_info);
+        registerInfo.setText(App.getApp().getResources().getString(R.string.aun_no_tienes_cuenta));
+        mRegister.setText(App.getApp().getResources().getString(R.string.reg_strate));
+
         mIniciasesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +148,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         mPassword = findViewById(R.id.editText_password);
         mRegister = findViewById(R.id.login_register_option);
         mIniciasesion = findViewById(R.id.button_inicia_sesion);
+
     }
 
     @Override

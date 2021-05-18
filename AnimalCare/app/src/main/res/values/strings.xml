@@ -116,6 +116,9 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="calendar_tasks">Tareas</string>
+    <string name="iniciar_sesion_button">Iniciar Sesión</string>
+    <string name="aun_no_tienes_cuenta">¿Aún no tienes cuenta?</string>
+    <string name="modificar_nueva_tarea">Modificar</string>
 
 
 </resources>

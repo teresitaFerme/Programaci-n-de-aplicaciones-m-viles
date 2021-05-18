@@ -108,6 +108,9 @@
     <string name="password_no_match">Las dos contraseñas nuevas no coinciden.</string>
     <string name="password_change_successful">Su contraseña se ha cambiado con éxito.</string>
     <string name="calendar_tasks">Tareas</string>
+    <string name="iniciar_sesion_button">Iniciar Sesión</string>
+    <string name="aun_no_tienes_cuenta">¿Aún no tienes cuenta?</string>
+    <string name="add_widget">Añadir widget</string>
 
 
 </resources>
