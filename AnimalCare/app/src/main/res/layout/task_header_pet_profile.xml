@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -10,12 +12,14 @@
             android:id="@+id/taskTodayLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="2dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:layout_margin="8dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:gravity="center"
             android:textAlignment="center"
-            tools:text="Hola"
+            tools:text="Proximamente"
             android:background="@drawable/title_background"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"

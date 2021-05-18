@@ -26,7 +26,7 @@ public class TaskLoader extends AsyncTaskLoader<List<Task>> {
     private Date mDateTime;
     private Context mContext;
     AnimalCareDbHelper dbHelper;
-    
+
     public TaskLoader(@NonNull Context context, Integer userId, Date dateTime){
         super(context);
         mContext = context;
@@ -131,7 +131,7 @@ public class TaskLoader extends AsyncTaskLoader<List<Task>> {
             Date scheduleDatetime = t.getmScheduleDatetime();
 
             if(scheduleDatetime.compareTo(comparison1) >= 0 && scheduleDatetime.compareTo(comparison2) <= 0) {
-               finalValues.add(t);
+                finalValues.add(t);
             }
         }
 

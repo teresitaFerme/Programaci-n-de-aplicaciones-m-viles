@@ -82,4 +82,13 @@ public class UpcomingModel {
 
         return petName;
     }
+
+    public boolean hasPets() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String query = "SELECT count(*) FROM " + PetTable.TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        return count > 0;
+    }
 }

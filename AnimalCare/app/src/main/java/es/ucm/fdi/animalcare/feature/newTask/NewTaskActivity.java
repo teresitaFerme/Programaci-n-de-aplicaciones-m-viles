@@ -83,6 +83,8 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             buttonConfirmTask.setOnClickListener(v -> confirmNewTask(v) );
         } else {
 
+
+
             mTaskName.setText(task.getmTaskName());
             mTaskDesc.setText(task.getmDescription());
             mScheduleTime.setIs24HourView(true);
@@ -104,7 +106,6 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options2);
             mFreqSpinner.setAdapter(adapter2);
             mFreqSpinner.setSelection(task.getmFreq());
-            mFreqSpinner.setEnabled(false);
         }
     }
 
