@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:onClick="confirmNewTask"
     tools:context=".feature.newTask.NewTaskActivity">
 
     <!-- Toolbar -->
@@ -57,23 +56,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scheduleTime" />
 
-    <Spinner
-        android:id="@+id/petSpinner"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/petSpinner_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTaskName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTaskName" >
+
 
     <Spinner
-        android:id="@+id/freqSpinner"
-        android:layout_width="wrap_content"
+        android:id="@+id/petSpinner"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTaskName" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/scheduleDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/scheduleDate"
-        app:layout_constraintTop_toTopOf="@+id/scheduleDate" />
+        app:layout_constraintTop_toTopOf="@+id/scheduleDate" >
+
+
+    <Spinner
+            android:id="@+id/freqSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/scheduleDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/scheduleDate"
+            app:layout_constraintTop_toTopOf="@+id/scheduleDate" />
+
+    </androidx.cardview.widget.CardView>
+
+
 
     <Button
         android:id="@+id/buttonConfirmTask"
@@ -111,7 +137,7 @@
         android:inputType="date"
         android:maxLines="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/petSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/petSpinner_container" />
 
     <EditText
         android:id="@+id/editTextTaskName"
