@@ -34,7 +34,7 @@ public class CalendarModel extends BaseModel {
 
     public List<Task> getAllTasks (Integer userId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
         String query = "SELECT t." + BaseColumns._ID +
                 ", t." + AnimalCareDatabase.TaskTable.COLUMN_NAME_ID_PET +
