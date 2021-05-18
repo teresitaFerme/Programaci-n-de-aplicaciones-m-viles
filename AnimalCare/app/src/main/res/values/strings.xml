@@ -127,6 +127,7 @@
     <string name="greetings">Hola,</string>
     <string name="llamar_a_nurgencias">Llamar a \nurgencias</string>
     <string name="localizar_ncl_nicas">Localizar \nclínicas</string>
+    <string name="noPets">Cannot add a new task without any pet.</string>
 
 
 </resources>

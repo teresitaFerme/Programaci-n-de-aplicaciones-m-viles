@@ -9,4 +9,5 @@ public interface NewTaskView {
     void confirmUpdateTask(View view);
     void fillFields();
     void returnFromNewTask(int result);
+    void newTaskFail();
 }

@@ -20,13 +20,9 @@ import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.User;
+import es.ucm.fdi.animalcare.feature.showTask.ShowTaskActivity;
 
 public class NewTaskActivity extends BaseActivity implements NewTaskView {
-    public static final int NEW_TASK_SUCCESS = 1;
-    public static final int NEW_TASK_FAIL = 2;
-    public static final int EDIT_TASK_SUCCESS = 1;
-    public static final int EDIT_TASK_FAIL = 2;
-
 
     private NewTaskPresenter mNewTaskPresenter;
     private User user;
@@ -57,6 +53,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             String date = dateFormat.format(calendar.getTime());
 
             mScheduleDate.setText(date);
+            mScheduleDate.setOnClickListener(view -> {showDatePickerDialog(view); });
             mScheduleTime.setIs24HourView(true);
             mScheduleTime.setHour(calendar.getTime().getHours());
             mScheduleTime.setMinute(calendar.getTime().getMinutes());
@@ -73,6 +70,8 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             buttonConfirmTask.setOnClickListener(v -> confirmNewTask(v) );
         } else {
 
+
+
             mTaskName.setText(task.getmTaskName());
             mTaskDesc.setText(task.getmDescription());
             mScheduleTime.setIs24HourView(true);
@@ -81,6 +80,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             mScheduleDate.setText(dateFormat.format(task.getmScheduleDatetime()));
 
             buttonConfirmTask.setText(App.getApp().getResources().getString(R.string.modificar_nueva_tarea));
+
             buttonConfirmTask.setOnClickListener(v -> confirmUpdateTask(v));
 
             mPetSpinner = findViewById(R.id.petSpinner);
@@ -94,14 +94,21 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options2);
             mFreqSpinner.setAdapter(adapter2);
             mFreqSpinner.setSelection(task.getmFreq());
-            mFreqSpinner.setEnabled(false);
         }
     }
 
     @Override
     public void showDatePickerDialog(View view) {
         NewTaskModel.DatePickerFragment newFragment = NewTaskModel.DatePickerFragment.newInstance((datePicker, year, month, day) -> {
-            final String selectedDate = day + "/" + (month+1) + "/" + year;
+            String selectedDate = "";
+
+            if(day < 10)
+                selectedDate = "0";
+            selectedDate += String.valueOf(day) + "/";
+            if(month < 9)
+                selectedDate += "0";
+            selectedDate += String.valueOf(month+1) + "/" + String.valueOf(year);
+
             mScheduleDate.setText(selectedDate);
         });
 
@@ -118,9 +125,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         Integer hour = mScheduleTime.getHour();
         Integer minutes = mScheduleTime.getMinute();
         Integer freq = mFreqSpinner.getSelectedItemPosition();
-        Integer result = mNewTaskPresenter.validateNewTask(name, desc, petName, date, hour, minutes, user, freq);
-
-        returnFromNewTask(result != -1 ? NEW_TASK_SUCCESS: NEW_TASK_FAIL);
+        mNewTaskPresenter.validateNewTask(name, desc, petName, date, hour, minutes, user, freq);
     }
 
     @Override
@@ -133,8 +138,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         Integer hour = mScheduleTime.getHour();
         Integer minutes = mScheduleTime.getMinute();
         Integer freq = mFreqSpinner.getSelectedItemPosition();
-        Integer result = mNewTaskPresenter.validateUpdateTask(task.getmId(), name, desc, petName, date, hour, minutes, user, freq);
-        returnFromNewTask(result != -1 ? EDIT_TASK_SUCCESS: EDIT_TASK_FAIL);
+        mNewTaskPresenter.validateUpdateTask(task.getmId(), name, desc, petName, date, hour, minutes, user, freq);
     }
 
     @Override
@@ -147,6 +151,12 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
     public void returnFromNewTask(int result) {
         setResult(result);
         finish();
+    }
+
+    @Override
+    public void newTaskFail(){
+        Toast toast = Toast.makeText(NewTaskActivity.this, getResources().getString(R.string.toast_error), Toast.LENGTH_LONG);
+        toast.show();
     }
 
     public void goBack (View view){

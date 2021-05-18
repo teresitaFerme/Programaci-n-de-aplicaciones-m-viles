@@ -160,7 +160,7 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
         super.onActivityResult(requestCode, resultCode, data);
         String text = "";
         if (requestCode == EDIT_TASK) {
-            if (resultCode == NewTaskActivity.EDIT_TASK_SUCCESS) {
+            if (resultCode > 0) {
                 text = getResources().getString(R.string.toast_task_edited);
             }
             else
