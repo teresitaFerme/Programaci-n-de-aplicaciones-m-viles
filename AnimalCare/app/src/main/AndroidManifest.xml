@@ -3,6 +3,10 @@
     package="es.ucm.fdi.animalcare">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -52,6 +56,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".feature.user.books.BooksActivity"
+            android:parentActivityName=".feature.user.UserActivity" />
         <activity android:name=".base.BaseActivity" />
 
         <receiver android:name=".feature.newTask.AlarmBroadcastReceiver"/>

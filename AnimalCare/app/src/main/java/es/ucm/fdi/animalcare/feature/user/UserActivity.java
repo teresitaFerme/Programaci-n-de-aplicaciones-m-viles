@@ -24,6 +24,7 @@ import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
+import es.ucm.fdi.animalcare.feature.user.books.BooksActivity;
 import es.ucm.fdi.animalcare.session.SessionHandler;
 
 public class UserActivity extends BaseActivity implements UserView, ToolBarManagement {
@@ -215,5 +216,10 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         } else {
             Log.d("ImplicitIntents", "Can't handle this intent!");
         }
+    }
+
+    public void buscarLibros(View view){
+        Intent intent = new Intent(this, BooksActivity.class);
+        startActivity(intent);
     }
 }

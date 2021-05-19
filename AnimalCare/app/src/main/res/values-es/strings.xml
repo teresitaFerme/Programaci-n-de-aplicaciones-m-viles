@@ -118,8 +118,12 @@
     <string name="editar_boton">Editar</string>
     <string name="eliminar_boton">Eliminar</string>
     <string name="greetings">Hola,</string>
-    <string name="llamar_a_nurgencias">Llamar a \\urgencias</string>
-    <string name="localizar_ncl_nicas">Look for \\nclinics</string>
+    <string name="llamar_a_nurgencias">Llamar a&#10;urgencias</string>
+    <string name="localizar_ncl_nicas">Localizar &#10;clínicas</string>
+    <string name="books_activity_title">Buscar Libros</string>
+    <string name="search_books_button">Buscar &#10;Libros</string>
+    <string name="book_query_hint">Palabras claves</string>
+    <string name="book_search_button">Buscar Libros</string>
 
 
 </resources>
