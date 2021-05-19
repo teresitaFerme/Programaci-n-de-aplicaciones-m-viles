@@ -24,7 +24,6 @@ import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 
 public class PetsActivity extends ToolBarManagement implements PetsView {
     private PetsPresenter mPetsPresenter;
-    private RecyclerView mPetList;
     private Button mAddPet;
     private PetsAdapter mPetAdapter;
     private List<Pets> listPets;
@@ -37,14 +36,10 @@ public class PetsActivity extends ToolBarManagement implements PetsView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets);
 
-        mPetList = findViewById(R.id.PetsList);
-        mAddPet = findViewById(R.id.AddPet);
-        toolbar = findViewById(R.id.toolbar_pets);
-
+        bindViews();
         setUpToolbar();
 
         mPetsPresenter = new PetsPresenter(this);
-
         updateList();
     }
 
@@ -53,7 +48,6 @@ public class PetsActivity extends ToolBarManagement implements PetsView {
         listPets = mPetsPresenter.validateUserPets(App.getApp().getUser().getmId());
         App.getApp().getUser().setmPetList(listPets);
 
-        recyclerView = findViewById(R.id.PetsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         mPetAdapter = new PetsAdapter( listPets, this);
@@ -73,7 +67,6 @@ public class PetsActivity extends ToolBarManagement implements PetsView {
                 addNewPet();
             }
         });
-
     }
 
     public void addNewPet() {
@@ -99,7 +92,9 @@ public class PetsActivity extends ToolBarManagement implements PetsView {
 
     @Override
     public void bindViews() {
-
+        mAddPet = findViewById(R.id.AddPet);
+        toolbar = findViewById(R.id.toolbar_pets);
+        recyclerView = findViewById(R.id.PetsList);
     }
 
     public void setUpToolbar() {

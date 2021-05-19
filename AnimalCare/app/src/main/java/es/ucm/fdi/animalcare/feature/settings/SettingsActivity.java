@@ -36,7 +36,6 @@ public class SettingsActivity extends ToolBarManagement implements SettingsView 
         mSettingsPresenter = new SettingsPresenter(this);
         bindViews();
 
-
         if(getResources().getConfiguration().locale.equals(Locale.ENGLISH)){
             radioGroup.check(R.id.settings_english_language);
         }else  radioGroup.check(R.id.settings_spanish_language);
@@ -132,7 +131,6 @@ public class SettingsActivity extends ToolBarManagement implements SettingsView 
         editoor.putString("language", App.getApp().getLanguage());
         editoor.putString("nombre" , App.getApp().getUserName());
         editoor.putString("pass", App.getApp().getPass());
-
         editoor.commit();
     }
 

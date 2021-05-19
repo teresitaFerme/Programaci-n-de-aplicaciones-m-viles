@@ -5,15 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import es.ucm.fdi.animalcare.R;
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Pets;
 
@@ -33,9 +31,7 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> im
     @Override
     public PetsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.pet_list_item, parent, false);
-
         view.setOnClickListener(this);
-
         return new  ViewHolder(view);
     }
 
@@ -90,7 +86,6 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> im
                 default: image.setImageResource(R.drawable.dog_green); break;
             }
             type.setText(typee[index]);
-
         }
     }
 }

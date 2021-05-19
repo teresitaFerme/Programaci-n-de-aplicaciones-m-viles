@@ -18,7 +18,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
     private RegisterPresenter mRegisterPresenter;
     private Button mRegistrarUsuario;
     private EditText mName, mUsername, mPassword, mPasswordRepeat;
-
     private SharedPreferences sp;
 
     @Override
@@ -36,7 +35,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
                 mRegisterPresenter.validateRegister(String.valueOf(mName.getText()), String.valueOf(mUsername.getText()), String.valueOf(mPassword.getText()), String.valueOf(mPasswordRepeat.getText())) ;
             }
         });
-
         sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
     }
 
