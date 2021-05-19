@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.data.App;
+import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.login.LoginActivity;
 import es.ucm.fdi.animalcare.feature.password.PasswordActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
@@ -27,7 +27,6 @@ public class UserActivity extends ToolBarManagement implements UserView {
     private TextView greetings;
     private Button mLogoutButton;
     private ImageView mIconEdit;
-
     private SharedPreferences sp;
 
     @Override
@@ -39,15 +38,14 @@ public class UserActivity extends ToolBarManagement implements UserView {
         bindViews();
 
         sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
-        String mName = sp.getString("name", "User");
-        mNameView.setText(mName);
+
+        mNameView.setText(App.getApp().getUserName());
 
         mUserPresenter = new UserPresenter(this);
     }
 
     @Override
     public void logout(View view){
-
         SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
         SharedPreferences.Editor editoor = settings.edit();
         editoor.putBoolean("darkMode", App.getApp().getDarkMode());
@@ -56,6 +54,9 @@ public class UserActivity extends ToolBarManagement implements UserView {
         editoor.putString("pass", "");
 
         editoor.commit();
+
+        App.getApp().setUser(null);
+        User.eraseUser();
 
         // Cerrar sesión
         SharedPreferences.Editor editor = sp.edit();
@@ -164,19 +165,13 @@ public class UserActivity extends ToolBarManagement implements UserView {
     }
 
     public void localizarClinicas(View view) {
-        // Get the string indicating a location. Input is not validated; it is
-        // passed to the location handler intact.
         String loc = "clínica+veterinaria";
 
-        // Parse the location and create the intent.
         Uri addressUri = Uri.parse("geo:0,0?q=" + loc);
         Intent intent = new Intent(Intent.ACTION_VIEW, addressUri);
 
-        // Find an activity to handle the intent, and start that activity.
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
-        } else {
-            Log.d("ImplicitIntents", "Can't handle this intent!");
         }
     }
 

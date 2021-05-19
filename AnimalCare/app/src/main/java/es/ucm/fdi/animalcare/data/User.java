@@ -18,6 +18,10 @@ public class User implements Serializable {
         return user;
     }
 
+    public static void eraseUser(){
+        user = null;
+    }
+
     public User(String name, String username, int id){
         mName = name;
         mUsername = username;

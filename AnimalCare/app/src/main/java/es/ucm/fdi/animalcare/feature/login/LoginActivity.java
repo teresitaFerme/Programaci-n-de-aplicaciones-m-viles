@@ -83,7 +83,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("username", User.getInstance(null, null, 0).getmUsername());
+        editor.putString("username", App.getApp().getUserName());
         editor.putString("name", User.getInstance(null, null, 0).getmName());
         editor.apply();
 
