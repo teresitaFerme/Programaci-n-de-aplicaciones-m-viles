@@ -34,7 +34,7 @@ public class LoginModel extends BaseModel {
         dbHelper = new AnimalCareDbHelper(ctx);
     }
 
-    public User validateLogin(String username, String password) {
+    public boolean validateLogin(String username, String password) {
         //esto realmente es comprobar que existe ese user en la bbdd
 
         // Gets the data repository in read mode
@@ -61,9 +61,12 @@ public class LoginModel extends BaseModel {
             mId = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID));
             App.getApp().setUserId(String.valueOf(mId));
             cursor.close();
-        } else return null;
+        } else return false;
 
-        if(mUsername.equals(username) && mPassword.equals(password)) return new User(mName, mUsername, mId);
-        else return null;
+        if(mUsername.equals(username) && mPassword.equals(password)){
+            User.getInstance(mName, mUsername, mId);
+            return true;
+        }
+        else return false;
     }
 }

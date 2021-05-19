@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +22,6 @@ import es.ucm.fdi.animalcare.data.LocaleHelper;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.register.RegisterActivity;
-import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.session.SessionHandler;
 
 public class LoginActivity extends BaseActivity implements LoginView{
@@ -72,8 +68,8 @@ public class LoginActivity extends BaseActivity implements LoginView{
     }
 
     @Override
-    public void loginSuccessfull(User u) {
-        App.getApp().setUserName(u.getmName());
+    public void loginSuccessfull() {
+        App.getApp().setUserName(User.getInstance(null, null, 0).getmName());
         App.getApp().setPass(String.valueOf(mPassword.getText()));
 
         SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
@@ -88,12 +84,12 @@ public class LoginActivity extends BaseActivity implements LoginView{
         sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("username", u.getmUsername());
-        editor.putString("name", u.getmName());
+        editor.putString("username", User.getInstance(null, null, 0).getmUsername());
+        editor.putString("name", User.getInstance(null, null, 0).getmName());
         editor.apply();
 
         Intent intent = new Intent(this, PetsActivity.class);
-        intent.putExtra("user", u);
+        intent.putExtra("user", User.getInstance(null, null, 0));
         startActivity(intent);
         finish();
     }
@@ -110,7 +106,6 @@ public class LoginActivity extends BaseActivity implements LoginView{
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
-
 
     private void recover(){
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -150,11 +145,9 @@ public class LoginActivity extends BaseActivity implements LoginView{
         mPassword = findViewById(R.id.editText_password);
         mRegister = findViewById(R.id.login_register_option);
         mIniciasesion = findViewById(R.id.button_inicia_sesion);
-
     }
 
     @Override
     public void setUpToolbar() {
-
     }
 }

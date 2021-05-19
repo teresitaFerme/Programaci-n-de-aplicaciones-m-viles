@@ -1,8 +1,6 @@
 package es.ucm.fdi.animalcare.feature.calendar;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.loader.app.LoaderManager;
@@ -19,17 +17,12 @@ import java.util.Calendar;
 import java.util.List;
 
 import es.ucm.fdi.animalcare.R;
-import es.ucm.fdi.animalcare.base.BaseActivity;
-import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.App;
+import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.User;
-import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
-import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
-import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
-import es.ucm.fdi.animalcare.feature.user.UserActivity;
 
-public class CalendarActivity extends BaseActivity implements CalendarView, ToolBarManagement {
+public class CalendarActivity extends ToolBarManagement implements CalendarView {
     private int TASK_LOADER_ID=50;
     private User user;
     private CalendarPresenter mCalendarPresenter;
@@ -49,7 +42,7 @@ public class CalendarActivity extends BaseActivity implements CalendarView, Tool
         bindViews();
         setUpToolbar();
 
-        user = (User) getIntent().getSerializableExtra("user");
+        user = User.getInstance(null, null, 0);
 
         mCalendarPresenter = new CalendarPresenter(this);
 
@@ -98,31 +91,6 @@ public class CalendarActivity extends BaseActivity implements CalendarView, Tool
     public void updateTasksList(List<Task> data){
         mAdapter.setTasksData(data);
         mAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void launchFromToolbar(View view) {
-        if(view.getId() != R.id.button_toolbar_calendar){
-            Intent intent;
-            switch (view.getId()){
-                case R.id.button_toolbar_upcoming:
-                    intent = new Intent(this, UpcomingActivity.class);
-                    break;
-                case R.id.button_toolbar_user:
-                    intent = new Intent(this, UserActivity.class);
-                    break;
-                case R.id.button_toolbar_pets:
-                    intent = new Intent(this, PetsActivity.class);
-                    break;
-                default:
-                    intent = new Intent(this, SettingsActivity.class);
-                    break;
-
-            }
-            intent.putExtra("user", user);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        }
     }
 
     @Override

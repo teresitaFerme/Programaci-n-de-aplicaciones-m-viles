@@ -4,10 +4,19 @@ import java.io.Serializable;
 import java.util.List;
 
 public class User implements Serializable {
-    private String mName;
-    private String mUsername;
-    private Integer mId;
-    private List<Pets> mPetList;
+    private static String mName;
+    private static String mUsername;
+    private static Integer mId;
+    private static List<Pets> mPetList;
+    private static User user = null;
+
+
+    public static User getInstance(String name, String username, int id){
+        if(user == null){
+            user = new User(name, username, id);
+        }
+        return user;
+    }
 
     public User(String name, String username, int id){
         mName = name;

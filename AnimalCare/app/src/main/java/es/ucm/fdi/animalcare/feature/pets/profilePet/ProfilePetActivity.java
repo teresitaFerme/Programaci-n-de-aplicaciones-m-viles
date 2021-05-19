@@ -37,7 +37,7 @@ import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 import es.ucm.fdi.animalcare.feature.upcoming.UpcomingPresenter;
 import es.ucm.fdi.animalcare.feature.user.UserActivity;
 
-public class ProfilePetActivity extends BaseActivity implements ProfilePetView, ToolBarManagement {
+public class ProfilePetActivity extends ToolBarManagement implements ProfilePetView {
 
     private User user;
     private String name;
@@ -180,30 +180,6 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
             }
         });
 
-    }
-
-    @Override
-    public void launchFromToolbar(View view) {
-        if(view.getId() != (R.id.button_toolbar_pets)){
-            Intent intent;
-            switch (view.getId()){
-                case R.id.button_toolbar_upcoming:
-                    intent = new Intent(this, UpcomingActivity.class);
-                    break;
-                case R.id.button_toolbar_user:
-                    intent = new Intent(this, UserActivity.class);
-                    break;
-                case R.id.button_toolbar_calendar:
-                    intent = new Intent(this, CalendarActivity.class);
-                    break;
-                default:
-                    intent = new Intent(this, SettingsActivity.class);
-                    break;
-            }
-            intent.putExtra("user", user);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        }
     }
 
     public void returnPets(){

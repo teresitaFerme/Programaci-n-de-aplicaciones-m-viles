@@ -29,7 +29,7 @@ import es.ucm.fdi.animalcare.feature.showTask.ShowTaskActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 import es.ucm.fdi.animalcare.feature.user.UserActivity;
 
-public class UpcomingActivity extends BaseActivity implements UpcomingView, ToolBarManagement {
+public class UpcomingActivity extends ToolBarManagement implements UpcomingView {
     public static final int NEW_TASK = 1;
 
     private UpcomingPresenter mUpcomingPresenter;
@@ -61,30 +61,6 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
 
         user = (User) getIntent().getSerializableExtra("user");
         updateList();
-    }
-
-    @Override
-    public void launchFromToolbar(View view) {
-        if(view.getId() != (R.id.button_toolbar_upcoming)){
-            Intent intent;
-            switch (view.getId()){
-                case R.id.button_toolbar_pets:
-                    intent = new Intent(this, PetsActivity.class);
-                    break;
-                case R.id.button_toolbar_user:
-                    intent = new Intent(this, UserActivity.class);
-                    break;
-                case R.id.button_toolbar_calendar:
-                    intent = new Intent(this, CalendarActivity.class);
-                    break;
-                default:
-                    intent = new Intent(this, SettingsActivity.class);
-                    break;
-            }
-            intent.putExtra("user", user);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        }
     }
 
     @Override

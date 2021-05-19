@@ -8,23 +8,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
-import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.User;
-import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
-import es.ucm.fdi.animalcare.feature.pets.PetsPresenter;
-import es.ucm.fdi.animalcare.feature.pets.PetsView;
-import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
-import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
-import es.ucm.fdi.animalcare.feature.user.UserActivity;
 
-public class NewPetsActivity extends BaseActivity implements NewPetsView, ToolBarManagement {
+public class NewPetsActivity extends ToolBarManagement implements NewPetsView {
     private User user;
     private NewPetsPresenter mNewPetsPresenter;
     private EditText mNamePet;
@@ -87,29 +79,6 @@ public class NewPetsActivity extends BaseActivity implements NewPetsView, ToolBa
             }
         });
 
-    }
-
-    public void launchFromToolbar(View view) {
-        if(view.getId() != (R.id.button_toolbar_pets)){
-            Intent intent;
-            switch (view.getId()){
-                case R.id.button_toolbar_upcoming:
-                    intent = new Intent(this, UpcomingActivity.class);
-                    break;
-                case R.id.button_toolbar_user:
-                    intent = new Intent(this, UserActivity.class);
-                    break;
-                case R.id.button_toolbar_calendar:
-                    intent = new Intent(this, CalendarActivity.class);
-                    break;
-                default:
-                    intent = new Intent(this, SettingsActivity.class);
-                    break;
-            }
-            intent.putExtra("user", user);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        }
     }
 
     @Override

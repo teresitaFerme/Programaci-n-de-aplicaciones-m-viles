@@ -1,36 +1,29 @@
 package es.ucm.fdi.animalcare.feature.pets;
 
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-
-import android.widget.Button;
-
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import es.ucm.fdi.animalcare.R;
-import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Pets;
 import es.ucm.fdi.animalcare.data.User;
-import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
-import es.ucm.fdi.animalcare.feature.pets.profilePet.ProfilePetActivity;
-import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.pets.newPets.NewPetsActivity;
+import es.ucm.fdi.animalcare.feature.pets.profilePet.ProfilePetActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
-import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
-import es.ucm.fdi.animalcare.feature.user.UserActivity;
 
-public class PetsActivity extends BaseActivity implements PetsView, ToolBarManagement {
+public class PetsActivity extends ToolBarManagement implements PetsView {
     private User user;
     private PetsPresenter mPetsPresenter;
     private RecyclerView mPetList;
@@ -61,30 +54,6 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
 
         updateList();
 
-    }
-
-    @Override
-    public void launchFromToolbar(View view) {
-        if(view.getId() != (R.id.button_toolbar_pets)){
-            Intent intent;
-            switch (view.getId()){
-                case R.id.button_toolbar_upcoming:
-                    intent = new Intent(this, UpcomingActivity.class);
-                    break;
-                case R.id.button_toolbar_user:
-                    intent = new Intent(this, UserActivity.class);
-                    break;
-                case R.id.button_toolbar_calendar:
-                    intent = new Intent(this, CalendarActivity.class);
-                    break;
-                default:
-                    intent = new Intent(this, SettingsActivity.class);
-                    break;
-            }
-            intent.putExtra("user", user);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        }
     }
 
     public void  updateList(){

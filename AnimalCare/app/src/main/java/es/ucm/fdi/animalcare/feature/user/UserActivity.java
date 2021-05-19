@@ -29,7 +29,7 @@ import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 import es.ucm.fdi.animalcare.feature.user.books.BooksActivity;
 import es.ucm.fdi.animalcare.session.SessionHandler;
 
-public class UserActivity extends BaseActivity implements UserView, ToolBarManagement {
+public class UserActivity extends ToolBarManagement implements UserView {
     private User user;
     private UserPresenter mUserPresenter;
     private EditText mNameView;
@@ -141,32 +141,6 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
     public void changeSuccessful(){
         Toast toast = Toast.makeText(this, "Su nombre se ha cambiado con éxito.", Toast.LENGTH_LONG);
         toast.show();
-    }
-
-    @Override
-    public void launchFromToolbar(View view) {
-        if(view.getId() != R.id.button_toolbar_user){
-            Intent intent;
-            switch (view.getId()){
-                case R.id.button_toolbar_pets:
-                    intent = new Intent(this, PetsActivity.class);
-                    break;
-                case R.id.button_toolbar_upcoming:
-                    intent = new Intent(this, UpcomingActivity.class);
-                    break;
-                case R.id.button_toolbar_calendar:
-                    intent = new Intent(this, CalendarActivity.class);
-                    break;
-                default:
-                    intent = new Intent(this, SettingsActivity.class);
-                    break;
-
-            }
-            intent.putExtra("user", user);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        }
-
     }
 
     @Override
