@@ -97,9 +97,7 @@
             android:layout_weight="1"
             android:text="@string/llamar_a_nurgencias"
             android:textAlignment="center"
-            android:backgroundTint="@color/iconColor"
             android:onClick="llamarUrgencias"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_pw" />
@@ -115,8 +113,6 @@
             android:text="@string/localizar_ncl_nicas"
             android:onClick="localizarClinicas"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/iconColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_pw" />
 
