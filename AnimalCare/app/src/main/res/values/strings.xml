@@ -128,6 +128,7 @@
     <string name="llamar_a_nurgencias">Llamar a \nurgencias</string>
     <string name="localizar_ncl_nicas">Localizar \nclínicas</string>
     <string name="noPets">Cannot add a new task without any pet.</string>
+    <string name="show_task_status">Estado:</string>
 
 
 </resources>

@@ -35,7 +35,7 @@ public class UpcomingModel {
                 ", t." + TaskTable.COLUMN_NAME_FREQUENCY +
                 " FROM " + TaskTable.TABLE_NAME + " t JOIN " + PetTable.TABLE_NAME +
                 " p ON t." + TaskTable.COLUMN_NAME_ID_PET + " = p." + BaseColumns._ID + " WHERE p." + PetTable.COLUMN_NAME_ID_OWNER +
-                "= " + String.valueOf(userId) + " ORDER BY t." + TaskTable.COLUMN_NAME_SCHEDULE_DATETIME;
+                "= " + String.valueOf(userId) + " ORDER BY t." + TaskTable.COLUMN_NAME_SCHEDULE_DATETIME + " DESC";
         Cursor cursor = db.rawQuery(query, null);
         List values = new ArrayList<Task>();
 

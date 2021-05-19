@@ -78,8 +78,6 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             buttonConfirmTask.setOnClickListener(v -> confirmNewTask(v) );
         } else {
 
-
-
             mTaskName.setText(task.getmTaskName());
             mTaskDesc.setText(task.getmDescription());
             mScheduleTime.setIs24HourView(true);
@@ -142,10 +140,10 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         String name = mTaskName.getText().toString();
         String desc = mTaskDesc.getText().toString();
         String petName = mPetSpinner.getSelectedItem().toString();
-        String date = mScheduleDate.getText().toString();
-        Integer hour = mScheduleTime.getHour();
-        Integer minutes = mScheduleTime.getMinute();
         Integer freq = mFreqSpinner.getSelectedItemPosition();
+        date = mScheduleDate.getText().toString();
+        hour = mScheduleTime.getHour();
+        minutes = mScheduleTime.getMinute();
         mNewTaskPresenter.validateUpdateTask(task.getmId(), name, desc, petName, date, hour, minutes, user, freq);
     }
 
@@ -178,14 +176,12 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         if(minutes < 10)
             dateStr += "0";
         dateStr += minutes;
-
         Date date = null;
         try {
             date = dateFormat.parse(dateStr);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         return date;
     }
 

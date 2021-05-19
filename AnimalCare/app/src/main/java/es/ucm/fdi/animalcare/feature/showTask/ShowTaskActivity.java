@@ -19,6 +19,7 @@ import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
 import es.ucm.fdi.animalcare.data.User;
+import es.ucm.fdi.animalcare.feature.newTask.AlarmBroadcastReceiver;
 import es.ucm.fdi.animalcare.feature.newTask.NewTaskActivity;
 
 public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
@@ -27,7 +28,7 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
     private ShowTaskPresenter mShowTaskPresenter;
 
     private TextView mTaskLabel, mTaskTime, mTaskDate, mTaskDesc, mTaskFreq, mTaskPetName;
-    private TextView taskTitle;
+    private TextView taskTitle, mTaskStatus;
     private Button mChangeTaskStateButton;
     private User user;
     private Task task;
@@ -48,6 +49,7 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
         mTaskPetName = findViewById(R.id.taskPetName);
         mChangeTaskStateButton = findViewById(R.id.checkButton);
         taskTitle = findViewById(R.id.task_title);
+        mTaskStatus = findViewById(R.id.taskStatusShow);
 
         Resources resources = App.getApp().getResources();
         taskTitle.setText(resources.getString(R.string.toolbar_label_show_task));
@@ -86,6 +88,10 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
         mTaskTime.setText(timeFormat.format(task.getmScheduleDatetime()));
         mTaskDate.setText(dateFormat.format(task.getmScheduleDatetime()));
         mTaskDesc.setText(task.getmDescription());
+        if(task.getmTaskDoneDatetime() != null)
+            mTaskStatus.setText(R.string.done_task_button);
+        else
+            mTaskStatus.setText(R.string.undone_task_button);
 
         mTaskPetName.setText(petName);
         if (task.getmFreq() != Task.FREQUENCY_NONE)
@@ -114,6 +120,8 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
 
     @Override
     public void removeTaskSuccess() {
+        AlarmBroadcastReceiver alarm = new AlarmBroadcastReceiver();
+        alarm.cancelAlarm(getApplicationContext(), task.getmId());
         Toast toast = Toast.makeText(ShowTaskActivity.this, getResources().getString(R.string.toast_task_removed), Toast.LENGTH_LONG);
         toast.show();
         finish();
@@ -143,8 +151,12 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
         Resources res = getResources();
         Toast toast = Toast.makeText(ShowTaskActivity.this, res.getString(R.string.toast_task_edited) , Toast.LENGTH_LONG);
         String str = res.getString(R.string.done_task_button);
-        if(mChangeTaskStateButton.getText().toString().equals(str))
+        String str2 = res.getString(R.string.undone_task_button);
+        if(mChangeTaskStateButton.getText().toString().equals(str)){
+            str2 = res.getString(R.string.done_task_button);
             str = res.getString(R.string.undone_task_button);
+        }
+        mTaskStatus.setText(str2);
         mChangeTaskStateButton.setText(str);
         toast.show();
     }

@@ -31,13 +31,14 @@
                     app:tint="@color/white"/>
 
                 <TextView
+                    android:id="@+id/task_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="@string/toolbar_label_show_task"
                     android:textColor="@color/white"
                     android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -50,12 +51,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.317"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6"
+        app:layout_constraintStart_toEndOf="@+id/show_task_pet"
+        app:layout_constraintTop_toTopOf="@+id/show_task_pet"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/show_task_pet"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="@string/show_task_pet"
@@ -108,7 +109,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/show_task_date"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="@string/show_task_date"
@@ -118,11 +119,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/show_task_time"
         app:layout_constraintVertical_bias="0.002" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/show_task_frequency"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:text="@string/show_task_frequency"
@@ -132,7 +133,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.096"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/show_task_date"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -143,8 +144,36 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@+id/show_task_date"
+        app:layout_constraintTop_toTopOf="@+id/show_task_date"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/show_task_desc"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="@string/show_task_desc"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="@+id/show_task_frequency"
+        app:layout_constraintTop_toBottomOf="@+id/show_task_frequency"
+        app:layout_constraintVertical_bias="0.141" />
+
+    <TextView
+        android:id="@+id/show_task_status"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="@string/show_task_status"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_task_frequency"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -156,21 +185,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/show_task_desc"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="350dp"
+        android:id="@+id/taskStatusShow"
+        android:layout_width="220dp"
         android:layout_height="50dp"
-        android:text="@string/show_task_desc"
-        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.311"
+        app:layout_constraintStart_toEndOf="@+id/show_task_status"
+        app:layout_constraintTop_toTopOf="@+id/show_task_status"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -182,8 +209,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/show_task_frequency"
+        app:layout_constraintTop_toTopOf="@+id/show_task_frequency"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -194,12 +221,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.179"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
+        app:layout_constraintStart_toEndOf="@+id/show_task_time"
+        app:layout_constraintTop_toTopOf="@+id/show_task_time"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/show_task_time"
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:text="@string/show_task_time"
@@ -209,7 +236,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/show_task_name"
         app:layout_constraintVertical_bias="0.003" />
 
     <TextView
@@ -220,12 +247,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.317"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="@+id/textView7"
+        app:layout_constraintStart_toEndOf="@+id/show_task_name"
+        app:layout_constraintTop_toTopOf="@+id/show_task_name"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/show_task_name"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="@string/show_task_name"
@@ -235,7 +262,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/show_task_pet"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

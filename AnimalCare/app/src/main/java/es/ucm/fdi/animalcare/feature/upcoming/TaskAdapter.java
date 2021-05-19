@@ -43,20 +43,16 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         numTomorrowTask = 0;
         numAfterTomorrowTask = 0;
 
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
         Date dateToday = calendar.getTime();
 
         calendar.add(Calendar.DAY_OF_MONTH, 1);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
         Date dateTomorrow = calendar.getTime();
 
         calendar.add(Calendar.DAY_OF_MONTH, 1);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
         Date dateAfterTomorrow = calendar.getTime();
         List<Task> toDelete = new ArrayList<>();
 
@@ -153,7 +149,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
-        TextView name, time, petName;
+        TextView name, time, petName, status;
         Task task;
 
         ItemViewHolder(View itemView){
@@ -161,6 +157,7 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             petName = itemView.findViewById(R.id.taskListPetName);
             name = itemView.findViewById(R.id.taskName);
             time = itemView.findViewById(R.id.taskScheduleTime);
+            status = itemView.findViewById(R.id.taskStatus);
         }
 
         @RequiresApi(api = Build.VERSION_CODES.M)
@@ -171,10 +168,15 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             time.setText(timeStr);
             name.setText(task.getmTaskName());
             petName.setText(((UpcomingActivity) ctext).getPetName(task.getmPetId()) + ":");
+            if(task.getmTaskDoneDatetime() != null)
+                status.setText(R.string.done_task_button);
+            else
+                status.setText(R.string.undone_task_button);
 
             time.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
             name.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
             petName.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
+            status.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
         }
 
         public Task getTask(){
