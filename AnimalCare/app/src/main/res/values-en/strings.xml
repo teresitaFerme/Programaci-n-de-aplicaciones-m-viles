@@ -80,4 +80,33 @@
     <string name="password_no_match">The two new passwords don\'t match.</string>
     <string name="password_change_successful">You\'re password has been changed.</string>
     <string name="calendar_tasks">Tasks</string>
+    <string name="iniciar_sesion_button">Log in</string>
+    <string name="aun_no_tienes_cuenta">Haven\'t you got an account?</string>
+    <string name="add_widget">Add widget</string>
+
+    <array name="task_frequency_array">
+        <item>None</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </array>
+
+    <string-array name="Pets_animals">
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Bird</item>
+        <item>Fish</item>
+        <item>Turtle</item>
+        <item>Horse</item>
+    </string-array>
+    <string name="anadir_mascota">Add Pet</string>
+    <string name="nombre_mascota">Enter pet name</string>
+    <string name="modificar_nueva_tarea">Modify</string>
+    <string name="aceptar">Save</string>
+    <string name="editar_boton">Edit</string>
+    <string name="eliminar_boton">Delete</string>
+    <string name="greetings">Hello,</string>
+    <string name="llamar_a_nurgencias">Call \nurgences</string>
+    <string name="localizar_ncl_nicas">Look for \nclinics</string>
 </resources>

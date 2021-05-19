@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.session.SessionHandler;
@@ -29,7 +30,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
         mRegisterPresenter = new RegisterPresenter(this);
 
         bindViews();
-
+        mRegistrarUsuario.setText(App.getApp().getResources().getString(R.string.iniciar_sesion_button));
         mRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

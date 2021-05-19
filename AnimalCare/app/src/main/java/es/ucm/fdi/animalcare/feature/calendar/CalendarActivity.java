@@ -3,6 +3,7 @@ package es.ucm.fdi.animalcare.feature.calendar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.loader.app.LoaderManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -54,10 +55,8 @@ public class CalendarActivity extends BaseActivity implements CalendarView, Tool
 
         mCalendar = Calendar.getInstance();
 
-        mCalendarView = findViewById(R.id.calendarView);
         mCalendarPresenter.prepareEvents(user.getmId());
 
-        mRecyclerView = findViewById(R.id.recycler_view);
         mAdapter = new TasksListAdapter(this, mTasks);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -128,7 +127,10 @@ public class CalendarActivity extends BaseActivity implements CalendarView, Tool
 
     @Override
     public void bindViews() {
-
+        mCalendarView = findViewById(R.id.calendarView);
+        mRecyclerView = findViewById(R.id.recycler_view);
+        TextView textView = findViewById(R.id.tareas);
+        textView.setText(App.getApp().getResources().getString(R.string.calendar_tasks));
     }
 
     @Override

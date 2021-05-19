@@ -56,7 +56,7 @@
             android:id="@+id/buttonEditPet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Editar"
+            android:text="@string/editar_boton"
             android:textSize="16sp"
             android:layout_weight="1"
             android:layout_margin="8dp" />
@@ -65,7 +65,7 @@
             android:id="@+id/buttonDeletePet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Eliminar"
+            android:text="@string/eliminar_boton"
             android:textSize="16sp"
             android:layout_weight="1"
             android:layout_margin="8dp"/>

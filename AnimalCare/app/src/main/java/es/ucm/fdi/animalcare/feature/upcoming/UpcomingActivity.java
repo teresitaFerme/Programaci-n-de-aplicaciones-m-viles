@@ -45,10 +45,19 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
 
         setUpToolbar();
 
-        mAddTaskButton = findViewById(R.id.addTaskButton);
-        mAddTaskButton.setOnClickListener(v -> mUpcomingPresenter.addNewTask());
-
         mUpcomingPresenter = new UpcomingPresenter(this);
+
+        mAddTaskButton = findViewById(R.id.addTaskButton);
+
+        mAddTaskButton.setText(App.getApp().getResources().getString(R.string.new_task_button));
+
+        mAddTaskButton.setOnClickListener(v -> {
+            if (mUpcomingPresenter.hasPets())
+                mUpcomingPresenter.addNewTask();
+            else
+                noPets();
+        });
+
         user = (User) getIntent().getSerializableExtra("user");
         updateList();
     }
@@ -90,6 +99,12 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
     }
 
     @Override
+    public void noPets() {
+        Toast toast = Toast.makeText(this, R.string.noPets, Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+    @Override
     public void addNewTask(){
         Intent intent = new Intent(this, NewTaskActivity.class);
         intent.putExtra("user", user);
@@ -110,9 +125,9 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
         super.onActivityResult(requestCode, resultCode, data);
         String text = "";
         if(requestCode == NEW_TASK){
-            if(resultCode == NewTaskActivity.NEW_TASK_SUCCESS)
+            if(resultCode > 0)
                 text = getResources().getString(R.string.toast_task_saved);
-            else if (resultCode == NewTaskActivity.NEW_TASK_FAIL)
+            else
                 text = getResources().getString(R.string.toast_error);
             Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
             toast.show();

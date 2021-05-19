@@ -26,6 +26,7 @@ public class ProfilePetModel extends BaseModel {
 
     public boolean deletePet(Integer petId) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("PRAGMA foreign_keys=ON");
         long newRowId = db.delete(AnimalCareDatabase.PetTable.TABLE_NAME, BaseColumns._ID + "=?", new String[]{String.valueOf(petId)});
 
         if (newRowId == -1) return false;

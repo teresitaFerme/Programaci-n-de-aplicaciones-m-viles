@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.feature.register.RegisterView;
 import es.ucm.fdi.animalcare.session.SessionHandler;
 
@@ -27,6 +30,14 @@ public class PasswordActivity extends BaseActivity implements PasswordView {
         mOldPW = findViewById(R.id.old_pw);
         mNewPW1 = findViewById(R.id.new_pw1);
         mNewPW2 = findViewById(R.id.new_pw2);
+
+        mOldPW.setHint(App.getApp().getResources().getString(R.string.old_password_hint));
+        mNewPW1.setHint(App.getApp().getResources().getString(R.string.new_password_hint));
+        mNewPW2.setHint(App.getApp().getResources().getString(R.string.repeat_new_password_hint));
+        Button button = findViewById(R.id.button_pw);
+        button.setText(App.getApp().getResources().getString(R.string.password_confirm_button));
+        TextView title = findViewById(R.id.change_password_toolbar_title);
+        title.setText(App.getApp().getResources().getString(R.string.password_activity_title));
 
         mPasswordPresenter = new PasswordPresenter(this);
 

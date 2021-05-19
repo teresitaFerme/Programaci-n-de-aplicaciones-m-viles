@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
@@ -40,16 +41,49 @@ public class NewPetsActivity extends BaseActivity implements NewPetsView, ToolBa
 
         mNewPetsPresenter = new NewPetsPresenter(this);
 
-        Resources res = getResources();
-        String[] options = res.getStringArray(R.array.Pets_animals);
 
+        Resources res = App.getApp().getResources();
+        String[] options = res.getStringArray(R.array.Pets_animals);
+        mNamePet.setHint(res.getString(R.string.nombre_mascota));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
         mTypePet.setAdapter(adapter);
+        mNewPet.setText(res.getString(R.string.aceptar));
 
         mNewPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mNewPetsPresenter.validateNewPet(String.valueOf(mNamePet.getText()), mTypePet.getSelectedItem().toString(), user.getmId()) ;
+                String type;
+                switch(mTypePet.getSelectedItem().toString()){
+                    case "Perro":
+                    case "Dog":
+                        type = "Perro";
+
+                        break;
+                    case "Gato":
+                    case "Cat":
+                        type = "Gato";
+
+                        break;
+                    case "Pajaro":
+                    case "Bird":
+                        type = "Pajaro";
+
+                        break;
+                    case "Caballo":
+                    case "Horse":
+                        type = "Caballo";
+
+                        break;
+                    case "Tortuga":
+                    case "Turtle":
+                        type = "Tortuga";
+
+                        break;
+                    default:
+                        type = "Pez";
+                        break;
+                }
+                mNewPetsPresenter.validateNewPet(String.valueOf(mNamePet.getText()), type, user.getmId()) ;
             }
         });
 

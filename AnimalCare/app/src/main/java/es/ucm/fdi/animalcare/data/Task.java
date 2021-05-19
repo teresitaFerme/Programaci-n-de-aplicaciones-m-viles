@@ -25,7 +25,7 @@ public class Task implements Serializable {
     private String[] mFreqNames;
 
     public Task(Integer mId, Integer mPetId, String mTaskName, String mScheduleDatetime, String mTaskDoneDatetime, String mDescription, Integer mFreq, String[] mFreqNames) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Date schedDate = null;
         Date doneDate = null;
 
