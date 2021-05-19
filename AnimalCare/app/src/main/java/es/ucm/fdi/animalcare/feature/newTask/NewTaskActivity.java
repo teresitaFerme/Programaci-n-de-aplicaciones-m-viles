@@ -187,8 +187,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
 
     @Override
     public void newTaskFail(){
-        Toast toast = Toast.makeText(NewTaskActivity.this, getResources().getString(R.string.toast_error), Toast.LENGTH_LONG);
-        toast.show();
+
     }
 
     public void goBack (View view){

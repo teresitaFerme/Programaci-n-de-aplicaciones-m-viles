@@ -113,7 +113,7 @@
     <string name="seleccionar_idioma">Seleccionar idioma:</string>
     <string name="espanol" translatable="false">Español</string>
     <string name="english" translatable="false">English</string>
-    <string name="appwidget_text">EXAMPLE</string>
+    <string name="appwidget_text" translatable="false">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="calendar_tasks">Tareas</string>
     <string name="iniciar_sesion_button">Iniciar Sesión</string>
@@ -127,12 +127,14 @@
     <string name="greetings">Hola,</string>
     <string name="llamar_a_nurgencias">Llamar a &#10;urgencias</string>
     <string name="localizar_ncl_nicas">Localizar &#10;clínicas</string>
-    <string name="noPets">Cannot add a new task without any pet.</string>
     <string name="show_task_status">Estado:</string>
     <string name="books_activity_title">Buscar Libros</string>
     <string name="search_books_button">Buscar &#10;Libros</string>
     <string name="book_query_hint">Palabras claves</string>
     <string name="book_search_button">Buscar Libros</string>
+    <string name="noPets">No puedes añadir una tarea. Primero crea una mascota.</string>
+    <string name="cuidado_de_mascotas">Cuidado de mascotas</string>
+    <string name="dale_el_mejor_cuidado_a_tu_mascota_con_nuestros_libros">Dale el mejor cuidado a tu mascota con nuestros libros:</string>
 
 
 </resources>

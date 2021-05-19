@@ -1,6 +1,7 @@
 package es.ucm.fdi.animalcare.feature.pets;
 
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,7 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
     private PetsAdapter mPetAdapter;
     private List<Pets> listPets;
     private RecyclerView recyclerView;
+    private ConstraintLayout toolbar;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -46,6 +49,8 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
 
         mPetList = findViewById(R.id.PetsList);
         mAddPet = findViewById(R.id.AddPet);
+        toolbar = findViewById(R.id.toolbar_pets);
+
         setUpToolbar();
 
 
@@ -141,11 +146,10 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
 
     @Override
     public void setUpToolbar() {
-        findViewById(R.id.button_toolbar_pets).getBackground().setTint(App.getApp().getResources().getColor(R.color.white));
-        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_settings).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_user).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-
+        toolbar.findViewById(R.id.button_toolbar_pets).getBackground().setTint(App.getApp().getResources().getColor(R.color.white));
+        toolbar.findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        toolbar.findViewById(R.id.button_toolbar_settings).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        toolbar.findViewById(R.id.button_toolbar_calendar).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        toolbar.findViewById(R.id.button_toolbar_user).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
     }
 }

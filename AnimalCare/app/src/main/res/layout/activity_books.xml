@@ -13,7 +13,7 @@
 
         <!-- Toolbar -->
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/toolbar"
+            android:id="@+id/topbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <androidx.appcompat.widget.Toolbar
@@ -54,9 +54,10 @@
             android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="10dp"
             android:hint="@string/book_query_hint"
-            android:text="cuidado de mascotas"/>
+            android:text="@string/cuidado_de_mascotas"/>
 
         <Button
+            android:id="@+id/button_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -74,5 +75,8 @@
             tools:layout_editor_absoluteX="133dp" />
 
     </LinearLayout>
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

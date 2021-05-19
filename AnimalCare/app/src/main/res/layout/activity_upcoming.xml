@@ -11,20 +11,20 @@
         layout="@layout/top_bar" />
 
     <include
-        android:id="@+id/toolbar"
+        android:id="@+id/topbar"
         layout="@layout/toolbar"
         tools:layout_editor_absoluteY="667dp" />
 
     <Button
         android:id="@+id/addTaskButton"
-        android:layout_width="259dp"
-        android:layout_height="69dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="16dp"
         android:text="@string/new_task_button"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/topbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.974" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskListView"

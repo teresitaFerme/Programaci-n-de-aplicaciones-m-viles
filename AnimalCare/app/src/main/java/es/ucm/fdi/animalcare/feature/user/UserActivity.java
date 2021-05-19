@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
@@ -176,6 +178,7 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         Button button_pw = findViewById(R.id.button_pw);
         Button urgencias = findViewById(R.id.call);
         Button gps = findViewById(R.id.gps);
+        Button buscar = findViewById(R.id.buscar);
 
         Resources resources = App.getApp().getResources();
 
@@ -184,6 +187,10 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
         mLogoutButton.setText(resources.getString(R.string.cerrar_sesi_n));
         urgencias.setText(resources.getString(R.string.llamar_a_nurgencias));
         gps.setText(resources.getString(R.string.localizar_ncl_nicas));
+        buscar.setText(resources.getString(R.string.search_books_button));
+        TextView bookInfo = findViewById(R.id.books_info);
+        bookInfo.setText(resources.getString(R.string.dale_el_mejor_cuidado_a_tu_mascota_con_nuestros_libros));
+
     }
 
     @Override

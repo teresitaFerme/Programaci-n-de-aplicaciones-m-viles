@@ -11,7 +11,7 @@
         layout="@layout/top_bar" />
 
     <include
-        android:id="@+id/toolbar"
+        android:id="@+id/topbar"
         layout="@layout/toolbar"
         tools:layout_editor_absoluteY="667dp" />
 
@@ -20,7 +20,7 @@
         android:layout_width="259dp"
         android:layout_height="50dp"
         android:text="@string/new_task_button"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/topbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

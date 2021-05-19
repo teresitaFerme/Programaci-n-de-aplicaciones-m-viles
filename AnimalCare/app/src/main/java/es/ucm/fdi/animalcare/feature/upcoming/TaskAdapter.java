@@ -169,9 +169,9 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             name.setText(task.getmTaskName());
             petName.setText(((UpcomingActivity) ctext).getPetName(task.getmPetId()) + ":");
             if(task.getmTaskDoneDatetime() != null)
-                status.setText(R.string.done_task_button);
-            else
-                status.setText(R.string.undone_task_button);
+                status.setText(App.getApp().getResources().getString(R.string.done_task_button));
+            else status.setText(App.getApp().getResources().getString(R.string.undone_task_button));
+
 
             time.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});
             name.setOnClickListener(v-> { ((UpcomingActivity)ctext).showTask(task.getmId());});

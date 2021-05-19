@@ -8,7 +8,7 @@
 
     <!-- Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/toolbar"
+        android:id="@+id/topbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
@@ -65,7 +65,7 @@
         android:textSize="20sp"
         android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/topbar" />
 
     <TextView
         android:id="@+id/show_task_frequency"
@@ -92,7 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toEndOf="@+id/taskPetName"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/topbar" />
 
     <TextView
         android:id="@+id/taskDate"
