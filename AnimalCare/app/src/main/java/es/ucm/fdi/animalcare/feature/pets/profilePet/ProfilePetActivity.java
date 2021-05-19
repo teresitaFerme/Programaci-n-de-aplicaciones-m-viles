@@ -21,25 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.ucm.fdi.animalcare.R;
-import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
-import es.ucm.fdi.animalcare.data.User;
-import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
-import es.ucm.fdi.animalcare.feature.pets.PetsPresenter;
-import es.ucm.fdi.animalcare.feature.pets.newPets.NewPetsPresenter;
-import es.ucm.fdi.animalcare.feature.pets.newPets.NewPetsView;
-import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
-import es.ucm.fdi.animalcare.feature.upcoming.TaskAdapter;
-import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
-import es.ucm.fdi.animalcare.feature.upcoming.UpcomingPresenter;
-import es.ucm.fdi.animalcare.feature.user.UserActivity;
 
 public class ProfilePetActivity extends ToolBarManagement implements ProfilePetView {
-
-    private User user;
     private String name;
     private String type;
     private Integer id;
@@ -60,7 +47,6 @@ public class ProfilePetActivity extends ToolBarManagement implements ProfilePetV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets_profile);
 
-        user = (User) getIntent().getSerializableExtra("user");
         name = (String) getIntent().getSerializableExtra("name");
         type = (String) getIntent().getSerializableExtra("type");
         id = (Integer) getIntent().getSerializableExtra("id");
@@ -176,7 +162,7 @@ public class ProfilePetActivity extends ToolBarManagement implements ProfilePetV
         mNewPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mProfilePetPresenter.validateEditPet(id, String.valueOf(mNamePet.getText()), mTypePet.getSelectedItem().toString(), user.getmId()) ;
+                mProfilePetPresenter.validateEditPet(id, String.valueOf(mNamePet.getText()), mTypePet.getSelectedItem().toString(), App.getApp().getUser().getmId()) ;
             }
         });
 
@@ -184,7 +170,6 @@ public class ProfilePetActivity extends ToolBarManagement implements ProfilePetV
 
     public void returnPets(){
         Intent intent = new Intent(this, PetsActivity.class);
-        intent.putExtra("user", user);
         startActivity(intent);
     }
 

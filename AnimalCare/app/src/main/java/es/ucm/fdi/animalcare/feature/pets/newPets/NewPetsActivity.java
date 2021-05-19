@@ -12,12 +12,10 @@ import android.widget.Toast;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.data.App;
-import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 
 public class NewPetsActivity extends ToolBarManagement implements NewPetsView {
-    private User user;
     private NewPetsPresenter mNewPetsPresenter;
     private EditText mNamePet;
     private Spinner mTypePet;
@@ -29,10 +27,7 @@ public class NewPetsActivity extends ToolBarManagement implements NewPetsView {
         setUpToolbar();
         bindViews();
 
-        user = (User) getIntent().getSerializableExtra("user");
-
         mNewPetsPresenter = new NewPetsPresenter(this);
-
 
         Resources res = App.getApp().getResources();
         String[] options = res.getStringArray(R.array.Pets_animals);
@@ -75,7 +70,7 @@ public class NewPetsActivity extends ToolBarManagement implements NewPetsView {
                         type = "Pez";
                         break;
                 }
-                mNewPetsPresenter.validateNewPet(String.valueOf(mNamePet.getText()), type, user.getmId()) ;
+                mNewPetsPresenter.validateNewPet(String.valueOf(mNamePet.getText()), type, App.getApp().getUser().getmId()) ;
             }
         });
 
@@ -103,7 +98,6 @@ public class NewPetsActivity extends ToolBarManagement implements NewPetsView {
 
     public void returnPets(){
         Intent intent = new Intent(this, PetsActivity.class);
-        intent.putExtra("user", user);
         startActivity(intent);
     }
 

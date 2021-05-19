@@ -13,24 +13,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import es.ucm.fdi.animalcare.R;
-import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
-import es.ucm.fdi.animalcare.data.User;
-import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.login.LoginActivity;
 import es.ucm.fdi.animalcare.feature.password.PasswordActivity;
-import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
-import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
-import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 import es.ucm.fdi.animalcare.feature.user.books.BooksActivity;
 import es.ucm.fdi.animalcare.session.SessionHandler;
 
 public class UserActivity extends ToolBarManagement implements UserView {
-    private User user;
     private UserPresenter mUserPresenter;
     private EditText mNameView;
     private TextView greetings;
@@ -47,16 +38,11 @@ public class UserActivity extends ToolBarManagement implements UserView {
         setUpToolbar();
         bindViews();
 
-
         sp = getSharedPreferences(SessionHandler.getSPname(), MODE_PRIVATE);
         String mName = sp.getString("name", "User");
         mNameView.setText(mName);
 
-
-
-
         mUserPresenter = new UserPresenter(this);
-        user = (User) getIntent().getSerializableExtra("user");
     }
 
     @Override
@@ -201,7 +187,6 @@ public class UserActivity extends ToolBarManagement implements UserView {
 
     public void buscarLibros(View view){
         Intent intent = new Intent(this, BooksActivity.class);
-        intent.putExtra("user", user);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

@@ -17,12 +17,10 @@ import java.util.List;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.data.App;
-import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 
 public class BooksActivity extends ToolBarManagement  {
     private int BOOK_LOADER_ID = 10;
-    private User user;
     private BookLoaderCallbacks bookLoaderCallbacks = new BookLoaderCallbacks(this, this);
     private RecyclerView recyclerView;
     private BooksResultListAdapter adapter;
@@ -33,8 +31,6 @@ public class BooksActivity extends ToolBarManagement  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books);
-        user = (User) getIntent().getSerializableExtra("user");
-
 
         ConstraintLayout toolbar = findViewById(R.id.toolbar);
         setUpToolbar();

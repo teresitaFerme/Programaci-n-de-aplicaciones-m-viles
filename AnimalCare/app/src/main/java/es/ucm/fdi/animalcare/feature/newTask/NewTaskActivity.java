@@ -24,13 +24,10 @@ import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
-import es.ucm.fdi.animalcare.data.User;
-import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 
 public class NewTaskActivity extends BaseActivity implements NewTaskView {
 
     private NewTaskPresenter mNewTaskPresenter;
-    private User user;
     private Task task;
     private EditText mTaskName, mTaskDesc, mScheduleDate;
     private Spinner mPetSpinner, mFreqSpinner;
@@ -48,7 +45,6 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         setContentView(R.layout.activity_new_task);
 
         mNewTaskPresenter = new NewTaskPresenter(this);
-        user = (User) getIntent().getSerializableExtra("user");
         task = (Task) getIntent().getSerializableExtra("task");
 
         bindViews();
@@ -66,7 +62,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             mScheduleTime.setHour(calendar.getTime().getHours());
             mScheduleTime.setMinute(calendar.getTime().getMinutes());
 
-            String[] options = mNewTaskPresenter.getPetNames(user);
+            String[] options = mNewTaskPresenter.getPetNames(App.getApp().getUser());
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
             mPetSpinner.setAdapter(adapter);
 
@@ -90,10 +86,10 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
             buttonConfirmTask.setOnClickListener(v -> confirmUpdateTask(v));
 
             mPetSpinner = findViewById(R.id.petSpinner);
-            String[] options = mNewTaskPresenter.getPetNames(user);
+            String[] options = mNewTaskPresenter.getPetNames(App.getApp().getUser());
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, options);
             mPetSpinner.setAdapter(adapter);
-            mPetSpinner.setSelection(mNewTaskPresenter.getPetPosition(user, task.getmPetId()));
+            mPetSpinner.setSelection(mNewTaskPresenter.getPetPosition(App.getApp().getUser(), task.getmPetId()));
             mPetSpinner.setEnabled(false);
 
             String[] options2 = getResources().getStringArray(R.array.task_frequency_array);
@@ -131,7 +127,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         hour = mScheduleTime.getHour();
         minutes = mScheduleTime.getMinute();
         Integer freq = mFreqSpinner.getSelectedItemPosition();
-        mNewTaskPresenter.validateNewTask(name, desc, petName, date, hour, minutes, user, freq);
+        mNewTaskPresenter.validateNewTask(name, desc, petName, date, hour, minutes, App.getApp().getUser(), freq);
     }
 
     @Override
@@ -144,7 +140,7 @@ public class NewTaskActivity extends BaseActivity implements NewTaskView {
         date = mScheduleDate.getText().toString();
         hour = mScheduleTime.getHour();
         minutes = mScheduleTime.getMinute();
-        mNewTaskPresenter.validateUpdateTask(task.getmId(), name, desc, petName, date, hour, minutes, user, freq);
+        mNewTaskPresenter.validateUpdateTask(task.getmId(), name, desc, petName, date, hour, minutes, App.getApp().getUser(), freq);
     }
 
     @Override

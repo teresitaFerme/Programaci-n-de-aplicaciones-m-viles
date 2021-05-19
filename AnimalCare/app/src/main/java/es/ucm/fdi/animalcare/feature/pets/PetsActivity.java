@@ -18,13 +18,11 @@ import java.util.List;
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Pets;
-import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.newPets.NewPetsActivity;
 import es.ucm.fdi.animalcare.feature.pets.profilePet.ProfilePetActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 
 public class PetsActivity extends ToolBarManagement implements PetsView {
-    private User user;
     private PetsPresenter mPetsPresenter;
     private RecyclerView mPetList;
     private Button mAddPet;
@@ -45,21 +43,15 @@ public class PetsActivity extends ToolBarManagement implements PetsView {
 
         setUpToolbar();
 
-
-        user = (User) getIntent().getSerializableExtra("user");
-
         mPetsPresenter = new PetsPresenter(this);
 
-
-
         updateList();
-
     }
 
     public void  updateList(){
         listPets = new ArrayList<>();
-        listPets = mPetsPresenter.validateUserPets(user.getmId());
-        user.setmPetList(listPets);
+        listPets = mPetsPresenter.validateUserPets(App.getApp().getUser().getmId());
+        App.getApp().getUser().setmPetList(listPets);
 
         recyclerView = findViewById(R.id.PetsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -86,14 +78,12 @@ public class PetsActivity extends ToolBarManagement implements PetsView {
 
     public void addNewPet() {
         Intent intent = new Intent(this, NewPetsActivity.class);
-        intent.putExtra("user", user);
         startActivity(intent);
         updateList();
     }
 
     public void viewPet(String name,String type, Integer id){
         Intent intent = new Intent(this, ProfilePetActivity.class);
-        intent.putExtra("user", user);
         intent.putExtra("name", name);
         intent.putExtra("type", type);
         intent.putExtra("id", id);

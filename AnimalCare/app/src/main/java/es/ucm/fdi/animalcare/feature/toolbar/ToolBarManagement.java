@@ -5,7 +5,6 @@ import android.view.View;
 
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
-import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
@@ -32,7 +31,6 @@ public class ToolBarManagement extends BaseActivity {
                          intent = new Intent(view.getContext(), SettingsActivity.class);
                          break;
                }
-          intent.putExtra("user", User.getInstance(null,null,0));
                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                startActivity(intent);
      }

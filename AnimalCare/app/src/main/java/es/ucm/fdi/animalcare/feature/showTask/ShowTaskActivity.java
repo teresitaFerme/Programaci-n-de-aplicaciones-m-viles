@@ -81,7 +81,6 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
 
         Integer taskId = getIntent().getIntExtra("taskId", 0);
         task = mShowTaskPresenter.getTaskById(taskId);
-        user = (User) getIntent().getSerializableExtra("user");
         String petName = mShowTaskPresenter.getPetName(task.getmPetId());
 
         mTaskLabel.setText(task.getmTaskName());
@@ -137,7 +136,6 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
     public void editTask(View view) {
         Intent intent = new Intent(this, NewTaskActivity.class);
         intent.putExtra("task", task);
-        intent.putExtra("user", user);
         startActivityForResult(intent, EDIT_TASK);
     }
 

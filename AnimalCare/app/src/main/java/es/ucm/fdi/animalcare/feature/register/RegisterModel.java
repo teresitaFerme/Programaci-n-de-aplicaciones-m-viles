@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
 import es.ucm.fdi.animalcare.base.BaseModel;
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.database.AnimalCareDatabase.UserTable;
 import es.ucm.fdi.animalcare.database.AnimalCareDbHelper;
@@ -49,7 +50,7 @@ public class RegisterModel extends BaseModel {
         else return false;
     }
 
-    public User registerUser(String name, String username, String password) {
+    public boolean registerUser(String name, String username, String password) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
@@ -61,7 +62,10 @@ public class RegisterModel extends BaseModel {
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(UserTable.TABLE_NAME, null, values);
 
-        if (newRowId == -1) return null;
-        else return new User(name, username, (int) newRowId);
+        if (newRowId == -1) return false;
+        else{
+            App.getApp().setUser(User.getInstance(name, username, (int) newRowId));
+            return true;
+        }
     }
 }

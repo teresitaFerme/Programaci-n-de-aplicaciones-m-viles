@@ -19,12 +19,10 @@ import java.util.List;
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Task;
-import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 
 public class CalendarActivity extends ToolBarManagement implements CalendarView {
     private int TASK_LOADER_ID=50;
-    private User user;
     private CalendarPresenter mCalendarPresenter;
     private List<EventDay> events = new ArrayList<>();
     private Calendar mCalendar;
@@ -42,13 +40,11 @@ public class CalendarActivity extends ToolBarManagement implements CalendarView 
         bindViews();
         setUpToolbar();
 
-        user = User.getInstance(null, null, 0);
-
         mCalendarPresenter = new CalendarPresenter(this);
 
         mCalendar = Calendar.getInstance();
 
-        mCalendarPresenter.prepareEvents(user.getmId());
+        mCalendarPresenter.prepareEvents(App.getApp().getUser().getmId());
 
         mAdapter = new TasksListAdapter(this, mTasks);
         mRecyclerView.setAdapter(mAdapter);
@@ -83,7 +79,7 @@ public class CalendarActivity extends ToolBarManagement implements CalendarView 
 
         Bundle queryBundle = new Bundle();
         queryBundle.putString(TaskLoaderCallbacks.EXTRA_DATETIMESTRING, dateFormat.format(calendar.getTime()));
-        queryBundle.putInt(TaskLoaderCallbacks.EXTRA_USERID, user.getmId());
+        queryBundle.putInt(TaskLoaderCallbacks.EXTRA_USERID, App.getApp().getUser().getmId());
         LoaderManager.getInstance(this)
                 .restartLoader(TASK_LOADER_ID, queryBundle, mTaskLoaderCallbacks);
     }

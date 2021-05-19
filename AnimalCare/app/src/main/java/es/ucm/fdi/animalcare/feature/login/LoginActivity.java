@@ -69,14 +69,13 @@ public class LoginActivity extends BaseActivity implements LoginView{
 
     @Override
     public void loginSuccessfull() {
-        App.getApp().setUserName(User.getInstance(null, null, 0).getmName());
         App.getApp().setPass(String.valueOf(mPassword.getText()));
 
         SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
         SharedPreferences.Editor editoor = settings.edit();
         editoor.putBoolean("darkMode", App.getApp().getDarkMode());
         editoor.putString("language", App.getApp().getLanguage());
-        editoor.putString("nombre" , App.getApp().getUserName());
+        editoor.putString("nombre" , App.getApp().getUser().getmUsername());
         editoor.putString("pass", App.getApp().getPass());
 
         editoor.commit();
@@ -89,7 +88,6 @@ public class LoginActivity extends BaseActivity implements LoginView{
         editor.apply();
 
         Intent intent = new Intent(this, PetsActivity.class);
-        intent.putExtra("user", User.getInstance(null, null, 0));
         startActivity(intent);
         finish();
     }

@@ -17,13 +17,11 @@ import java.util.Locale;
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.LocaleHelper;
-import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.login.LoginActivity;
 import es.ucm.fdi.animalcare.feature.password.PasswordActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 
 public class SettingsActivity extends ToolBarManagement implements SettingsView  {
-    private User user;
     private SettingsPresenter mSettingsPresenter;
     private SwitchCompat mScreenModeSwitch, mNotificationsSwitch;
     private Context context;
@@ -45,9 +43,6 @@ public class SettingsActivity extends ToolBarManagement implements SettingsView 
 
         setUpToolbar();
         setUpListeners();
-
-        user = (User) getIntent().getSerializableExtra("user");
-
         updateLanguage();
     }
 

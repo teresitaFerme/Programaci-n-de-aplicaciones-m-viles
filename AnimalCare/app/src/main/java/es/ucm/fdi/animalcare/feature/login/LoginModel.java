@@ -59,12 +59,11 @@ public class LoginModel extends BaseModel {
             mUsername = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_NAME_USERNAME));
             mPassword = cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_NAME_PASSWORD));
             mId = cursor.getInt(cursor.getColumnIndex(BaseColumns._ID));
-            App.getApp().setUserId(String.valueOf(mId));
             cursor.close();
         } else return false;
 
         if(mUsername.equals(username) && mPassword.equals(password)){
-            User.getInstance(mName, mUsername, mId);
+            App.getApp().setUser(User.getInstance(mName, mUsername, mId));
             return true;
         }
         else return false;

@@ -11,7 +11,6 @@ import android.widget.Toast;
 import es.ucm.fdi.animalcare.R;
 import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
-import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.session.SessionHandler;
 
@@ -42,14 +41,13 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
     }
 
     @Override
-    public void registerSuccessful(User u) {
+    public void registerSuccessful() {
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("username", u.getmUsername());
-        editor.putString("name", u.getmName());
+        editor.putString("username", App.getApp().getUser().getmUsername());
+        editor.putString("name", App.getApp().getUser().getmName());
         editor.apply();
 
         Intent intent = new Intent(this, PetsActivity.class);
-        intent.putExtra("user", u);
         startActivity(intent);
         finish();
     }
