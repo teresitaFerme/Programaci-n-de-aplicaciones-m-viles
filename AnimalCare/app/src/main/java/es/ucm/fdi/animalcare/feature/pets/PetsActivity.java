@@ -102,12 +102,7 @@ public class PetsActivity extends ToolBarManagement implements PetsView {
 
     }
 
-    @Override
     public void setUpToolbar() {
-        toolbar.findViewById(R.id.button_toolbar_pets).getBackground().setTint(App.getApp().getResources().getColor(R.color.white));
-        toolbar.findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        toolbar.findViewById(R.id.button_toolbar_settings).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        toolbar.findViewById(R.id.button_toolbar_calendar).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
-        toolbar.findViewById(R.id.button_toolbar_user).getBackground().setTint(App.getApp().getResources().getColor(R.color.iconColor));
+        super.setUpToolbar(R.id.button_toolbar_pets);
     }
 }

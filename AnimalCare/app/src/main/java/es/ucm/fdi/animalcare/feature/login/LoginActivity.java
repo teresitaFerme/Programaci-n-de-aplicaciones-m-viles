@@ -144,8 +144,4 @@ public class LoginActivity extends BaseActivity implements LoginView{
         mRegister = findViewById(R.id.login_register_option);
         mIniciasesion = findViewById(R.id.button_inicia_sesion);
     }
-
-    @Override
-    public void setUpToolbar() {
-    }
 }

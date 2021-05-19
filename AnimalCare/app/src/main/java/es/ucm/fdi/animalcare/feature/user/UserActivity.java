@@ -153,13 +153,8 @@ public class UserActivity extends ToolBarManagement implements UserView {
 
     }
 
-    @Override
     public void setUpToolbar() {
-        findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.white));
+        super.setUpToolbar(R.id.button_toolbar_user);
     }
 
     public void llamarUrgencias(View view) {

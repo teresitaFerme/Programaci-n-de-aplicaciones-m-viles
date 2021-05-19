@@ -81,9 +81,4 @@ public class RegisterActivity extends BaseActivity implements RegisterView{
         mPasswordRepeat = findViewById(R.id.editText_register_password_repeat);
         mRegistrarUsuario = findViewById(R.id.button_registrar_usuario);
     }
-
-    @Override
-    public void setUpToolbar() {
-
-    }
 }

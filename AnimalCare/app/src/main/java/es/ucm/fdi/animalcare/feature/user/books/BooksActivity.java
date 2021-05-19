@@ -84,10 +84,6 @@ public class BooksActivity extends ToolBarManagement  {
     }*/
 
     public void setUpToolbar() {
-        findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.white));
+        super.setUpToolbar(R.id.button_toolbar_user);
     }
 }

@@ -58,12 +58,8 @@ public class SettingsActivity extends ToolBarManagement implements SettingsView 
         radioGroup = findViewById(R.id.settings_radio_group);
     }
 
-    public void setUpToolbar(){
-        findViewById(R.id.button_toolbar_pets).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_upcoming).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_settings).getBackground().setTint(getResources().getColor(R.color.white));
-        findViewById(R.id.button_toolbar_calendar).getBackground().setTint(getResources().getColor(R.color.iconColor));
-        findViewById(R.id.button_toolbar_user).getBackground().setTint(getResources().getColor(R.color.iconColor));
+    public void setUpToolbar() {
+        super.setUpToolbar(R.id.button_toolbar_settings);
     }
 
     private void setUpListeners(){
