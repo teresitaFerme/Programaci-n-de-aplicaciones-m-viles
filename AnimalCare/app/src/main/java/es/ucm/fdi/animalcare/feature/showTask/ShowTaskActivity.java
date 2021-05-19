@@ -24,9 +24,7 @@ import es.ucm.fdi.animalcare.feature.newTask.NewTaskActivity;
 
 public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
     public static final int EDIT_TASK = 1;
-
     private ShowTaskPresenter mShowTaskPresenter;
-
     private TextView mTaskLabel, mTaskTime, mTaskDate, mTaskDesc, mTaskFreq, mTaskPetName;
     private TextView taskTitle, mTaskStatus;
     private Button mChangeTaskStateButton;
@@ -41,16 +39,8 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm"), dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         mShowTaskPresenter = new ShowTaskPresenter(this);
 
-        mTaskLabel = findViewById(R.id.taskLabel);
-        mTaskTime = findViewById(R.id.taskTime);
-        mTaskDate = findViewById(R.id.taskDate);
-        mTaskDesc = findViewById(R.id.taskDesc);
-        mTaskFreq = findViewById(R.id.taskFreq);
-        mTaskPetName = findViewById(R.id.taskPetName);
-        mChangeTaskStateButton = findViewById(R.id.checkButton);
-        taskTitle = findViewById(R.id.task_title);
-        mTaskStatus = findViewById(R.id.taskStatusShow);
-
+        bindViews();
+        
         Resources resources = App.getApp().getResources();
         taskTitle.setText(resources.getString(R.string.toolbar_label_show_task));
         TextView show_task_pet =  findViewById(R.id.show_task_pet);
@@ -184,5 +174,17 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
 
     public void goBack (View view){
         finish();
+    }
+
+    private void bindViews(){
+        mTaskLabel = findViewById(R.id.taskLabel);
+        mTaskTime = findViewById(R.id.taskTime);
+        mTaskDate = findViewById(R.id.taskDate);
+        mTaskDesc = findViewById(R.id.taskDesc);
+        mTaskFreq = findViewById(R.id.taskFreq);
+        mTaskPetName = findViewById(R.id.taskPetName);
+        mChangeTaskStateButton = findViewById(R.id.checkButton);
+        taskTitle = findViewById(R.id.task_title);
+        mTaskStatus = findViewById(R.id.taskStatusShow);
     }
 }
