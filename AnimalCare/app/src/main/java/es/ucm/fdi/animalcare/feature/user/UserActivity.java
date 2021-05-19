@@ -227,6 +227,8 @@ public class UserActivity extends BaseActivity implements UserView, ToolBarManag
 
     public void buscarLibros(View view){
         Intent intent = new Intent(this, BooksActivity.class);
+        intent.putExtra("user", user);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 }

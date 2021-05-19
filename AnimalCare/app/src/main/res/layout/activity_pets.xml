@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:padding="16dp"
+        style="@style/button"
         android:text="@string/anadir_mascota"
         app:layout_constraintBottom_toTopOf="@+id/toolbar_pets"
         app:layout_constraintEnd_toEndOf="parent"

@@ -24,15 +24,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import es.ucm.fdi.animalcare.R;
+import es.ucm.fdi.animalcare.base.BaseActivity;
 import es.ucm.fdi.animalcare.data.App;
+import es.ucm.fdi.animalcare.data.User;
 import es.ucm.fdi.animalcare.feature.calendar.CalendarActivity;
 import es.ucm.fdi.animalcare.feature.pets.PetsActivity;
 import es.ucm.fdi.animalcare.feature.settings.SettingsActivity;
 import es.ucm.fdi.animalcare.feature.toolbar.ToolBarManagement;
 import es.ucm.fdi.animalcare.feature.upcoming.UpcomingActivity;
 
-public class BooksActivity extends AppCompatActivity implements ToolBarManagement {
+public class BooksActivity extends BaseActivity implements ToolBarManagement {
     private int BOOK_LOADER_ID = 10;
+    private User user;
     private BookLoaderCallbacks bookLoaderCallbacks = new BookLoaderCallbacks(this, this);
     private RecyclerView recyclerView;
     private BooksResultListAdapter adapter;
@@ -43,6 +46,8 @@ public class BooksActivity extends AppCompatActivity implements ToolBarManagemen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books);
+        user = (User) getIntent().getSerializableExtra("user");
+
 
         ConstraintLayout toolbar = findViewById(R.id.toolbar);
         setUpToolbar();
@@ -122,6 +127,7 @@ public class BooksActivity extends AppCompatActivity implements ToolBarManagemen
                     break;
 
             }
+            intent.putExtra("user", user);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }

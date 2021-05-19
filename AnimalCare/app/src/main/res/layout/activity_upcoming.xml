@@ -19,8 +19,8 @@
         android:id="@+id/addTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/button"
         android:layout_margin="16dp"
-        android:padding="16dp"
         android:text="@string/new_task_button"
         app:layout_constraintBottom_toTopOf="@+id/topbar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,6 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/addTaskButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_top_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

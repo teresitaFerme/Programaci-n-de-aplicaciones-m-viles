@@ -48,8 +48,9 @@
 
     <Button
         android:id="@+id/buttonDeletePet"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/button"
         android:text="Eliminar Mascota"
         app:layout_constraintBottom_toBottomOf="@+id/buttonEditPet"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,9 +61,10 @@
 
     <Button
         android:id="@+id/buttonEditPet"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
+        style="@style/button"
         android:text="Editar Mascota"
         app:layout_constraintBottom_toTopOf="@+id/include3"
         app:layout_constraintEnd_toEndOf="parent"
