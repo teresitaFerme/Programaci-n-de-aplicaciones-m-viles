@@ -107,6 +107,8 @@
     <string name="editar_boton">Edit</string>
     <string name="eliminar_boton">Delete</string>
     <string name="greetings">Hello,</string>
-    <string name="llamar_a_nurgencias">Call \nurgences</string>
-    <string name="localizar_ncl_nicas">Look for \nclinics</string>
+    <string name="llamar_a_nurgencias">Call &#10;emergency</string>
+    <string name="localizar_ncl_nicas">Look for &#10;clinics</string>
+    <string name="books_activity_title">Search Books</string>
+    <string name="search_books_button">Search &#10;Books</string>
 </resources>
