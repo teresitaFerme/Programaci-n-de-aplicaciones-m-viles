@@ -44,6 +44,8 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets);
 
+        mPetList = findViewById(R.id.PetsList);
+        mAddPet = findViewById(R.id.AddPet);
         setUpToolbar();
 
 
@@ -51,8 +53,7 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
 
         mPetsPresenter = new PetsPresenter(this);
 
-        mPetList = findViewById(R.id.PetsList);
-        mAddPet = findViewById(R.id.AddPet);
+
 
         updateList();
 
@@ -100,6 +101,7 @@ public class PetsActivity extends BaseActivity implements PetsView, ToolBarManag
         });
         recyclerView.setAdapter(mPetAdapter);
 
+        mAddPet.setText(App.getApp().getResources().getString(R.string.anadir_mascota));
         mAddPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

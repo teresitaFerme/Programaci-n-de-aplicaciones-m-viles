@@ -40,7 +40,7 @@ public class TaskLoader extends AsyncTaskLoader<List<Task>> {
     public List<Task> loadInBackground() {
         //TODO: get tasks (filter by user and datetime)
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
         int year = mDateTime.getYear();
         int month = mDateTime.getMonth();

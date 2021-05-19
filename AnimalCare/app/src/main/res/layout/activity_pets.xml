@@ -18,7 +18,7 @@
         android:id="@+id/AddPet"
         android:layout_width="259dp"
         android:layout_height="69dp"
-        android:text="Añadir Mascota"
+        android:text="@string/anadir_mascota"
         app:layout_constraintBottom_toTopOf="@+id/include2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

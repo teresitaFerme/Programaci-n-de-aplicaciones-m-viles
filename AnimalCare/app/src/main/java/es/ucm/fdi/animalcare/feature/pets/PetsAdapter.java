@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import es.ucm.fdi.animalcare.data.App;
 import es.ucm.fdi.animalcare.data.Pets;
 
 public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> implements View.OnClickListener {
@@ -77,16 +78,19 @@ public class PetsAdapter extends RecyclerView.Adapter<PetsAdapter.ViewHolder> im
         void bindData(final Pets pet){
             //image.setImageResource(R.drawable.pet_dog);
             name.setText(pet.getName());
-            type.setText(pet.getType());
+            String[] typee = App.getApp().getResources().getStringArray(R.array.Pets_animals);
+            int index = 0;
             switch (pet.getType()) {
-                case "Perro": image.setImageResource(R.drawable.dog_green); break;
-                case "Gato": image.setImageResource(R.drawable.cat_green); break;
-                case "Pajaro": image.setImageResource(R.drawable.bird_green); break;
-                case "Caballo": image.setImageResource(R.drawable.horse_green); break;
-                case "Pez": image.setImageResource(R.drawable.fish_green); break;
-                case "Tortuga": image.setImageResource(R.drawable.turtle_green); break;
+                case "Perro": image.setImageResource(R.drawable.dog_green); index = 0; break;
+                case "Gato": image.setImageResource(R.drawable.cat_green); index = 1; break;
+                case "Pajaro": image.setImageResource(R.drawable.bird_green); index = 2; break;
+                case "Caballo": image.setImageResource(R.drawable.horse_green); index = 5; break;
+                case "Pez": image.setImageResource(R.drawable.fish_green); index = 3; break;
+                case "Tortuga": image.setImageResource(R.drawable.turtle_green); index = 4; break;
                 default: image.setImageResource(R.drawable.dog_green); break;
             }
+            type.setText(typee[index]);
+
         }
     }
 }

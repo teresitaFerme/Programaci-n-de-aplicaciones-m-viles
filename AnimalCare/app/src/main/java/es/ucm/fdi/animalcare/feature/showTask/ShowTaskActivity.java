@@ -27,6 +27,7 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
     private ShowTaskPresenter mShowTaskPresenter;
 
     private TextView mTaskLabel, mTaskTime, mTaskDate, mTaskDesc, mTaskFreq, mTaskPetName;
+    private TextView taskTitle;
     private Button mChangeTaskStateButton;
     private User user;
     private Task task;
@@ -46,6 +47,35 @@ public class ShowTaskActivity extends BaseActivity implements ShowTaskView {
         mTaskFreq = findViewById(R.id.taskFreq);
         mTaskPetName = findViewById(R.id.taskPetName);
         mChangeTaskStateButton = findViewById(R.id.checkButton);
+        taskTitle = findViewById(R.id.task_title);
+
+        Resources resources = App.getApp().getResources();
+        taskTitle.setText(resources.getString(R.string.toolbar_label_show_task));
+        TextView show_task_pet =  findViewById(R.id.show_task_pet);
+        show_task_pet.setText(resources.getString(R.string.show_task_pet));
+
+        TextView show_task_name =  findViewById(R.id.show_task_name);
+        show_task_name.setText(resources.getString(R.string.show_task_name));
+
+        TextView show_task_time =  findViewById(R.id.show_task_time);
+        show_task_time.setText(resources.getString(R.string.show_task_time));
+
+        TextView show_task_date =  findViewById(R.id.show_task_date);
+        show_task_date.setText(resources.getString(R.string.show_task_date));
+
+        TextView show_task_frequency =  findViewById(R.id.show_task_frequency);
+        show_task_frequency.setText(resources.getString(R.string.show_task_frequency));
+
+        TextView show_task_desc =  findViewById(R.id.show_task_desc);
+        show_task_desc.setText(resources.getString(R.string.show_task_desc));
+
+        Button edit = findViewById(R.id.editButton);
+        edit.setText(resources.getString(R.string.edit_task_button));
+
+        Button delete = findViewById(R.id.removeButton);
+        delete.setText(resources.getString(R.string.remove_task_button));
+
+        mChangeTaskStateButton.setText(resources.getString(R.string.done_task_button));
 
         Integer taskId = getIntent().getIntExtra("taskId", 0);
         task = mShowTaskPresenter.getTaskById(taskId);

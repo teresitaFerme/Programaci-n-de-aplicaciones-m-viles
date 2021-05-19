@@ -58,7 +58,7 @@
                 android:layout_gravity="center"
                 android:backgroundTint="@color/iconColor"
                 android:textColor="@color/black"
-                android:text="Iniciar Sesión" />
+                android:text="@string/iniciar_sesion_button" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -67,9 +67,10 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/login_register_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="¿Aún no tienes cuenta?"/>
+                    android:text="@string/aun_no_tienes_cuenta"/>
 
                 <TextView
                     android:id="@+id/login_register_option"

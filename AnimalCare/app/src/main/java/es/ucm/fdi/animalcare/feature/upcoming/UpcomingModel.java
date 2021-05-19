@@ -39,7 +39,8 @@ public class UpcomingModel {
         Cursor cursor = db.rawQuery(query, null);
         List values = new ArrayList<Task>();
 
-        while(cursor.moveToNext()){
+        cursor.moveToLast();
+        while(cursor.moveToPrevious()){
             Integer taskId = cursor.getInt(cursor.getColumnIndex(TaskTable._ID));
             Integer petIdAux = cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_ID_PET));
             String taskName = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKNAME));

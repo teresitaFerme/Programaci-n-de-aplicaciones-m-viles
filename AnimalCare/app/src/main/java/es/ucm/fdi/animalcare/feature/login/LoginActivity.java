@@ -3,6 +3,7 @@ package es.ucm.fdi.animalcare.feature.login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
@@ -33,6 +34,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
     private EditText mUsername, mPassword;
     private Button mIniciasesion;
     private TextView mRegister;
+    private Resources resources;
 
     private SharedPreferences sp;
 
@@ -46,6 +48,11 @@ public class LoginActivity extends BaseActivity implements LoginView{
         bindViews();
 
         recover();
+        resources = App.getApp().getResources();
+        mIniciasesion.setText(App.getApp().getResources().getString(R.string.iniciar_sesion_button));
+        TextView registerInfo = findViewById(R.id.login_register_info);
+        registerInfo.setText(App.getApp().getResources().getString(R.string.aun_no_tienes_cuenta));
+        mRegister.setText(App.getApp().getResources().getString(R.string.reg_strate));
 
         mIniciasesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,6 +150,7 @@ public class LoginActivity extends BaseActivity implements LoginView{
         mPassword = findViewById(R.id.editText_password);
         mRegister = findViewById(R.id.login_register_option);
         mIniciasesion = findViewById(R.id.button_inicia_sesion);
+
     }
 
     @Override

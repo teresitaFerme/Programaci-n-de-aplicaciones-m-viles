@@ -50,6 +50,8 @@ public class UpcomingActivity extends BaseActivity implements UpcomingView, Tool
 
         mAddTaskButton = findViewById(R.id.addTaskButton);
 
+        mAddTaskButton.setText(App.getApp().getResources().getString(R.string.new_task_button));
+
         mAddTaskButton.setOnClickListener(v -> {
             if (mUpcomingPresenter.hasPets())
                 mUpcomingPresenter.addNewTask();

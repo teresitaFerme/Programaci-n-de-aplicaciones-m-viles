@@ -81,6 +81,10 @@ public class ProfilePetActivity extends BaseActivity implements ProfilePetView, 
         mShowName.setText(name);
         imagePet(mShowImage,type);
 
+        Resources resources = App.getApp().getResources();
+        mEditPet.setText(resources.getString(R.string.editar_boton));
+        mDeletePet.setText(resources.getString(R.string.eliminar_boton));
+
         updateList();
 
         mEditPet.setOnClickListener(new View.OnClickListener() {
