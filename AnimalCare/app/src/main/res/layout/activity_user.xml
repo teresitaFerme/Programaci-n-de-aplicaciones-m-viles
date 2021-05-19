@@ -95,6 +95,7 @@
             android:textAlignment="center"
             android:backgroundTint="@color/iconColor"
             android:onClick="llamarUrgencias"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_pw" />
@@ -106,8 +107,25 @@
             android:layout_weight="1"
             android:layout_marginTop="40dp"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:text="@string/localizar_ncl_nicas"
             android:onClick="localizarClinicas"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/iconColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_pw" />
+
+        <Button
+            android:id="@+id/buscar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="4dp"
+            android:text="@string/search_books_button"
+            android:textColor="@color/black"
+            android:onClick="buscarLibros"
             app:layout_constraintEnd_toEndOf="parent"
             android:backgroundTint="@color/iconColor"
             app:layout_constraintStart_toStartOf="parent"
