@@ -111,4 +111,6 @@
     <string name="localizar_ncl_nicas">Look for &#10;clinics</string>
     <string name="books_activity_title">Search Books</string>
     <string name="search_books_button">Search &#10;Books</string>
+    <string name="book_query_hint">Keywords</string>
+    <string name="book_search_button">Search Books</string>
 </resources>

@@ -130,6 +130,8 @@
     <string name="noPets">Cannot add a new task without any pet.</string>
     <string name="books_activity_title">Buscar Libros</string>
     <string name="search_books_button">Buscar &#10;Libros</string>
+    <string name="book_query_hint">Palabras claves</string>
+    <string name="book_search_button">Buscar Libros</string>
 
 
 </resources>

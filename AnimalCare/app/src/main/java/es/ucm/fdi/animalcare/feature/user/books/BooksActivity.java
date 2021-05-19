@@ -28,9 +28,7 @@ public class BooksActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private BooksResultListAdapter adapter;
     private List<BookInfo> booksData;
-    private EditText authors, title;
-    private RadioGroup radioGroup;
-    private TextView status;
+    private EditText query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +48,11 @@ public class BooksActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        searchBooks();
+        query = findViewById(R.id.query);
     }
 
-    public void searchBooks(){
-        String queryString = "cuidado de mascotas";
+    public void searchBooks(View view){
+        String queryString = query.getText().toString();
 
         Bundle queryBundle = new Bundle();
         queryBundle.putString(BookLoaderCallbacks.EXTRA_QUERY, queryString);
