@@ -9,7 +9,7 @@ import java.util.Date;
 
 import es.ucm.fdi.animalcare.R;
 
-public class Task implements Serializable {
+public class Task implements Serializable, Comparable<Task> {
     public static final int FREQUENCY_NONE = 0;
     public static final int FREQUENCY_DAILY = 1;
     public static final int FREQUENCY_WEEKLY = 2;
@@ -113,5 +113,10 @@ public class Task implements Serializable {
 
     public void setmFreq(Integer mFreq) {
         this.mFreq = mFreq;
+    }
+
+    @Override
+    public int compareTo(Task task) {
+        return getmScheduleDatetime().compareTo(task.getmScheduleDatetime());
     }
 }
