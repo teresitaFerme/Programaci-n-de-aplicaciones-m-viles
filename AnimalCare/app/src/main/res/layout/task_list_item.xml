@@ -6,14 +6,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:layout_margin="8dp"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/taskScheduleTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:paddingStart="16dp"
+            android:textSize="12sp"
             tools:text="12:27"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,8 +23,9 @@
             android:id="@+id/taskListPetName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            tools:text="pet name"
+            android:textSize="12sp"
+            android:minWidth="80dp"
+            tools:text="Rodolfo"
             android:paddingStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/taskScheduleTime"
@@ -32,28 +33,25 @@
 
     <TextView
         android:id="@+id/taskName"
-        android:layout_width="162dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:paddingEnd="16dp"
-        android:textSize="16sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/taskListPetName"
+        app:layout_constraintEnd_toStartOf="@id/taskStatus"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="TaskName" />
 
     <TextView
         android:id="@+id/taskStatus"
-        android:layout_width="105dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="16dp"
-        android:textSize="16sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/taskName"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         tools:text="Status" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
