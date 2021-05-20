@@ -29,40 +29,6 @@ public class UpcomingModel {
     }
 
     public List<Task> getAllTasks (Integer userId) {
-        /*
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        String query = "SELECT t." + BaseColumns._ID +
-                ", t." + TaskTable.COLUMN_NAME_ID_PET +
-                ", t." + TaskTable.COLUMN_NAME_TASKNAME +
-                ", t." + TaskTable.COLUMN_NAME_SCHEDULE_DATETIME +
-                ", t." + TaskTable.COLUMN_NAME_TASKDONE_DATETIME +
-                ", t." + TaskTable.COLUMN_NAME_DESCRIPTION +
-                ", t." + TaskTable.COLUMN_NAME_FREQUENCY +
-                " FROM " + TaskTable.TABLE_NAME + " t JOIN " + PetTable.TABLE_NAME +
-                " p ON t." + TaskTable.COLUMN_NAME_ID_PET + " = p." + BaseColumns._ID + " WHERE p." + PetTable.COLUMN_NAME_ID_OWNER +
-                "= " + String.valueOf(userId) + " ORDER BY t." + TaskTable.COLUMN_NAME_SCHEDULE_DATETIME + " DESC";
-        Cursor cursor = db.rawQuery(query, null);
-        List values = new ArrayList<Task>();
-
-        cursor.moveToLast();
-        while(cursor.moveToPrevious()){
-            Integer taskId = cursor.getInt(cursor.getColumnIndex(TaskTable._ID));
-            Integer petIdAux = cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_ID_PET));
-            String taskName = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKNAME));
-            String scheduleDatetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_SCHEDULE_DATETIME));
-            String taskDoneDatetime = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_TASKDONE_DATETIME));
-            String description = cursor.getString(cursor.getColumnIndex(TaskTable.COLUMN_NAME_DESCRIPTION));
-            Integer freq = cursor.getInt(cursor.getColumnIndex(TaskTable.COLUMN_NAME_FREQUENCY));
-            Task task = new Task(taskId, petIdAux, taskName, scheduleDatetime, taskDoneDatetime, description, freq, ctx.getResources().getStringArray(R.array.task_frequency_array));
-            values.add(task);
-        }
-        cursor.close();
-
-        return values;
-
-         */
-
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 
