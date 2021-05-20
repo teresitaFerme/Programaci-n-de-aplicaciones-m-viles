@@ -28,8 +28,7 @@
             android:name=".feature.password.PasswordActivity"
             android:parentActivityName=".feature.user.UserActivity"></activity>
         <activity android:name=".feature.settings.SettingsActivity" />
-        <activity android:name=".feature.calendar.CalendarActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".feature.calendar.CalendarActivity"/>
         <activity android:name=".feature.upcoming.UpcomingActivity" />
         <activity
             android:name=".feature.newTask.NewTaskActivity"
